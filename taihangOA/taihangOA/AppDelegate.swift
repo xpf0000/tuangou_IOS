@@ -223,24 +223,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
     
         print("applicationDidBecomeActive !!!!!!!!!")
-        
-        Api.UserChecktoken { (res) in
             
-            if(!res)
-            {
-                //DataCache.Share.User.unRegistNotice()
-                DataCache.Share.User.reset();
-                
-                let alert = UIAlertView(title: "提醒", message: "您的账户已在其他设备登录", delegate: nil, cancelButtonTitle: "确定")
-                alert.show()
-                
-                UserDoLogout = true
-                NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "logout")))
-                
-            }
-            
-        }
-    
     
     }
 

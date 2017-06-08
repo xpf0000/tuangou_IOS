@@ -409,29 +409,29 @@ class MineVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         map["id"] = DataCache.Share.User.id
         //map["mobile"] = DataCache.Share.User.account
         
-        Api.UserHeadEdit(data: map) { (res) in
-            
-            if(res != "")
-            {
-                DataCache.Share.User.avatar = res
-                DataCache.Share.User.save()
-                
-            self.webView?.evaluateJavaScript("javascript:usergetinfo('"+DataCache.Share.User.toDict().toJson()+"')", completionHandler: { (res, err) in
-                    print(res ?? "")
-                    print(err ?? "")
-                
-                XWaitingView.hide()
-                
-                })
-
-                
-            }
-            else
-            {
-                XWaitingView.hide()
-            }
-            
-        }
+//        Api.UserHeadEdit(data: map) { (res) in
+//            
+//            if(res != "")
+//            {
+//                DataCache.Share.User.avatar = res
+//                DataCache.Share.User.save()
+//                
+//            self.webView?.evaluateJavaScript("javascript:usergetinfo('"+DataCache.Share.User.toDict().toJson()+"')", completionHandler: { (res, err) in
+//                    print(res ?? "")
+//                    print(err ?? "")
+//                
+//                XWaitingView.hide()
+//                
+//                })
+//
+//                
+//            }
+//            else
+//            {
+//                XWaitingView.hide()
+//            }
+//            
+//        }
         
         
     }

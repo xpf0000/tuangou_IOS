@@ -60,11 +60,6 @@ class BootVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Api.APPGetAPPLanuch { [weak self](model) in
-            DataCache.Share.Lanch = model
-            self?.showAD()
-        }
-        
         
         // 定义需要计时的时间
         var timeCount = 4

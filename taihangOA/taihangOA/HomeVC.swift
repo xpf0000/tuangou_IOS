@@ -11,8 +11,10 @@ import Cartography
 import SwiftyJSON
 import Kingfisher
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
+    @IBOutlet weak var collect: UICollectionView!
+    var  homeModel = HomeModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,14 @@ class HomeVC: UIViewController {
         
         initTabBar()
         
+        collect.register("HomeClassCell".Nib(), forCellWithReuseIdentifier: "HomeClassCell")
+        collect.register("HomeTopicCell".Nib(), forCellWithReuseIdentifier: "HomeTopicCell")
+        
+        collect.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectFooter")
+
+        collect.contentInset.top = 20
+        
+        getData()
         
     }
     
@@ -44,6 +54,119 @@ class HomeVC: UIViewController {
             
         }
     }
+    
+    func getData()
+    {
+        Api.app_index(city_id: "23", xpoint: "", ypoint: "") { [weak self](model) in
+            
+            self?.homeModel = model
+            self?.collect.reloadData()
+            
+        }
+    }
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        return 4
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if section == 0
+        {
+            return homeModel.indexs.count
+        }
+        else if(section == 1)
+        {
+            return homeModel.zt_html.count
+        }
+        
+        
+        return 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if indexPath.section == 0
+        {
+            return CGSize(width: SW/5.0, height: SW/5.0+10)
+        }
+        else if(indexPath.section == 1)
+        {
+            return CGSize(width: SW/3.0, height: SW/3.0)
+        }
+        
+        return CGSize.zero
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if(indexPath.section == 0)
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeClassCell", for: indexPath) as! HomeClassCell
+            
+            cell.model = homeModel.indexs[indexPath.row]
+            
+            return cell
+        }
+        else if(indexPath.section == 1)
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeTopicCell", for: indexPath) as! HomeTopicCell
+            
+            cell.model = homeModel.zt_html[indexPath.row]
+            
+            return cell
+        }
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeClassCell", for: indexPath) as! HomeClassCell
+        
+        cell.model = homeModel.indexs[indexPath.row]
+        
+        return cell
+        
+        
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        
+        if(section < 2)
+        {
+            return CGSize(width: SW, height: 12)
+        }
+        
+        return CGSize.zero
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let view = collect.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectFooter", for: indexPath)
+        
+        view.backgroundColor = "efefef".color()
+        
+        return view
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PayModel: NSObject {
+class PayModel: Reflect {
     
     var order_id = 0
     var  order_sn = ""

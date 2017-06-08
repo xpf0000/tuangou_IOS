@@ -143,6 +143,10 @@
 		17A742F71EE9417900C2F405 /* UserCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A742F61EE9417900C2F405 /* UserCommentModel.swift */; };
 		17A742F91EE9420300C2F405 /* UserFenhongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A742F81EE9420300C2F405 /* UserFenhongModel.swift */; };
 		17A742FB1EE9422D00C2F405 /* UserUnitsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A742FA1EE9422D00C2F405 /* UserUnitsModel.swift */; };
+		17A742FE1EE958E000C2F405 /* HomeClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A742FC1EE958E000C2F405 /* HomeClassCell.swift */; };
+		17A742FF1EE958E000C2F405 /* HomeClassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A742FD1EE958E000C2F405 /* HomeClassCell.xib */; };
+		17A743021EE964AB00C2F405 /* HomeTopicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A743001EE964AB00C2F405 /* HomeTopicCell.swift */; };
+		17A743031EE964AB00C2F405 /* HomeTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17A743011EE964AB00C2F405 /* HomeTopicCell.xib */; };
 		17B524CC1EAAF01100EC78C1 /* XBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B524CB1EAAF01100EC78C1 /* XBanner.swift */; };
 		17B6CD131EA05E10004758B7 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B6CD121EA05E10004758B7 /* libresolv.tbd */; };
 		17B6CD151EA05ED1004758B7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B6CD141EA05ED1004758B7 /* libsqlite3.tbd */; };
@@ -294,6 +298,10 @@
 		17A742F61EE9417900C2F405 /* UserCommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCommentModel.swift; sourceTree = "<group>"; };
 		17A742F81EE9420300C2F405 /* UserFenhongModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFenhongModel.swift; sourceTree = "<group>"; };
 		17A742FA1EE9422D00C2F405 /* UserUnitsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUnitsModel.swift; sourceTree = "<group>"; };
+		17A742FC1EE958E000C2F405 /* HomeClassCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeClassCell.swift; sourceTree = "<group>"; };
+		17A742FD1EE958E000C2F405 /* HomeClassCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeClassCell.xib; sourceTree = "<group>"; };
+		17A743001EE964AB00C2F405 /* HomeTopicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTopicCell.swift; sourceTree = "<group>"; };
+		17A743011EE964AB00C2F405 /* HomeTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTopicCell.xib; sourceTree = "<group>"; };
 		17B524CB1EAAF01100EC78C1 /* XBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XBanner.swift; sourceTree = "<group>"; };
 		17B6CD121EA05E10004758B7 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		17B6CD141EA05ED1004758B7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -612,6 +620,10 @@
 			children = (
 				17A742C01EE9208A00C2F405 /* HomeTopBar.swift */,
 				17A742C21EE920AB00C2F405 /* HomeTopBar.xib */,
+				17A742FC1EE958E000C2F405 /* HomeClassCell.swift */,
+				17A742FD1EE958E000C2F405 /* HomeClassCell.xib */,
+				17A743001EE964AB00C2F405 /* HomeTopicCell.swift */,
+				17A743011EE964AB00C2F405 /* HomeTopicCell.xib */,
 			);
 			name = home;
 			sourceTree = "<group>";
@@ -709,9 +721,11 @@
 				17A742B41EE8FB1100C2F405 /* tab_3_1@2x.png in Resources */,
 				17A742B61EE8FB1100C2F405 /* tab_4@2x.png in Resources */,
 				17A742B71EE8FB1100C2F405 /* tab_0_1@2x.png in Resources */,
+				17A743031EE964AB00C2F405 /* HomeTopicCell.xib in Resources */,
 				178445CF1E9F6C7E00723640 /* mapapi.bundle in Resources */,
 				17A742B91EE8FB1100C2F405 /* tab_1@2x.png in Resources */,
 				17A742B51EE8FB1100C2F405 /* tab_4_1@2x.png in Resources */,
+				17A742FF1EE958E000C2F405 /* HomeClassCell.xib in Resources */,
 				17A742A21EE8FB0500C2F405 /* tab_1_1@3x.png in Resources */,
 				17A742A01EE8FB0500C2F405 /* tab_0_1@3x.png in Resources */,
 				17A742A31EE8FB0500C2F405 /* tab_1@3x.png in Resources */,
@@ -762,6 +776,7 @@
 				178445A91E9F625700723640 /* DatePicker.swift in Sources */,
 				17A742DF1EE93C7F00C2F405 /* NoticeModel.swift in Sources */,
 				17A742D11EE937A000C2F405 /* CouponModel.swift in Sources */,
+				17A742FE1EE958E000C2F405 /* HomeClassCell.swift in Sources */,
 				17A742E11EE93CAE00C2F405 /* OrderItemModel.swift in Sources */,
 				17A742F51EE9411100C2F405 /* UserCollectModel.swift in Sources */,
 				179A15501E9DFA5200E60EC2 /* MineVC.swift in Sources */,
@@ -792,6 +807,7 @@
 				17A742DD1EE93C4600C2F405 /* NewsModel.swift in Sources */,
 				17A742D91EE93B2500C2F405 /* TuanModel.swift in Sources */,
 				179F14D11E9CDD8F00FD80A0 /* XAlertView.swift in Sources */,
+				17A743021EE964AB00C2F405 /* HomeTopicCell.swift in Sources */,
 				1784459E1E9F1FE700723640 /* Api.swift in Sources */,
 				17A742E51EE93DA200C2F405 /* PayModel.swift in Sources */,
 				179F14BA1E9CCD5D00FD80A0 /* Reflect.swift in Sources */,

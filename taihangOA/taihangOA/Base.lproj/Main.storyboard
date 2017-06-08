@@ -213,12 +213,39 @@
                     <view key="view" contentMode="scaleToFill" id="bEB-i8-9Ec">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Co5-s9-opN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="4BD-6T-cna">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nUn-kN-0nB" id="7jA-QX-mXE"/>
+                                    <outlet property="delegate" destination="nUn-kN-0nB" id="EvQ-OV-3DN"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.28235294119999998" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Co5-s9-opN" firstAttribute="top" secondItem="bEB-i8-9Ec" secondAttribute="top" id="2Bt-kf-Y5K"/>
+                            <constraint firstAttribute="bottom" secondItem="Co5-s9-opN" secondAttribute="bottom" id="YO9-SF-gT3"/>
+                            <constraint firstAttribute="trailing" secondItem="Co5-s9-opN" secondAttribute="trailing" id="gNG-rv-zGa"/>
+                            <constraint firstItem="Co5-s9-opN" firstAttribute="leading" secondItem="bEB-i8-9Ec" secondAttribute="leading" id="ymv-Z1-QnY"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="jZj-c3-JND">
                         <nil key="title"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collect" destination="Co5-s9-opN" id="GsS-BO-5B7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYL-I0-GEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
