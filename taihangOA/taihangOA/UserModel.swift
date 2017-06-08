@@ -10,29 +10,29 @@ import UIKit
 
 class UserModel: Reflect {
 
-    var id=""
-    var account=""
-    var sex=""
-    var mobile=""
-    var departmentid=""
-    var name=""
-    var avatar=""
-    var user_status=""
-    var token=""
-    var dname=""
+    var id = ""
+    var user_name = ""
+    var mobile = ""
+    var is_effect = 0
+    var is_tmp = ""
+    var money = ""
+    var avatar = ""
+    var real_name = ""
+    var rezhenging = false
+    var id_number = ""
     
     func reset()
     {
-        id=""
-        account=""
-        sex=""
-        mobile=""
-        departmentid=""
-        name=""
-        avatar=""
-        user_status=""
-        token=""
-        dname=""
+        id = ""
+        user_name = ""
+        mobile = ""
+        is_effect = 0
+        is_tmp = ""
+        money = ""
+        avatar = ""
+        real_name = ""
+        rezhenging = false
+        id_number = ""
         save()
     }
     
@@ -40,24 +40,6 @@ class UserModel: Reflect {
     {
         _ = UserModel.save(obj: self, name: "User")
     }
-    
-    func registNotice()
-    {
-        CloudPushSDK.removeAlias(nil) { (res) in}
-        
-        if id != ""
-        {
-            CloudPushSDK.addAlias(id, withCallback: { (res) in
-                
-            })
-        }
-    }
-    
-    func unRegistNotice()
-    {
-        CloudPushSDK.removeAlias(nil) { (res) in }
-    }
-    
     
     
 }

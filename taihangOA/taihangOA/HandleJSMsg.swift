@@ -79,7 +79,7 @@ class HandleJSMsg: NSObject {
             let user = UserModel.parse(json: obj["info"], replace: nil)
             DataCache.Share.User = user
             DataCache.Share.User.save()
-            DataCache.Share.User.registNotice()
+            //DataCache.Share.User.registNotice()
             
             (vc as! LoginVC).dodeinit()
             
@@ -92,7 +92,7 @@ class HandleJSMsg: NSObject {
         
         if(msg ==  "退出登录")
         {
-            DataCache.Share.User.unRegistNotice()
+            //DataCache.Share.User.unRegistNotice()
             DataCache.Share.User.reset();
             UserDoLogout = true
             NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "logout")))

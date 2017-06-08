@@ -407,7 +407,7 @@ class MineVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         var map : [String:Any] = [:]
         map["headimg.jpg"]=img
         map["id"] = DataCache.Share.User.id
-        map["mobile"] = DataCache.Share.User.account
+        //map["mobile"] = DataCache.Share.User.account
         
         Api.UserHeadEdit(data: map) { (res) in
             

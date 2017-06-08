@@ -28,19 +28,19 @@ class XNavigationController: UINavigationController
     func inita()
     {
 
+        
+        
+        //取出设置主题的对象
         let navBar = UINavigationBar.appearance()
         navBar.tintColor=UIColor.white
         
-        navBar.setBackgroundImage(UIColor(red: 33.0/255.0, green: 173.0/255.0, blue: 253.0/255.0, alpha: 1.0).image(), for:.default)
+        navBar.setBackgroundImage(APPBlueColor.image(), for:.default)
         navBar.titleTextAttributes=[NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont.boldSystemFont(ofSize: 20.0)]
-        //self.navigationBar.layer.masksToBounds = true;
-        navBar.isTranslucent = true
+    
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.shadowImage = UIColor.clear.image()
         
-        setAlpha(0.0)
-        
-        //navBar.shadowImage = UIColor.clearColor().image
-        
-        
+                
 //        self.navigationBar.translucent = true
 //        alphaView.frame=CGRectMake(0, 0, swidth, (self.navigationBar.frame.size.height)+20)
 //        alphaView.backgroundColor = blueBGC

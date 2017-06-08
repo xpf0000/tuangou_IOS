@@ -30,26 +30,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
             
             print("Receive message title: \(title) | content: \(body)")
             
-            if let str = title,let content = body
-            {
-                if str == "账号在其它设备已登录"
-                {
-                    let arr = content.split("|")
-                    
-                    if(DataCache.Share.User.id == arr[0] && DataCache.Share.User.token != "" && DataCache.Share.User.token != arr[1])
-                    {
-                        let alert = UIAlertView(title: "提醒", message: "您的账户已在其他设备登录", delegate: self, cancelButtonTitle: "确定")
-                        alert.show()
-                    }
-  
-                }
-                else
-                {
-                    NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "NewDaiban")))
-                    let alert = UIAlertView(title: "提醒", message: title, delegate: nil, cancelButtonTitle: "确定")
-                    alert.show()
-                }
-            }
+//            if let str = title,let content = body
+//            {
+//                if str == "账号在其它设备已登录"
+//                {
+//                    let arr = content.split("|")
+//                    
+//                    if(DataCache.Share.User.id == arr[0] && DataCache.Share.User.token != "" && DataCache.Share.User.token != arr[1])
+//                    {
+//                        let alert = UIAlertView(title: "提醒", message: "您的账户已在其他设备登录", delegate: self, cancelButtonTitle: "确定")
+//                        alert.show()
+//                    }
+//  
+//                }
+//                else
+//                {
+//                    NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "NewDaiban")))
+//                    let alert = UIAlertView(title: "提醒", message: title, delegate: nil, cancelButtonTitle: "确定")
+//                    alert.show()
+//                }
+//            }
             
             
         }
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         
-        DataCache.Share.User.unRegistNotice()
+        //DataCache.Share.User.unRegistNotice()
         DataCache.Share.User.reset();
         
         UserDoLogout = true
@@ -228,7 +228,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
             
             if(!res)
             {
-                DataCache.Share.User.unRegistNotice()
+                //DataCache.Share.User.unRegistNotice()
                 DataCache.Share.User.reset();
                 
                 let alert = UIAlertView(title: "提醒", message: "您的账户已在其他设备登录", delegate: nil, cancelButtonTitle: "确定")

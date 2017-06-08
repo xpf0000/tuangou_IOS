@@ -117,6 +117,11 @@ import UIKit
         }
         
         
+        func  Nib() -> UINib
+        {
+            return UINib(nibName: self, bundle: nil)
+        }
+        
         func VC(name:String)->UIViewController
         {
             let board:UIStoryboard=UIStoryboard(name: name, bundle: nil)

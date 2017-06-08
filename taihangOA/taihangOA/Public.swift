@@ -9,6 +9,9 @@
 import Foundation
 
 let TmpDirURL = Bundle.main.resourceURL!.appendingPathComponent("html")
-let APPBlueColor = "059bf1".color()
+let APPBlueColor = "11c1f3".color()
 let datepicker = DatePicker.init(.dateAndTime)
 let ImagePrefix = "http://oonby7g6e.bkt.clouddn.com/"
+
+let SW = UIScreen.main.bounds.size.width
+let SH = UIScreen.main.bounds.size.height
