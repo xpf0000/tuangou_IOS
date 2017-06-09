@@ -13,25 +13,33 @@ class CityModel: Reflect {
     var  city_list:[CityListBean] = []
     var  hot_city:[HotCityBean] = []
     
-    class CityListBean:Reflect {
-        var  Letter = ""
-        var  items:[ItemsBean] = []
-        
-        class ItemsBean : Reflect {
-        var  id = ""
-        var   name = ""
-        var   uname = ""
-        var   is_open = ""
-        var   zm = ""
-        var   url = ""
-        }
+}
+
+class CityListBean:Reflect {
+    var  Letter = ""
+    var  items:[ItemsBean] = []
+    
+}
+
+class ItemsBean : Reflect {
+    var  id = ""
+    var   name = ""
+    var   uname = ""
+    var   is_open = ""
+    var   zm = ""
+    var   url = ""
+    
+    func save()
+    {
+        _  = ItemsBean.save(obj: self, name: "City")
     }
     
-    class HotCityBean:Reflect {
-        var   id = ""
-        var   name = ""
-    }
-    
+}
+
+
+class HotCityBean:Reflect {
+    var   id = ""
+    var   name = ""
 }
 
 

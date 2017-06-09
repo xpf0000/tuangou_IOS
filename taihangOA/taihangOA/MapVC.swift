@@ -26,36 +26,7 @@ class MapVC: UIViewController,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKG
             XMessage.Share.show("请点击地图选择一个位置")
             return
         }
-        
-        if(DataCache.Share.mapFlag == "saddress")
-        {
-            DataCache.Share.SMap.caddress = caddress
-            DataCache.Share.SMap.cmap = "\(cmap!.latitude),\(cmap!.longitude)"
-        }
-        else
-        {
-            DataCache.Share.EMap.caddress = caddress
-            DataCache.Share.EMap.cmap = "\(cmap!.latitude),\(cmap!.longitude)"
-        }
-        
-        if(DataCache.Share.EMap.cmap != "" && DataCache.Share.SMap.cmap != "")
-        {
-            let arr1 = DataCache.Share.EMap.cmap.split(",")
-            let arr2 = DataCache.Share.SMap.cmap.split(",")
-        
-            let point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(Double(arr1[0])!,Double(arr1[1])!));
-            let point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(Double(arr2[0])!,Double(arr2[1])!));
             
-            let d = BMKMetersBetweenMapPoints(point1,point2);
-            
-            DataCache.Share.EMap.distance = "\(d)"
-            DataCache.Share.SMap.distance = "\(d)"
-        }
-        
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "MapSelected")))
-        
-        dismiss(animated: true, completion: nil)
-        
     }
     
     @IBOutlet weak var clabel: UILabel!

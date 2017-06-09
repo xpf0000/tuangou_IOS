@@ -49,12 +49,7 @@ class BootVC: UIViewController {
     
     func showAD()
     {
-        print(DataCache.Share.Lanch)
-        if(DataCache.Share.Lanch.url != "")
-        {
-            let url = URL(string: DataCache.Share.Lanch.url)
-            adimage.kf.setImage(with:url)
-        }
+        
     }
     
     override func viewDidLoad() {

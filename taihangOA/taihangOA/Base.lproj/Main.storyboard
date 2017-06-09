@@ -202,6 +202,55 @@
             </objects>
             <point key="canvasLocation" x="1470" y="317"/>
         </scene>
+        <!--城市列表-->
+        <scene sceneID="hap-j7-mO5">
+            <objects>
+                <viewController storyboardIdentifier="CityListVC" title="城市列表" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iue-nN-mRj" customClass="CityListVC" customModule="taihangOA" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0H2-AU-dCZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="6io-JT-gYp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fkf-ZX-nbD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="F96-Qm-ikE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iue-nN-mRj" id="yBz-7Q-29M"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e8d-HQ-cz4">
+                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iue-nN-mRj" id="yuX-54-3Fe"/>
+                                    <outlet property="delegate" destination="iue-nN-mRj" id="jIo-un-Vrp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F96-Qm-ikE" firstAttribute="leading" secondItem="Fkf-ZX-nbD" secondAttribute="leading" id="0PX-O5-KgP"/>
+                            <constraint firstItem="F96-Qm-ikE" firstAttribute="top" secondItem="Fkf-ZX-nbD" secondAttribute="top" id="0aE-nV-sjZ"/>
+                            <constraint firstItem="e8d-HQ-cz4" firstAttribute="leading" secondItem="Fkf-ZX-nbD" secondAttribute="leading" id="9Rn-w6-ztn"/>
+                            <constraint firstAttribute="bottom" secondItem="e8d-HQ-cz4" secondAttribute="bottom" id="dis-bs-Sxg"/>
+                            <constraint firstItem="e8d-HQ-cz4" firstAttribute="top" secondItem="F96-Qm-ikE" secondAttribute="bottom" id="hZ0-cR-KZ8"/>
+                            <constraint firstAttribute="trailing" secondItem="e8d-HQ-cz4" secondAttribute="trailing" id="i1V-7v-x7A"/>
+                            <constraint firstAttribute="trailing" secondItem="F96-Qm-ikE" secondAttribute="trailing" id="iSa-ga-pJa"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="searchbar" destination="F96-Qm-ikE" id="sw1-B8-KS0"/>
+                        <outlet property="tableview" destination="e8d-HQ-cz4" id="8Od-Vu-VhL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fqt-ah-fET" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2495.625" y="2247.8873239436621"/>
+        </scene>
         <!--HomeVC-->
         <scene sceneID="LPU-jV-doX">
             <objects>
@@ -217,7 +266,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Co5-s9-opN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                                <inset key="scrollIndicatorInsets" minX="0.0" minY="20" maxX="0.0" maxY="50"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="4BD-6T-cna">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -251,10 +300,10 @@
             </objects>
             <point key="canvasLocation" x="-1449.375" y="2247.8873239436621"/>
         </scene>
-        <!--DaibanVC-->
+        <!--NearbyVC-->
         <scene sceneID="wtg-qg-wC1">
             <objects>
-                <viewController storyboardIdentifier="DaibanVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="94R-eB-Ic8" customClass="DaibanVC" customModule="taihangOA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NearbyVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="94R-eB-Ic8" customClass="NearbyVC" customModule="taihangOA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OX8-zI-rqW"/>
                         <viewControllerLayoutGuide type="bottom" id="51V-G7-QZu"/>
@@ -262,14 +311,40 @@
                     <view key="view" contentMode="scaleToFill" id="aUx-kJ-K8W">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5LJ-cI-fkq" customClass="XTableView" customModule="taihangOA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="320" height="454"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pln-ac-J9n" customClass="ReactionMenuView" customModule="taihangOA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cS5-Oz-D1t"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.49803921569999998" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5LJ-cI-fkq" secondAttribute="bottom" id="0KP-DE-D2t"/>
+                            <constraint firstItem="Pln-ac-J9n" firstAttribute="top" secondItem="aUx-kJ-K8W" secondAttribute="top" id="H9j-KV-k5Q"/>
+                            <constraint firstAttribute="trailing" secondItem="5LJ-cI-fkq" secondAttribute="trailing" id="bdc-nd-d1P"/>
+                            <constraint firstItem="Pln-ac-J9n" firstAttribute="leading" secondItem="aUx-kJ-K8W" secondAttribute="leading" id="gyG-Be-iuW"/>
+                            <constraint firstAttribute="trailing" secondItem="Pln-ac-J9n" secondAttribute="trailing" id="j3x-Sp-e8i"/>
+                            <constraint firstItem="5LJ-cI-fkq" firstAttribute="top" secondItem="Pln-ac-J9n" secondAttribute="bottom" id="lfX-kH-mLy"/>
+                            <constraint firstItem="5LJ-cI-fkq" firstAttribute="leading" secondItem="aUx-kJ-K8W" secondAttribute="leading" id="qez-3b-wUc"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="SmO-LQ-xpQ"/>
+                    <connections>
+                        <outlet property="tableview" destination="5LJ-cI-fkq" id="nml-Pb-PxW"/>
+                        <outlet property="topMenu" destination="Pln-ac-J9n" id="vn2-nC-5Ko"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5O9-N2-vM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-596" y="2248"/>
+            <point key="canvasLocation" x="-596.25" y="2247.8873239436621"/>
         </scene>
         <!--首页-->
         <scene sceneID="CtL-Y7-jvR">

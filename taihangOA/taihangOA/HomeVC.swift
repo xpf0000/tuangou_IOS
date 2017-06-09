@@ -15,12 +15,29 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
     
     @IBOutlet weak var collect: UICollectionView!
     var  homeModel = HomeModel()
+    let topBar = HomeTopBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if(DataCache.Share.city.id == "")
+        {
+            let vc = "CityListVC".VC(name: "Main") as! CityListVC
+            vc.first = true
+            
+            vc.onChoose {[weak self] in
+                self?.topBar.setCityName()
+                self?.getData()
+            }
+            
+            let nv = XNavigationController.init(rootViewController: vc)
+
+            self.show(nv, sender: nil)
+        }
+        
         self.view.backgroundColor = UIColor.white
         
-        let topBar = HomeTopBar()
+        
         topBar.frame = CGRect(x: 0, y: 0, width: SW, height: 44.0)
         
         self.navigationController?.navigationBar.addSubview(topBar)
@@ -29,12 +46,26 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         
         collect.register("HomeClassCell".Nib(), forCellWithReuseIdentifier: "HomeClassCell")
         collect.register("HomeTopicCell".Nib(), forCellWithReuseIdentifier: "HomeTopicCell")
+        collect.register("HomeDealCell".Nib(), forCellWithReuseIdentifier: "HomeDealCell")
+        
         
         collect.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectFooter")
+        
+        collect.register("HomeCHeader".Nib(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HomeCHeader")
 
         collect.contentInset.top = 20
+        collect.contentInset.bottom = 50
         
-        getData()
+        collect.setHeaderRefresh {[weak self] in
+            
+            self?.getData()
+            
+        }
+        
+        if(DataCache.Share.city.id != "")
+        {
+            getData()
+        }
         
     }
     
@@ -57,7 +88,11 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
     
     func getData()
     {
-        Api.app_index(city_id: "23", xpoint: "", ypoint: "") { [weak self](model) in
+        let cid = DataCache.Share.city.id
+        
+        Api.app_index(city_id: cid, xpoint: "", ypoint: "") { [weak self](model) in
+            
+            self?.collect.endHeaderRefresh()
             
             self?.homeModel = model
             self?.collect.reloadData()
@@ -68,7 +103,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return 4
+        return 3
         
     }
     
@@ -90,7 +125,10 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         {
             return homeModel.zt_html.count
         }
-        
+        else if(section == 2)
+        {
+            return homeModel.deal_list.count
+        }
         
         return 0
         
@@ -105,6 +143,10 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         else if(indexPath.section == 1)
         {
             return CGSize(width: SW/3.0, height: SW/3.0)
+        }
+        else if(indexPath.section == 2)
+        {
+            return CGSize(width: SW, height: 100)
         }
         
         return CGSize.zero
@@ -129,10 +171,18 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
             
             return cell
         }
+        else if(indexPath.section == 2)
+        {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeDealCell", for: indexPath) as! HomeDealCell
+            
+            cell.model = homeModel.deal_list[indexPath.row]
+            
+            return cell
+        }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeClassCell", for: indexPath) as! HomeClassCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeDealCell", for: indexPath) as! HomeDealCell
         
-        cell.model = homeModel.indexs[indexPath.row]
+        cell.model = homeModel.deal_list[indexPath.row]
         
         return cell
         
@@ -151,13 +201,35 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if(section == 2)
+        {
+            return CGSize(width: SW, height: 44)
+        }
+        
+        return CGSize.zero
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let view = collect.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectFooter", for: indexPath)
+        if(indexPath.section < 2)
+        {
+            let view = collect.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "CollectFooter", for: indexPath)
+            
+            view.backgroundColor = "efefef".color()
+            
+            return view
+        }
+        else
+        {
+            let view = collect.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HomeCHeader", for: indexPath)
+            
+            return view
+        }
         
-        view.backgroundColor = "efefef".color()
         
-        return view
     }
     
     
@@ -184,8 +256,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {

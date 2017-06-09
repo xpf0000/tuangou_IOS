@@ -16,13 +16,13 @@ class TuanCateModel: Reflect {
     var  iconfont = ""
     var  iconcolor = ""
     var bcate_type:[BcateTypeBean] = []
-    
-    class BcateTypeBean:Reflect {
+ 
+}
 
-        var id = 0
-        var cate_id = 0
-        var  name = ""
+class BcateTypeBean:Reflect {
     
-    }
+    var id = 0
+    var cate_id = 0
+    var  name = ""
     
 }

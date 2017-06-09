@@ -14,6 +14,8 @@ class HomeTopBar: UIView {
     @IBAction func to_scan(_ sender: Any) {
         
         
+  
+    
     }
     
     @IBAction func to_search(_ sender: Any) {
@@ -22,6 +24,31 @@ class HomeTopBar: UIView {
     
     @IBOutlet weak var city: UIButton!
     
+    @IBAction func to_city(_ sender: Any) {
+        
+        let vc = "CityListVC".VC(name: "Main") as! CityListVC
+        let nv = XNavigationController.init(rootViewController: vc)
+        
+        vc.onChoose {[weak self] in
+            
+                if let svc = self?.viewController as? XNavigationController
+                {
+                    if let hvc = svc.topViewController as? HomeVC
+                    {
+                        self?.setCityName()
+                        hvc.getData()
+                    }
+                }
+        }
+        
+        self.viewController?.show(nv, sender: nil)
+        
+    }
+    
+    func setCityName()
+    {
+        city.setTitle(DataCache.Share.city.name, for: .normal)
+    }
     
     func initSelf()
     {
@@ -29,6 +56,8 @@ class HomeTopBar: UIView {
         let newFrame = CGRect.init(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         containerView.frame = newFrame
         self.addSubview(containerView)
+        
+        setCityName()
     }
     
     

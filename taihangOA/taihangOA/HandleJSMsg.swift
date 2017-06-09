@@ -110,14 +110,6 @@ class HandleJSMsg: NSObject {
     else if(type == 4)  //地图选择
     {
         
-        DataCache.Share.mapFlag = obj["flag"].stringValue
-        
-        let tvc = "MapVC".VC(name: "Main")
-        
-        Hero.shared.setDefaultAnimationForNextTransition(.push(direction: .left))
-        Hero.shared.setContainerColorForNextTransition(.lightGray)
-        
-        vc.present(tvc, animated: true, completion: nil)
     }
     else if(type == 5)  //车辆申请添加成功
     {
@@ -135,12 +127,7 @@ class HandleJSMsg: NSObject {
     else if(type == 6)  //物品选择完成
     {
         
-        DataCache.Share.Res = ResModel.parse(json: obj, replace: nil)
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "ResChoose")))
-        
-        Hero.shared.setDefaultAnimationForNextTransition(.pull(direction: .right))
-        Hero.shared.setContainerColorForNextTransition(.lightGray)
-        vc.hero_dismissViewController()
+       
         
     }
     else if(type == 7)  //物品申请添加成功
@@ -162,12 +149,7 @@ class HandleJSMsg: NSObject {
     else if(type == 9)  //待办人选择完成
     {
         
-        DataCache.Share.DaibanUser = UserModel.parse(json: obj["info"], replace: nil)
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "DaibanChoose")))
-        
-        Hero.shared.setDefaultAnimationForNextTransition(.pull(direction: .right))
-        Hero.shared.setContainerColorForNextTransition(.lightGray)
-        vc.hero_dismissViewController()
+       
         
     }
     else if(type == 10)  //督查督办添加成功
@@ -191,9 +173,7 @@ class HandleJSMsg: NSObject {
     
     else if(type == 12)  //待办事项总数
     {
-        DataCache.Share.daibanCount = obj["info"].intValue
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "DaibanCount")))
-        
+               
     }
     
     else if(type == 13)  //用户手机号更新成功

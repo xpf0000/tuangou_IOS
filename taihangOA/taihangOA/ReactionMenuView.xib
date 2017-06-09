@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReactionMenuView" customModule="taihangOA" customModuleProvider="target">
+            <connections>
+                <outlet property="LineHeight" destination="xiJ-DH-xne" id="z04-cr-Js8"/>
+                <outlet property="bottomLine" destination="9vb-Qp-blg" id="SDJ-Z5-Rcu"/>
+                <outlet property="collection" destination="CKY-BZ-2el" id="tZq-MO-E3P"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="245"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9vb-Qp-blg">
+                    <rect key="frame" x="0.0" y="244" width="600" height="1"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="xiJ-DH-xne"/>
+                    </constraints>
+                </view>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CKY-BZ-2el">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="244"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="eXJ-QJ-wk5">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="cPC-P6-ijK"/>
+                        <outlet property="delegate" destination="-1" id="TI2-5Z-XQP"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9vb-Qp-blg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="34W-1Q-ZhF"/>
+                <constraint firstItem="CKY-BZ-2el" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4iA-vh-At0"/>
+                <constraint firstItem="9vb-Qp-blg" firstAttribute="top" secondItem="CKY-BZ-2el" secondAttribute="bottom" id="Eky-Em-czP"/>
+                <constraint firstAttribute="trailing" secondItem="CKY-BZ-2el" secondAttribute="trailing" id="XQz-lJ-lcD"/>
+                <constraint firstAttribute="trailing" secondItem="9vb-Qp-blg" secondAttribute="trailing" id="h3n-tG-frB"/>
+                <constraint firstAttribute="bottom" secondItem="9vb-Qp-blg" secondAttribute="bottom" id="oCt-5m-02C"/>
+                <constraint firstItem="CKY-BZ-2el" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="pxP-ac-2m5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="243" y="121"/>
+        </view>
+    </objects>
+</document>

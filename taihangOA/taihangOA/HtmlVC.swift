@@ -182,20 +182,6 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     
         self.show()
         
-        if("\(url)".has("car_apply.html"))
-        {
-            DataCache.Share.SMap.flag = "saddress"
-            DataCache.Share.EMap.flag = "eaddress"
-            
-            NotificationCenter.default.addObserver(self, selector:#selector(onMapSelected), name: NSNotification.Name(rawValue: "MapSelected"), object: nil)
-            
-            datepicker.block {[weak self] (date) in
-                self?.webView?.evaluateJavaScript("javascript:OnTimeSelect('"+date!+"')", completionHandler: { (res, err) in
-                    print(res)
-                    print(err)
-                })
-            }
-        }
         
         if("\(String(describing: url))".has("car_list.html"))
         {
@@ -246,40 +232,17 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     
     func DaibanChoose()
     {
-        self.webView?.evaluateJavaScript("javascript:OnDoUserChoose('"+DataCache.Share.DaibanUser.toDict().toJson()+"')", completionHandler: { (res, err) in
-            print(res ?? "")
-            print(err ?? "")
-        })
+        
     }
     
     func onResChoose()
     {
-        self.webView?.evaluateJavaScript("javascript:OnResChoose('"+DataCache.Share.Res.toDict().toJson()+"')", completionHandler: { (res, err) in
-            print(res)
-            print(err)
-        })
-
+        
     }
     
     func onMapSelected()
     {
-        var str = ""
-        if(DataCache.Share.mapFlag == "saddress")
-        {
-            str = DataCache.Share.SMap.toDict().toJson()
-        }
-        else
-        {
-            str = DataCache.Share.EMap.toDict().toJson()
-        }
-        
-        print(str)
-        
-        self.webView?.evaluateJavaScript("javascript:OnMapSelect('"+str+"')", completionHandler: { (res, err) in
-            print(res)
-            print(err)
-        })
-
+       
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {

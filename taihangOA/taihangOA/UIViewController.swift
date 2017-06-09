@@ -9,7 +9,26 @@
 import Foundation
 import UIKit
 
+private var backButtonKey : CChar?
+
 extension UIViewController{
+    
+    
+    weak var backButton:UIButton?
+        {
+        get
+        {
+            return objc_getAssociatedObject(self, &backButtonKey) as? UIButton
+        }
+        set(newValue) {
+            self.willChangeValue(forKey: "backButtonKey")
+            objc_setAssociatedObject(self, &backButtonKey, newValue,
+                                     .OBJC_ASSOCIATION_ASSIGN)
+            self.didChangeValue(forKey: "backButtonKey")
+            
+        }
+    }
+
     
     
     func checkIsLogin()->Bool
@@ -59,6 +78,35 @@ extension UIViewController{
         
     }
     
+    
+    func addBackButton()
+    {
+        let button=UIButton(type: UIButtonType.custom)
+        button.frame=CGRect(x: 0, y: 0, width: 22, height: 22);
+        button.setBackgroundImage("back@2x.png".image(), for: UIControlState())
+        button.showsTouchWhenHighlighted = true
+        button.isExclusiveTouch = true
+        button.addTarget(self, action: #selector(pop), for: UIControlEvents.touchUpInside)
+        let leftItem=UIBarButtonItem(customView: button)
+        self.navigationItem.leftBarButtonItem=leftItem;
+        
+        self.backButton=button
+    }
+    
+    
+    func addSearchButton(_ block:@escaping XButtonBlock)->UIButton
+    {
+        let button=UIButton(type: UIButtonType.custom)
+        button.click(block)
+        button.frame=CGRect(x: 0, y: 0, width: 21, height: 21);
+        button.setBackgroundImage("search@3x.png".image(), for: UIControlState())
+        button.showsTouchWhenHighlighted = true
+        button.isExclusiveTouch = true
+        let rightItem=UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem=rightItem;
+        
+        return button
+    }
         
 
 }

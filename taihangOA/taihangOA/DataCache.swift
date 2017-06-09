@@ -14,14 +14,9 @@ class DataCache: NSObject {
     static let Share = DataCache()
     
     var User = UserModel()
-    var Lanch = LanchModel()
-    var SMap = CMapModel()
-    var EMap = CMapModel()
-    var mapFlag = ""
-    var daibanCount = 0
-    var Res = ResModel()
-    var DaibanUser = UserModel()
-
+    var city = ItemsBean()
+    lazy var ShopSearchKey:SearchKeyModel = SearchKeyModel()
+    
     fileprivate override init() {
         super.init()
         
@@ -37,6 +32,25 @@ class DataCache: NSObject {
                 print("清空阿里推送!!!!!!!")
                 
             }
+        }
+        
+        if let model = ItemsBean.read(name: "City")
+        {
+            city = model as! ItemsBean
+            
+            Api.city_city_change(city_id: city.id, block: { (true) in
+                
+            })
+            
+        }
+        
+        if let model = SearchKeyModel.read(name: "ShopSearchKeyModel")
+        {
+            ShopSearchKey = model as! SearchKeyModel
+        }
+        else
+        {
+            ShopSearchKey.name = "ShopSearchKeyModel"
         }
         
                 

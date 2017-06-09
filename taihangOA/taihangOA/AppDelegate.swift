@@ -16,7 +16,7 @@ var mapStarted = false
 var NetConnected = false
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate {
 
     var window: UIWindow?
 
@@ -112,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
         initCloudPush()
         
         mapManager = BMKMapManager()
-        if let res = mapManager?.start("uzMVl09tmkeDQfLzI6d2Y1XlaVX0CmVu", generalDelegate: nil)
+        if let res = mapManager?.start("xrOkkW4WGCXgiL0Vv6lw9APtxIR6UK5q", generalDelegate: nil)
         {
             if(!res)
             {
@@ -121,7 +121,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
             }
             else
             {
+                
+                print("百度地图加载成功 ！！！！！！！！！！")
+                
                 mapStarted = true
+                
+                XPosition.Share.getCoordinate(block: { [weak self](res) in
+                     XPosition.Share.stop()
+                })
+                
             }
 
         }
@@ -231,7 +239,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-
 
 }
 

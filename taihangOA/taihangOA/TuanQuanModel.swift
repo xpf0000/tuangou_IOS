@@ -16,13 +16,15 @@ class TuanQuanModel: Reflect {
     
     var checked = false
     
-    class QuanSubBean : Reflect{
-        
-        var  id = 0 
-        var  pid = 0
-        var name = ""
-        
-        var checked = false
-    }
     
+    
+}
+
+class QuanSubBean : Reflect{
+    
+    var  id = 0
+    var  pid = 0
+    var name = ""
+    
+    var checked = false
 }

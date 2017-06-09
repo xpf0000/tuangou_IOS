@@ -471,7 +471,7 @@ class Api: NSObject {
     
     class func tuan_cate_list(block:@escaping ApiBlock<[TuanCateModel]>)
     {
-        var url = BaseUrl+"?ctl=tuan&act=nav_list&r_type=1&isapp=true"
+        var url = BaseUrl+"?ctl=tuan&act=cate_list&r_type=1&isapp=true"
         
         print(url)
         Alamofire.request(url, method: .get).validate().responseJSON { response in
@@ -501,7 +501,8 @@ class Api: NSObject {
     
     class func tuan_quan_list(block:@escaping ApiBlock<[TuanQuanModel]>)
     {
-        var url = BaseUrl+"?ctl=tuan&act=quan_list&r_type=1&isapp=true"
+        let city_id = DataCache.Share.city.id
+        var url = BaseUrl+"?ctl=tuan&act=quan_list&r_type=1&isapp=true&city_id="+city_id
         
         print(url)
         Alamofire.request(url, method: .get).validate().responseJSON { response in
