@@ -1,324 +1,102 @@
 //
-//  ViewController.swift
+//  LoginVC.swift
 //  taihangOA
 //
-//  Created by 徐鹏飞 on 2017/4/11.
+//  Created by 徐鹏飞 on 2017/6/12.
 //  Copyright © 2017年 taihangOA. All rights reserved.
 //
 
 import UIKit
-import Cartography
-import SwiftyJSON
-import WebKit
-import Hero
 
-class LoginVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler {
+class LoginVC: UIViewController {
 
-    var webView:WKWebView?
-    var url:URL?
-    var html:String=""
-    var baseUrl:URL?
-    var handle:JSHandle? = JSHandle()
-    var isSub = false
+    @IBOutlet weak var account: UITextField!
     
-    var inBoot = false
+    @IBOutlet weak var pass: UITextField!
     
-    func msgChanged(_ json:String) {
+    
+    @IBAction func do_login(_ sender: UIButton) {
         
-        let data=json.data(using: String.Encoding.utf8)
-        
-        do
-        {
-            let json = JSON.init(data: data!)
-            HandleJSMsg.handle(obj: json, vc: self)
-        }
-        catch
-        {
-            print("js msg111: \(json)")
-        }
-    }
-    
-    func handleMSG(_ dic:Dictionary<String,AnyObject>?)
-    {
-        
-    }
-    
-    func show()
-    {
-        if(webView == nil)
+        self.view.endEdit()
+        if(!account.checkNull() || !pass.checkNull())
         {
             return
         }
         
-        if(self.url != nil)
+        if(!pass.checkLength("密码", min: 6, max: 18))
         {
-            
-            let request = URLRequest(url: url!)
-            webView?.load(request)
-            
-//            if let u = url.urlRequest
-//            {
-//                print("u: \(u)")
-//                webView?.load(u)
-//            }
-            
-        }
-        else if(self.html != "")
-        {
-            webView?.loadHTMLString(self.html, baseURL: baseUrl)
-        }
-    }
-    
-    func gotoBack()
-    {
-        XWaitingView.hide()
-        
-        if isSub
-        {
-            self.dismiss(animated: true, completion: nil)
             return
         }
         
-        if webView?.canGoBack == true
-        {
-            webView?.goBack()
-        }
-    }
-    
-    func reload()
-    {
-        //CleanWebCache()
+        let ukey = account.text!
+        let upass = pass.text!
         
-        if let currentURL = self.webView?.url {
-            let request = URLRequest(url: currentURL)
-            self.webView?.load(request)
-        }
-        else
-        {
-            if let u = self.url{
-                webView?.load(URLRequest(url: u))
-            }
+        Api.user_dologin(user_key: ukey, user_pwd: upass) { [weak self](user) in
+            
+            DataCache.Share.User = user
+            DataCache.Share.User.save()
+            
+            "UserAccountChange".postNotice()
+            
+            XAlertView.show("登录成功", block: {[weak self] in
+                
+                self?.pop()
+                
+            })
             
         }
+        
+        
+        
     }
     
-    override func pop() {
-        
-        handle?.msg = nil
-        handle = nil
-        
-        webView?.configuration.userContentController.removeScriptMessageHandler(forName: "JSHandle")
-        webView?.uiDelegate=nil
-        webView?.navigationDelegate=nil
-        webView?.stopLoading()
-        webView=nil
-        
-        super.pop()
-    }
-    
-    let scriptHandle = WKUserContentController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addBackButton()
+        account.addEndButton()
+        pass.addEndButton()
         
-        self.view.backgroundColor = UIColor.white
-    
-        handle?.onMsgChange { [weak self](msg) in
+        let button=UIButton(type: UIButtonType.custom)
+        button.frame=CGRect(x: 0, y: 0, width: 50, height: 21);
+        button.setTitle("注册", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.isExclusiveTouch = true
+        let rightItem=UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem=rightItem;
+        
+        button.click {[weak self] (btn) in
             
-            self?.msgChanged(msg)
-            
-        }
-        
-        let config = WKWebViewConfiguration()
-        
-        scriptHandle.add(self, name: "JSHandle")
-        
-        let per = WKPreferences()
-        per.javaScriptCanOpenWindowsAutomatically = true
-        per.javaScriptEnabled = true
-        
-        config.preferences = per
-        config.userContentController = scriptHandle
-        
-        webView = WKWebView(frame: CGRect.zero, configuration: config)
-        
-        webView?.uiDelegate=self
-        webView?.navigationDelegate=self
-        webView?.scrollView.showsHorizontalScrollIndicator = false
-        webView?.scrollView.showsVerticalScrollIndicator = false
-        
-        
-        webView?.isOpaque = false
-        webView?.backgroundColor = UIColor.white
-        
-        webView?.scrollView.isScrollEnabled = false
-        
-        self.view.addSubview(webView!)
-        
-        constrain(webView!) { (view) in
-            view.width == (view.superview?.width)!
-            view.height == (view.superview?.height)!-20
-            view.centerX == (view.superview?.centerX)!
-            view.centerY == (view.superview?.centerY)!+10
-        }
-        
-        self.baseUrl = TmpDirURL
-        self.url = TmpDirURL.appendingPathComponent("login.html")
-        
-        if let r = url?.path
-        {
-            print(r)
-            
-            if(FileManager.default.fileExists(atPath: r))
-            {
-                print("文件存在 !!!!!!!!!!!!!")
-            }
-            else
-            {
-                print("文件不存在 !!!!!!!!!!!!!")
-            }
-        }
-        
-        
-        
-        self.show()
-        
-    }
-    
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        
-        if let str = message.body as? String
-        {
-            handle?.msg = str
-        }
-        
-    }
-    
-    
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        
-    }
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
-        let url = "\(navigationAction.request.url!)"
-        
-        if (!url.has("http://") && !url.has("https://") && !url.has(".html"))
-        {
-            UIApplication.shared.openURL(navigationAction.request.url!)
-            
-            decisionHandler(WKNavigationActionPolicy.cancel)
-            
-        } else {
-            
-            decisionHandler(WKNavigationActionPolicy.allow)
+            self?.to_regist()
             
         }
         
         
-        
-    }
-    
-    @available(iOS 8.0, *)
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        XWaitingView.hide()
-    }
-    
-    @available(iOS 8.0, *)
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        XWaitingView.hide()
-        
     }
     
     
-    
-    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-        
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { (_) -> Void in
-            
-            completionHandler()
-            
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
-        
-        
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "确定", style: .default, handler: { (_) -> Void in
-            // 点击完成后，可以做相应处理，最后再回调js端
-            completionHandler(true)
-        }))
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: { (_) -> Void in
-            // 点击取消后，可以做相应处理，最后再回调js端
-            completionHandler(false)
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-        
-        
-    }
-    
-    
-    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        
-        
-        return nil
-        
-        
-    }
-    
-    
-    
-    func dodeinit()
+    func to_regist()
     {
-        NotificationCenter.default.removeObserver(self)
-        webView?.configuration.userContentController.removeScriptMessageHandler(forName: "JSHandle")
-        webView?.uiDelegate=nil
-        webView?.navigationDelegate=nil
-        webView?.stopLoading()
-        webView=nil
-        scriptHandle.removeAllUserScripts()
-        scriptHandle.removeScriptMessageHandler(forName: "JSHandle")
+        let vc = "RegistVC".VC(name: "Main")
+        self.show(vc, sender: nil)
     }
     
-    deinit
-    {
-        dodeinit()
-        print("LoginVC deinit !!!!!!!!!!!!!!!!")
-    }
+    
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if(!NetConnected)
-        {
-            XMessage.Share.show("未检测到网络连接,请检查网络")
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+        // Dispose of any resources that can be recreated.
     }
+    
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }
-

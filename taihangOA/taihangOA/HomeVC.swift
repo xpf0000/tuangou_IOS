@@ -66,7 +66,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         {
             getData()
         }
-        
+         
     }
     
     func initTabBar()
@@ -232,16 +232,6 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     func dodeinit()
     {
         
@@ -256,6 +246,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        TabIndex = 0
        
     }
     

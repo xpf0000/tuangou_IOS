@@ -127,8 +127,6 @@ class DaibanVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessa
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
         
-        daibai = self
-        
         NotificationCenter.default.addObserver(self, selector:#selector(reload), name: NSNotification.Name(rawValue: "NewDaiban"), object: nil)
         
         handle?.onMsgChange { [weak self](msg) in

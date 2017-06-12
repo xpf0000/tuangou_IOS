@@ -140,8 +140,6 @@ class MineVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mine = self
-        
         NotificationCenter.default.addObserver(self, selector:#selector(UserUpdateMobile), name: NSNotification.Name(rawValue: "UserUpdateMobile"), object: nil)
         
         self.view.backgroundColor = UIColor.white

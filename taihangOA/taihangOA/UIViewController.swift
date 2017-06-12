@@ -33,26 +33,27 @@ extension UIViewController{
     
     func checkIsLogin()->Bool
     {
-//        if(DataCache.Share.userModel.uid == "")
-//        {
-//            if(self is XViewController)
-//            {
-//                (self as! XViewController).jumpAnimType=AnimatorType.default
-//            }
-//            
-//            
-//            let vc:LoginVC = "LoginVC".VC("User") as! LoginVC
-//            
-//            let nav:XNavigationController = XNavigationController(rootViewController: vc)
-//            
-//            self.present(nav, animated: true, completion: { () -> Void in
-//                
-//                
-//            })
-//            
-//            return false
-//        }
-//        
+        if(DataCache.Share.User.id == "")
+        {
+            
+            let vc:LoginVC = "LoginVC".VC(name: "Main") as! LoginVC
+            let nv:XNavigationController = XNavigationController(rootViewController: vc)
+            self.show(nv, sender: nil)
+            
+            return false
+        }
+        else
+        {
+            if(DataCache.Share.User.is_effect != 1)
+            {
+                let vc = "RenzhengVC".VC(name: "Main")
+                let nv:XNavigationController = XNavigationController(rootViewController: vc)
+                self.show(nv, sender: nil)
+                
+                return false
+            }
+        }
+        
         return true
     }
     

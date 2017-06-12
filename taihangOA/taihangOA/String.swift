@@ -53,12 +53,20 @@ import UIKit
             Scanner(string: self[2..<4]).scanHexInt32(&green)
             
             Scanner(string: self[4..<6]).scanHexInt32(&blue)
-            
+        
             return UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: 1.0)
             
         }
-        
-        
+    
+        //统计长度
+        func length()->Int{
+            return self.characters.count
+        }
+        //统计长度(别名)
+        func size()->Int{
+            return self.characters.count
+        }
+
         func path()->String
         {
             var str:String?
@@ -69,13 +77,7 @@ import UIKit
 
         func url()->URL?
         {
-            if(FileManager.default.fileExists(atPath: self))
-            {
-                return URL(fileURLWithPath: self)
-            }
-            
             return URL(string: self)
-            
         }
         
         func urlRequest() -> URLRequest?
@@ -127,6 +129,11 @@ import UIKit
             let board:UIStoryboard=UIStoryboard(name: name, bundle: nil)
             return board.instantiateViewController(withIdentifier: self)
         }
+        
+        func postNotice()
+        {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: self), object: nil)
+        }
 
         
         func image()->UIImage?
@@ -150,5 +157,27 @@ import UIKit
         }
 
 
+        
+        
+        func match(_ str:String)->Bool
+        {
+            let regextestmobile = NSPredicate(format: "SELF MATCHES %@",str)
+            
+            if ((regextestmobile.evaluate(with: self) == true)
+                )
+            {
+                return true
+            }
+            else
+            {
+                return false
+            }
+        }
+        
+        func match(_ str:RegularType)->Bool
+        {
+            return self.match(str.rawValue)
+        }
+        
         
     }

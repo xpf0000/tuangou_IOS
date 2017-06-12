@@ -10,32 +10,6 @@ import UIKit
 import WebKit
 import Cartography
 import SwiftyJSON
-import Hero
-
-
-func CleanWebCache()
-{
-    /* 取得Library文件夹的位置*/
-    let libraryDir=NSSearchPathForDirectoriesInDomains(.libraryDirectory,.userDomainMask, true)[0];
-    /* 取得bundle id，用作文件拼接用*/
-    
-    let bundleId  =  Bundle.main.infoDictionary!["CFBundleIdentifier"]
-    
-    /*
-     * 拼接缓存地址，具体目录为App/Library/Caches/你的APPBundleID/fsCachedData
-     */
-    let webKitFolderInCachesfs = "\(libraryDir)/Caches/\(bundleId!)/fsCachedData"
-    
-    let cache = "\(libraryDir)/Caches/\(bundleId!)/WebKit"
-    
-    do
-    {
-        let _ = try? Foundation.FileManager.default.removeItem(atPath: webKitFolderInCachesfs)
-        let _ = try? Foundation.FileManager.default.removeItem(atPath: cache)
-    }
-    
-    
-}
 
 
 class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler{
@@ -122,18 +96,10 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     }
     
     let scriptHandle = WKUserContentController()
-    var  panGR: UIPanGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector:#selector(onLogout), name: NSNotification.Name(rawValue: "logout"), object: nil)
-
-        isHeroEnabled = true
-    
-        panGR = UIPanGestureRecognizer(target: self, action: #selector(pan))
-        view.addGestureRecognizer(panGR)
-        
+        self.addBackButton()
         self.view.backgroundColor = UIColor.white
         let config = WKWebViewConfiguration()
         
@@ -158,91 +124,15 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         
         self.view.addSubview(webView!)
         
-        let sh = UIApplication.shared.statusBarFrame.height
-        
         constrain(webView!) { (view) in
             view.width == (view.superview?.width)!
-            view.height == (view.superview?.height)!-sh
+            view.height == (view.superview?.height)!
             view.centerX == (view.superview?.centerX)!
-            view.centerY == (view.superview?.centerY)!+sh/2.0
+            view.centerY == (view.superview?.centerY)!
         }
         
-        let v = UIView()
-        v.backgroundColor = APPBlueColor
-        self.view.addSubview(v)
-        
-        constrain(v) { (view) in
-            view.width == (view.superview?.width)!
-            view.height == sh
-            view.top == (view.superview?.top)!
-            view.left == (view.superview?.left)!
-            
-        }
-
-    
         self.show()
         
-        
-        if("\(String(describing: url))".has("car_list.html"))
-        {
-            NotificationCenter.default.addObserver(self, selector:#selector(reload), name: NSNotification.Name(rawValue: "AddCarTaskSuccess"), object: nil)
-        }
-        
-        if("\(String(describing: url))".has("office_list.html"))
-        {
-            NotificationCenter.default.addObserver(self, selector:#selector(reload), name: NSNotification.Name(rawValue: "AddResTaskSuccess"), object: nil)
-        }
-        
-        if("\(String(describing: url))".has("duban_list.html"))
-        {
-            NotificationCenter.default.addObserver(self, selector:#selector(reload), name: NSNotification.Name(rawValue: "AddOverseerTaskSuccess"), object: nil)
-        }
-
-        
-        if("\(String(describing: url))".has("Office_apply.html"))
-        {
-            NotificationCenter.default.addObserver(self, selector:#selector(onResChoose), name: NSNotification.Name(rawValue: "ResChoose"), object: nil)
-        }
-        
-        if("\(String(describing: url))".has("duban_apply.html"))
-        {
-            NotificationCenter.default.addObserver(self, selector:#selector(DaibanChoose), name: NSNotification.Name(rawValue: "DaibanChoose"), object: nil)
-            
-            datepicker.block {[weak self] (date) in
-                self?.webView?.evaluateJavaScript("javascript:OnTimeSelect('"+date!+"')", completionHandler: { (res, err) in
-                    print(res ?? "")
-                    print(err ?? "")
-                })
-            }
-            
-        }
-        
-        
-        if("\(String(describing: url))".has("edit_phone") || "\(String(describing: url))".has("re_phone"))
-        {
-            NotificationCenter.default.addObserver(self, selector:#selector(UserUpdateMobile), name: NSNotification.Name(rawValue: "UserUpdateMobile"), object: nil)
-        }
-        
-    }
-    
-    func UserUpdateMobile()
-    {
-        hero_unwindToRootViewController()
-    }
-    
-    func DaibanChoose()
-    {
-        
-    }
-    
-    func onResChoose()
-    {
-        
-    }
-    
-    func onMapSelected()
-    {
-       
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -288,17 +178,6 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         XWaitingView.hide()
         
-        
-        if("\(String(describing: url))".has("about.html"))
-        {
-            let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-            webView.evaluateJavaScript("javascript:OnGetVersionName('"+currentVersion+"')", completionHandler: { (res, err) in
-
-            })
-            
-        }
-        
-        
     }
     
     
@@ -342,13 +221,6 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         
     }
     
-    func onLogout()
-    {
-        dodeinit()
-        self.hero_unwindToRootViewController()
-    }
-    
-    
     func dodeinit()
     {
         NotificationCenter.default.removeObserver(self)
@@ -381,9 +253,6 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Hero.shared.setDefaultAnimationForNextTransition(.pull(direction: .right))
-        Hero.shared.setContainerColorForNextTransition(.lightGray)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -400,37 +269,6 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         super.didReceiveMemoryWarning()
         
     }
-    
-    
-    enum TransitionState {
-        case normal, slidingLeft, slidingRight
-    }
-    var state: TransitionState = .normal
-    
-    func pan() {
-        let translateX = panGR.translation(in: nil).x
-        let velocityX = panGR.velocity(in: nil).x
-        let progress = translateX / 2 / UIScreen.main.bounds.size.width
-        switch panGR.state {
-        case .began:
-            hero_dismissViewController()
-        case .changed:
-            Hero.shared.update(progress: Double(progress))
-        default:
-            let progress = (translateX + velocityX) / view.bounds.width
-            if (progress < 0) == (state == .slidingLeft) && abs(progress) > 0.3 {
-                Hero.shared.end()
-                
-                dodeinit()
-                
-            } else {
-                Hero.shared.cancel()
-            }
 
-        }
-    }
-
-    
-    
     
 }

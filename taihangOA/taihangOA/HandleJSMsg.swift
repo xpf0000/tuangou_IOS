@@ -52,7 +52,6 @@ class HandleJSMsg: NSObject {
         let back = obj["back"].stringValue
         if(back != "")
         {
-            UserDoLogout = true
             NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "logout")))
         }
         else
@@ -73,28 +72,11 @@ class HandleJSMsg: NSObject {
     }
     else if(type == 2)  //登录成功
     {
-        if(msg == "登录成功")
-        {
-            
-            let user = UserModel.parse(json: obj["info"], replace: nil)
-            DataCache.Share.User = user
-            DataCache.Share.User.save()
-            //DataCache.Share.User.registNotice()
-            
-            (vc as! LoginVC).dodeinit()
-            
-            let tvc = "MainTabBar".VC(name: "Main") as! MainTabBar
-            tvc.selectedIndex = 0
-            
-            vc.hero_replaceViewController(with: tvc)
-
-        }
         
         if(msg ==  "退出登录")
         {
             //DataCache.Share.User.unRegistNotice()
             DataCache.Share.User.reset();
-            UserDoLogout = true
             NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "logout")))
         }
     

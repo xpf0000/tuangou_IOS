@@ -18,6 +18,11 @@ class XMessage: UIView {
     
     var label=UILabel()
     var msg=""
+    
+    class func show(_ str:String)
+    {
+        Share.show(str)
+    }
         
     fileprivate override init(frame: CGRect) {
         super.init(frame: frame)

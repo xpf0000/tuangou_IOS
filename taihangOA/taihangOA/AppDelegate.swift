@@ -62,9 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
         //DataCache.Share.User.unRegistNotice()
         DataCache.Share.User.reset();
         
-        UserDoLogout = true
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "logout")))
-        
     }
     
     

@@ -230,6 +230,12 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
     }
     
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        TabIndex = 1
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

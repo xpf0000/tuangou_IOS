@@ -97,11 +97,24 @@ class Api: NSObject {
                 let json = JSON(value)
                 if let status = json["status"].int
                 {
+                    if(status != 1)
+                    {
+                        let msg = json["info"].string ?? "发送失败"
+                        XMessage.show(msg)
+                    }
+                    else
+                    {
+                        XMessage.show("验证码发送成功")
+                    }
+                    
                     block(status == 1)
                 }
                 
             case .failure(let error):
-                print(error)
+                
+                XMessage.show(error.localizedDescription)
+                block(false)
+
             }
         }
         
@@ -132,6 +145,9 @@ class Api: NSObject {
     
     class func user_doregist(mobile:String, pass:String, code:String, tj:String, block:@escaping ApiBlock<UserModel>)
     {
+        
+        XWaitingView.show()
+        
         var url = BaseUrl+"?ctl=user&act=app_doregister&r_type=1&isapp=true"
         url += "&mobile="+mobile
         url += "&pass="+pass
@@ -140,16 +156,30 @@ class Api: NSObject {
         
         print(url)
         Alamofire.request(url, method: .get).validate().responseJSON { response in
+            
+            XWaitingView.hide()
+            
             switch response.result {
             case .success(let value):
                 
                 let json = JSON(value)
-                let model = UserModel.parse(json: json["data"], replace: nil)
                 
-                block(model)
+                let status = json["status"].int ?? 0
                 
+                if status != 1
+                {
+                    let msg = json["info"].string ?? "注册失败"
+                    XMessage.show(msg)
+                }
+                else
+                {
+                    let model = UserModel.parse(json: json["data"], replace: nil)
+                    block(model)
+                }
+    
             case .failure(let error):
                 print(error)
+                XMessage.show(error.localizedDescription)
             }
         }
         
@@ -159,12 +189,15 @@ class Api: NSObject {
     
     class func user_dologin(user_key:String, user_pwd:String, block:@escaping ApiBlock<UserModel>)
     {
+        XWaitingView.show()
+        
         var url = BaseUrl+"?ctl=user&act=dologin&r_type=1&isapp=true"
         url += "&user_key="+user_key
         url += "&user_pwd="+user_pwd
         
         print(url)
         Alamofire.request(url, method: .get).validate().responseJSON { response in
+            
             switch response.result {
             case .success(let value):
                 
@@ -176,6 +209,9 @@ class Api: NSObject {
             case .failure(let error):
                 print(error)
             }
+            
+            XWaitingView.hide()
+            
         }
         
     }
@@ -661,7 +697,7 @@ class Api: NSObject {
     
     class func news_all_cate(block:@escaping ApiBlock<[NewsCateModel]>)
     {
-        var url = BaseUrl+"?ctl=news&act=all_type&r_type=1&isapp=true"
+        let url = BaseUrl+"?ctl=news&act=all_type&r_type=1&isapp=true"
         
         print(url)
         Alamofire.request(url, method: .get).validate().responseJSON { response in
@@ -910,7 +946,7 @@ class Api: NSObject {
     
     class func user_do_renzheng(data:[String:Any],block:@escaping ApiBlock<Bool>)
     {
-        
+        XWaitingView.show()
         let url = BaseUrl+"?ctl=uc_account&act=do_renzheng&r_type=1&isapp=true"
         
         Alamofire.upload(multipartFormData: { (body) in
@@ -926,9 +962,7 @@ class Api: NSObject {
                 
                 if let d = value as? Data
                 {
-                    let str = i == 0 ? "file" : "file1"
-                    
-                    body.append(d, withName: str, fileName: key, mimeType: "image/jpeg")
+                    body.append(d, withName: key, fileName: "xtest.jpg", mimeType: "image/jpeg")
                 }
                 
                 i += 1
@@ -936,39 +970,46 @@ class Api: NSObject {
             }
             
         }, to: url) { (res) in
+            XWaitingView.hide()
             
             switch res {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
-                    
+                      
                     switch response.result {
                         
                     case .success(let value):
                         
                         let json = JSON(value)
-                        if let status = json["status"].int
+                        let status = json["status"].int ?? 0
+                        
+                        if status != 1
                         {
-                            block(status == 1)
+                            let msg = json["info"].string ?? "提交失败"
+                            XMessage.show(msg)
+                            block(false)
+                        }
+                        else
+                        {
+                            block(true)
                         }
                         
                     case .failure(let error):
-                        
-                        debugPrint(error)
-                        
+                        print(error)
+                        block(false)
+                        XMessage.show(error.localizedDescription)
                     }
-                    
-                    debugPrint(response)
                     
                     
                 }
             case .failure(let encodingError):
                 print(encodingError)
+                block(false)
+                XMessage.show(encodingError.localizedDescription)
             }
             
         }
         
-        
-        print(url)
         
     }
     
