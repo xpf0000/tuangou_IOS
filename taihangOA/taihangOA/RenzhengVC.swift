@@ -10,6 +10,9 @@ import UIKit
 
 class RenzhengVC: UITableViewController,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    
+    @IBOutlet weak var status: UILabel!
+    
     @IBOutlet weak var real_name: UITextField!
     
     @IBOutlet weak var pnum: UITextField!
@@ -31,6 +34,16 @@ class RenzhengVC: UITableViewController,UIActionSheetDelegate,UIImagePickerContr
             zbtn.kf.setImage(with: u, for: .normal)
             fbtn.kf.setImage(with: u1, for: .normal)
         
+            if renzhenginfo?.status == "0"
+            {
+                status.text = "状态: 审核中"
+            }
+            else if renzhenginfo?.status == "2"
+            {
+                status.text = "状态: 审核未通过，请修改后重新提交审核\r\n原因: \(renzhenginfo!.cause)"
+            }
+            
+            
         }
     }
     
@@ -200,6 +213,8 @@ class RenzhengVC: UITableViewController,UIActionSheetDelegate,UIImagePickerContr
         
         tableView.separatorInset=UIEdgeInsets.zero
         tableView.layoutMargins=UIEdgeInsets.zero
+        
+        status.preferredMaxLayoutWidth = SW - 24
     }
 
     

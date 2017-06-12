@@ -28,6 +28,7 @@ class RegistVC: UITableViewController {
     @IBOutlet weak var smsbtn: UIButton!
     @IBOutlet weak var checkbtn: UIButton!
     
+    var codestr = ""
     
     var timer:Timer?
     var timeModel:PostTimeModel = PostTimeModel()
@@ -84,6 +85,14 @@ class RegistVC: UITableViewController {
     
     @IBAction func do_scan(_ sender: Any) {
         
+        let vc = ScannerViewController()
+        vc.onScanResult { [weak self](str) in
+            
+            self?.tuijian.text = str
+            
+        }
+        
+        self.show(vc, sender: nil)
         
     }
     
@@ -143,6 +152,7 @@ class RegistVC: UITableViewController {
         pass1.addEndButton()
         tuijian.addEndButton()
         
+        tuijian.text = codestr
         
     }
     

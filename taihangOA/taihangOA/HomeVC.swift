@@ -40,8 +40,6 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         
         topBar.frame = CGRect(x: 0, y: 0, width: SW, height: 44.0)
         
-        self.navigationController?.navigationBar.addSubview(topBar)
-        
         initTabBar()
         
         collect.register("HomeClassCell".Nib(), forCellWithReuseIdentifier: "HomeClassCell")
@@ -66,6 +64,8 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         {
             getData()
         }
+        
+        topBar.home = self
          
     }
     
@@ -247,6 +247,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         TabIndex = 0
+        self.navigationController?.navigationBar.addSubview(topBar)
        
     }
     
@@ -257,7 +258,9 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //banner.cancel()
+       
+        topBar.removeFromSuperview()
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {

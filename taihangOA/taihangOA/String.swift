@@ -180,4 +180,53 @@ import UIKit
         }
         
         
+        
+        
+        func CachesSize() -> Double
+        {
+            var cachesSize:Double = 0
+            let manager:FileManager = FileManager.default
+            let allFileArray:Array<String>? = manager.subpaths(atPath: self)
+            
+            if(allFileArray != nil)
+            {
+                let arr:NSArray = NSArray(array: allFileArray!)
+                let subFilesEnemerator:NSEnumerator=arr.objectEnumerator()
+                var fileName:String?
+                
+                while(subFilesEnemerator.nextObject() != nil)
+                {
+                    fileName = subFilesEnemerator.nextObject() as? String
+                    
+                    if(fileName != nil)
+                    {
+                        let fileAbsolutePath:String = (self as NSString).appendingPathComponent(fileName!)
+                        if(manager.fileExists(atPath: fileAbsolutePath))
+                        {
+                            do
+                            {
+                                let dic:NSDictionary? = try manager.attributesOfItem(atPath: fileAbsolutePath) as NSDictionary
+                                
+                                if(dic != nil)
+                                {
+                                    cachesSize = cachesSize + Double(dic!.fileSize())
+                                }
+                            }
+                            catch
+                            {
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                }
+                
+                
+            }
+            
+            return cachesSize;
+        }
+        
+        
     }

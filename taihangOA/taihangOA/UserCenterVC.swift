@@ -134,11 +134,11 @@ class UserCenterVC: UITableViewController {
             
            break
             
-        case 11: break
+        case 11: 
             
-//            let vc:ConfigVC = "ConfigVC".VC("User") as! ConfigVC
-//            vc.hidesBottomBarWhenPushed = true
-//            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = "APPSetupVC".VC(name: "Main")
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
             
             
         default :
@@ -152,6 +152,8 @@ class UserCenterVC: UITableViewController {
     {
         if DataCache.Share.User.id == ""
         {
+            header.image = "tx.jpg".image()
+            name.text = "尚未登录"
             return
         }
         

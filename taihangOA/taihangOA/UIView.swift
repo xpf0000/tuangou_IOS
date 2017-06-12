@@ -71,17 +71,18 @@ extension UIView
     
     var viewController:UIViewController?
         {
-            var next:UIView = self.superview == nil ? self : self.superview!
+            var next:UIView? = self.superview == nil ? self : self.superview
             
-            while(!(next is UIWindow))
+            while(!(next is UIWindow) && next != nil)
             {
-                let nextResponder:UIResponder=next.next!
+                let nextResponder:UIResponder? = next?.next
+                
                 if (nextResponder is UIViewController)
                 {
-                    return nextResponder as? UIViewController;
+                    return nextResponder as? UIViewController
                 }
                 
-                next=next.superview!
+                next=next?.superview
             }
             
             

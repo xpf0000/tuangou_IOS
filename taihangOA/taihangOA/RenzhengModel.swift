@@ -16,4 +16,5 @@ class RenzhengModel: Reflect {
     var  id_url = ""
     var  id_url_back = ""
     var  status = ""
+    var cause  = ""
 }

@@ -74,6 +74,10 @@
 		178445D51E9F858F00723640 /* CMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178445D41E9F858F00723640 /* CMapModel.swift */; };
 		178445D71E9F863400723640 /* XMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178445D61E9F863400723640 /* XMessage.swift */; };
 		178445D91E9F8DFF00723640 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178445D81E9F8DFF00723640 /* Dictionary.swift */; };
+		178C6BD61EEED0B3006E8A56 /* ScannerBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178C6BD41EEED0B3006E8A56 /* ScannerBackgroundView.swift */; };
+		178C6BD71EEED0B3006E8A56 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178C6BD51EEED0B3006E8A56 /* ScannerViewController.swift */; };
+		178C6BD91EEED0C8006E8A56 /* QRCodeScanLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 178C6BD81EEED0C8006E8A56 /* QRCodeScanLine@2x.png */; };
+		178C6BDB1EEEDE9B006E8A56 /* APPSetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178C6BDA1EEEDE9B006E8A56 /* APPSetupVC.swift */; };
 		1790FEB91EA996E600474A8C /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1790FEB81EA996E600474A8C /* Reachability.framework */; };
 		1790FEBA1EA996F600474A8C /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1790FEB81EA996E600474A8C /* Reachability.framework */; };
 		1790FEBB1EA996F600474A8C /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1790FEB81EA996E600474A8C /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -289,6 +293,10 @@
 		178445D41E9F858F00723640 /* CMapModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMapModel.swift; sourceTree = "<group>"; };
 		178445D61E9F863400723640 /* XMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMessage.swift; sourceTree = "<group>"; };
 		178445D81E9F8DFF00723640 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		178C6BD41EEED0B3006E8A56 /* ScannerBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerBackgroundView.swift; sourceTree = "<group>"; };
+		178C6BD51EEED0B3006E8A56 /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		178C6BD81EEED0C8006E8A56 /* QRCodeScanLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QRCodeScanLine@2x.png"; sourceTree = "<group>"; };
+		178C6BDA1EEEDE9B006E8A56 /* APPSetupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPSetupVC.swift; sourceTree = "<group>"; };
 		1790FEB81EA996E600474A8C /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = "<group>"; };
 		179A15441E9DBD6A00E60EC2 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		179A15461E9DBEB700E60EC2 /* DataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataCache.swift; sourceTree = "<group>"; };
@@ -583,6 +591,15 @@
 			name = baidumap;
 			sourceTree = "<group>";
 		};
+		178C6BD31EEED084006E8A56 /* QRCodeScan */ = {
+			isa = PBXGroup;
+			children = (
+				178C6BD41EEED0B3006E8A56 /* ScannerBackgroundView.swift */,
+				178C6BD51EEED0B3006E8A56 /* ScannerViewController.swift */,
+			);
+			name = QRCodeScan;
+			sourceTree = "<group>";
+		};
 		179A154C1E9DD78D00E60EC2 /* VC */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +619,7 @@
 				17FC99BA1EEE6C1D00065AA0 /* LoginVC.swift */,
 				17FC99DA1EEE930D00065AA0 /* RegistVC.swift */,
 				17FC99DC1EEEA20000065AA0 /* RenzhengVC.swift */,
+				178C6BDA1EEEDE9B006E8A56 /* APPSetupVC.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -609,6 +627,7 @@
 		179A15591E9E0E6100E60EC2 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				178C6BD81EEED0C8006E8A56 /* QRCodeScanLine@2x.png */,
 				17FC99D61EEE91B200065AA0 /* checkbox_2.png */,
 				17FC99D71EEE91B200065AA0 /* checkbox_3.png */,
 				17FC99D41EEE904F00065AA0 /* scan.png */,
@@ -692,6 +711,7 @@
 		179F14511E9CC08700FD80A0 /* taihangOA */ = {
 			isa = PBXGroup;
 			children = (
+				178C6BD31EEED084006E8A56 /* QRCodeScan */,
 				177B5B7D1EEE379700DAA9F5 /* XHorizontalView */,
 				177E44091EEA8F9A00B9537E /* XEasyListView */,
 				177E44001EEA6FA500B9537E /* ReactionMenuView */,
@@ -945,6 +965,7 @@
 				177E43F71EEA423D00B9537E /* CityListPostionCell.xib in Resources */,
 				17A742B41EE8FB1100C2F405 /* tab_3_1@2x.png in Resources */,
 				17A742B61EE8FB1100C2F405 /* tab_4@2x.png in Resources */,
+				178C6BD91EEED0C8006E8A56 /* QRCodeScanLine@2x.png in Resources */,
 				17A742B71EE8FB1100C2F405 /* tab_0_1@2x.png in Resources */,
 				17A743031EE964AB00C2F405 /* HomeTopicCell.xib in Resources */,
 				178445CF1E9F6C7E00723640 /* mapapi.bundle in Resources */,
@@ -1002,6 +1023,7 @@
 				179A15521E9DFB1700E60EC2 /* HomeVC.swift in Sources */,
 				17A742E91EE93F4C00C2F405 /* SearchKeyModel.swift in Sources */,
 				179F14DF1E9CE5F700FD80A0 /* HtmlVC.swift in Sources */,
+				178C6BDB1EEEDE9B006E8A56 /* APPSetupVC.swift in Sources */,
 				179F14B71E9CCD5D00FD80A0 /* Reflect+Other.swift in Sources */,
 				177E44081EEA8E1800B9537E /* NearbyVC.swift in Sources */,
 				177E44031EEA6FC100B9537E /* ReactionMenuView.swift in Sources */,
@@ -1034,10 +1056,12 @@
 				17A742F51EE9411100C2F405 /* UserCollectModel.swift in Sources */,
 				177E43E41EEA314700B9537E /* HomeCHeader.swift in Sources */,
 				179A15501E9DFA5200E60EC2 /* MineVC.swift in Sources */,
+				178C6BD71EEED0B3006E8A56 /* ScannerViewController.swift in Sources */,
 				179F14E11E9CE77F00FD80A0 /* UIViewController.swift in Sources */,
 				178445D91E9F8DFF00723640 /* Dictionary.swift in Sources */,
 				17A742C11EE9208A00C2F405 /* HomeTopBar.swift in Sources */,
 				17A742E31EE93D4E00C2F405 /* OrderModel.swift in Sources */,
+				178C6BD61EEED0B3006E8A56 /* ScannerBackgroundView.swift in Sources */,
 				179F14531E9CC08700FD80A0 /* AppDelegate.swift in Sources */,
 				17FC99BB1EEE6C1D00065AA0 /* LoginVC.swift in Sources */,
 				179A154B1E9DCEE300E60EC2 /* MainTabBar.swift in Sources */,

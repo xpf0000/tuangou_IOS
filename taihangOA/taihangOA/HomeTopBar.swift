@@ -12,11 +12,13 @@ class HomeTopBar: UIView {
 
     
     @IBAction func to_scan(_ sender: Any) {
-        
-        
-  
+    
+        let  scanner = ScannerViewController()
+        self.viewController?.show(scanner, sender: nil)
     
     }
+    
+    weak var home:HomeVC?
     
     @IBAction func to_search(_ sender: Any) {
         
@@ -31,14 +33,9 @@ class HomeTopBar: UIView {
         
         vc.onChoose {[weak self] in
             
-                if let svc = self?.viewController as? XNavigationController
-                {
-                    if let hvc = svc.topViewController as? HomeVC
-                    {
-                        self?.setCityName()
-                        hvc.getData()
-                    }
-                }
+            self?.setCityName()
+            self?.home?.getData()
+            
         }
         
         self.viewController?.show(nv, sender: nil)
