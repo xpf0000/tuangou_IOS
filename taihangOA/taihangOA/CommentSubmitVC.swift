@@ -18,7 +18,7 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
     
     var imgs:[Int:UIImageView] = [:]
     
-    var imgarr : [UIImage] = []
+    var imgarr : [XPhotoAssetModel] = []
     
     var harr:[CGFloat] = [70,12,100,12,100]
     
@@ -97,25 +97,60 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
         {
             
             
-            
+            let picker = XPhotoPicker(allowsEditing: false)
+            picker.maxNum = 9-imgarr.count
+            picker.getPhoto(self) { [weak self](res) in
+                
+                
+                print(res)
+                self?.photoChoosed(res)
+                
+                
+            }
+
             
         }
         else
         {
-            let cell = collectionView.cellForItem(at: indexPath) as! CommentPicCell
+            let vc = XPhotoDelChoose()
+            vc.assets = imgarr
+            vc.indexPath = indexPath
             
-            var arr:[UIImageView] = []
+            vc.onResult(b: { [weak self](res) in
+                
+                self?.photoChoosed(res)
+                
+            })
             
-            for i in 0..<imgarr.count
-            {
-                arr.append(imgs[i]!)
-            }
+            self.show(vc, sender: nil)
             
-            XImageBrowse(arr: arr).show(cell.img)
         }
      
     }
     
+    
+    func photoChoosed(_ res:[XPhotoAssetModel])
+    {
+        self.imgarr.removeAll(keepingCapacity: false)
+        self.pics.httpHandle.listArr.removeAll(keepingCapacity: false)
+        
+        for item in res
+        {
+            self.imgarr.append(item)
+            if let img = item.image
+            {
+                self.pics.httpHandle.listArr.append(img)
+            }
+            
+        }
+        
+        if self.pics.httpHandle.listArr.count < 9
+        {
+            self.pics.httpHandle.listArr.append("AddPhotoNormal.png" as AnyObject)
+        }
+        
+        self.pics.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

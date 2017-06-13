@@ -12,19 +12,26 @@ class CommentPicCell: UICollectionViewCell {
 
     @IBOutlet weak var img: UIImageView!
     
-    var model:String = ""
+    var model:AnyObject?
     {
         didSet
         {
-            if model.has("http://") || model.has("https://")
+            if let str = model as? String
             {
-                img.kf.setImage(with: model.url())
+                if str.has("http://") || str.has("https://")
+                {
+                    img.kf.setImage(with: str.url())
+                }
+                else
+                {
+                    img.image = str.image()
+                }
             }
-            else
+            else if let m = model as? UIImage
             {
-                img.image = model.image()
+                img.image = m
             }
-            
+  
         }
     }
     

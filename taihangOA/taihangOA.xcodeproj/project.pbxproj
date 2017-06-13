@@ -205,6 +205,20 @@
 		17B524CC1EAAF01100EC78C1 /* XBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B524CB1EAAF01100EC78C1 /* XBanner.swift */; };
 		17B6CD131EA05E10004758B7 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B6CD121EA05E10004758B7 /* libresolv.tbd */; };
 		17B6CD151EA05ED1004758B7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 17B6CD141EA05ED1004758B7 /* libsqlite3.tbd */; };
+		17F1A02C1EF0273D00885C4E /* Checkmark-0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17F1A0201EF0273D00885C4E /* Checkmark-0@2x.png */; };
+		17F1A02D1EF0273D00885C4E /* Checkmark-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17F1A0211EF0273D00885C4E /* Checkmark-1@2x.png */; };
+		17F1A02E1EF0273D00885C4E /* XCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0221EF0273D00885C4E /* XCamera.swift */; };
+		17F1A02F1EF0273D00885C4E /* XPhotoBrowse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0231EF0273D00885C4E /* XPhotoBrowse.swift */; };
+		17F1A0301EF0273D00885C4E /* XPhotoChooseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0241EF0273D00885C4E /* XPhotoChooseCell.swift */; };
+		17F1A0311EF0273D00885C4E /* XPhotoChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0251EF0273D00885C4E /* XPhotoChooseVC.swift */; };
+		17F1A0321EF0273D00885C4E /* XPhotoHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0261EF0273D00885C4E /* XPhotoHandle.swift */; };
+		17F1A0331EF0273D00885C4E /* XPhotoLibVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0271EF0273D00885C4E /* XPhotoLibVC.swift */; };
+		17F1A0341EF0273D00885C4E /* XPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0281EF0273D00885C4E /* XPhotoPicker.swift */; };
+		17F1A0351EF0273D00885C4E /* XPhotoToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0291EF0273D00885C4E /* XPhotoToolbar.swift */; };
+		17F1A0361EF0273D00885C4E /* XPhotoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A02A1EF0273D00885C4E /* XPhotoUtil.swift */; };
+		17F1A0371EF0273D00885C4E /* XZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A02B1EF0273D00885C4E /* XZoomImageView.swift */; };
+		17F1A0391EF0402B00885C4E /* XPhotoDelChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F1A0381EF0402B00885C4E /* XPhotoDelChoose.swift */; };
+		17F1A03B1EF0481E00885C4E /* del_icon_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 17F1A03A1EF0481E00885C4E /* del_icon_w.png */; };
 		17FC99B21EEE411300065AA0 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC99B11EEE411300065AA0 /* UITableViewCell.swift */; };
 		17FC99B61EEE448600065AA0 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC99B41EEE448600065AA0 /* OrderCell.swift */; };
 		17FC99B71EEE448600065AA0 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FC99B51EEE448600065AA0 /* OrderCell.xib */; };
@@ -438,6 +452,20 @@
 		17B6CD121EA05E10004758B7 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		17B6CD141EA05ED1004758B7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		17B6CD271EA0709B004758B7 /* taihangOA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = taihangOA.entitlements; sourceTree = "<group>"; };
+		17F1A0201EF0273D00885C4E /* Checkmark-0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark-0@2x.png"; sourceTree = "<group>"; };
+		17F1A0211EF0273D00885C4E /* Checkmark-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkmark-1@2x.png"; sourceTree = "<group>"; };
+		17F1A0221EF0273D00885C4E /* XCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCamera.swift; sourceTree = "<group>"; };
+		17F1A0231EF0273D00885C4E /* XPhotoBrowse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoBrowse.swift; sourceTree = "<group>"; };
+		17F1A0241EF0273D00885C4E /* XPhotoChooseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoChooseCell.swift; sourceTree = "<group>"; };
+		17F1A0251EF0273D00885C4E /* XPhotoChooseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoChooseVC.swift; sourceTree = "<group>"; };
+		17F1A0261EF0273D00885C4E /* XPhotoHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoHandle.swift; sourceTree = "<group>"; };
+		17F1A0271EF0273D00885C4E /* XPhotoLibVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoLibVC.swift; sourceTree = "<group>"; };
+		17F1A0281EF0273D00885C4E /* XPhotoPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoPicker.swift; sourceTree = "<group>"; };
+		17F1A0291EF0273D00885C4E /* XPhotoToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoToolbar.swift; sourceTree = "<group>"; };
+		17F1A02A1EF0273D00885C4E /* XPhotoUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoUtil.swift; sourceTree = "<group>"; };
+		17F1A02B1EF0273D00885C4E /* XZoomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XZoomImageView.swift; sourceTree = "<group>"; };
+		17F1A0381EF0402B00885C4E /* XPhotoDelChoose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XPhotoDelChoose.swift; sourceTree = "<group>"; };
+		17F1A03A1EF0481E00885C4E /* del_icon_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = del_icon_w.png; sourceTree = "<group>"; };
 		17FC99B11EEE411300065AA0 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		17FC99B41EEE448600065AA0 /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		17FC99B51EEE448600065AA0 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
@@ -697,6 +725,7 @@
 		179A15591E9E0E6100E60EC2 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				17F1A03A1EF0481E00885C4E /* del_icon_w.png */,
 				170BCA751EF002320084693D /* AddPhotoNormal.png */,
 				170BCA611EEFD2230084693D /* list_star01.png */,
 				170BCA621EEFD2230084693D /* list_star02.png */,
@@ -787,6 +816,7 @@
 		179F14511E9CC08700FD80A0 /* taihangOA */ = {
 			isa = PBXGroup;
 			children = (
+				17F1A01F1EF0273D00885C4E /* XPhoto */,
 				178C6BD31EEED084006E8A56 /* QRCodeScan */,
 				177B5B7D1EEE379700DAA9F5 /* XHorizontalView */,
 				177E44091EEA8F9A00B9537E /* XEasyListView */,
@@ -952,6 +982,26 @@
 			path = OneSDK;
 			sourceTree = "<group>";
 		};
+		17F1A01F1EF0273D00885C4E /* XPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				17F1A0201EF0273D00885C4E /* Checkmark-0@2x.png */,
+				17F1A0211EF0273D00885C4E /* Checkmark-1@2x.png */,
+				17F1A0221EF0273D00885C4E /* XCamera.swift */,
+				17F1A0231EF0273D00885C4E /* XPhotoBrowse.swift */,
+				17F1A0381EF0402B00885C4E /* XPhotoDelChoose.swift */,
+				17F1A0241EF0273D00885C4E /* XPhotoChooseCell.swift */,
+				17F1A0251EF0273D00885C4E /* XPhotoChooseVC.swift */,
+				17F1A0261EF0273D00885C4E /* XPhotoHandle.swift */,
+				17F1A0271EF0273D00885C4E /* XPhotoLibVC.swift */,
+				17F1A0281EF0273D00885C4E /* XPhotoPicker.swift */,
+				17F1A0291EF0273D00885C4E /* XPhotoToolbar.swift */,
+				17F1A02A1EF0273D00885C4E /* XPhotoUtil.swift */,
+				17F1A02B1EF0273D00885C4E /* XZoomImageView.swift */,
+			);
+			path = XPhoto;
+			sourceTree = "<group>";
+		};
 		17FC99B31EEE446D00065AA0 /* order */ = {
 			isa = PBXGroup;
 			children = (
@@ -1056,6 +1106,8 @@
 				17A743031EE964AB00C2F405 /* HomeTopicCell.xib in Resources */,
 				178445CF1E9F6C7E00723640 /* mapapi.bundle in Resources */,
 				177E43F91EEA442200B9537E /* dingwei.png in Resources */,
+				17F1A03B1EF0481E00885C4E /* del_icon_w.png in Resources */,
+				17F1A02D1EF0273D00885C4E /* Checkmark-1@2x.png in Resources */,
 				17A742B91EE8FB1100C2F405 /* tab_1@2x.png in Resources */,
 				17FC99C91EEE7B5200065AA0 /* mine_icon1.png in Resources */,
 				177E43E51EEA314700B9537E /* HomeCHeader.xib in Resources */,
@@ -1095,6 +1147,7 @@
 				177E43E91EEA327400B9537E /* HomeDealCell.xib in Resources */,
 				179F14581E9CC08700FD80A0 /* Main.storyboard in Resources */,
 				178445D31E9F701800723640 /* back_white.png in Resources */,
+				17F1A02C1EF0273D00885C4E /* Checkmark-0@2x.png in Resources */,
 				17FC99D91EEE91B200065AA0 /* checkbox_3.png in Resources */,
 				17A742BA1EE8FB1100C2F405 /* tab_2_1@2x.png in Resources */,
 			);
@@ -1114,8 +1167,10 @@
 				179A15521E9DFB1700E60EC2 /* HomeVC.swift in Sources */,
 				17A742E91EE93F4C00C2F405 /* SearchKeyModel.swift in Sources */,
 				179F14DF1E9CE5F700FD80A0 /* HtmlVC.swift in Sources */,
+				17F1A0321EF0273D00885C4E /* XPhotoHandle.swift in Sources */,
 				178C6BDB1EEEDE9B006E8A56 /* APPSetupVC.swift in Sources */,
 				179F14B71E9CCD5D00FD80A0 /* Reflect+Other.swift in Sources */,
+				17F1A02E1EF0273D00885C4E /* XCamera.swift in Sources */,
 				177E44081EEA8E1800B9537E /* NearbyVC.swift in Sources */,
 				177E44031EEA6FC100B9537E /* ReactionMenuView.swift in Sources */,
 				179F14DD1E9CE35F00FD80A0 /* Public.swift in Sources */,
@@ -1139,9 +1194,11 @@
 				17FC99B61EEE448600065AA0 /* OrderCell.swift in Sources */,
 				17A742EB1EE93F7600C2F405 /* StoresListModel.swift in Sources */,
 				177B5B851EEE388E00DAA9F5 /* NewsVC.swift in Sources */,
+				17F1A02F1EF0273D00885C4E /* XPhotoBrowse.swift in Sources */,
 				170BCA4C1EEFBA320084693D /* UserInfoVC.swift in Sources */,
 				17A742FB1EE9422D00C2F405 /* UserUnitsModel.swift in Sources */,
 				177E43EB1EEA3D0500B9537E /* CityListVC.swift in Sources */,
+				17F1A0371EF0273D00885C4E /* XZoomImageView.swift in Sources */,
 				179A154E1E9DD92400E60EC2 /* BootVC.swift in Sources */,
 				178445A91E9F625700723640 /* DatePicker.swift in Sources */,
 				17A742DF1EE93C7F00C2F405 /* NoticeModel.swift in Sources */,
@@ -1150,7 +1207,9 @@
 				170BCA541EEFCCCF0084693D /* UCFenhongVC.swift in Sources */,
 				17A742FE1EE958E000C2F405 /* HomeClassCell.swift in Sources */,
 				17A742E11EE93CAE00C2F405 /* OrderItemModel.swift in Sources */,
+				17F1A0331EF0273D00885C4E /* XPhotoLibVC.swift in Sources */,
 				177B5B891EEE39D500DAA9F5 /* NewsCell.swift in Sources */,
+				17F1A0301EF0273D00885C4E /* XPhotoChooseCell.swift in Sources */,
 				17FC99B21EEE411300065AA0 /* UITableViewCell.swift in Sources */,
 				17A742F51EE9411100C2F405 /* UserCollectModel.swift in Sources */,
 				177E43E41EEA314700B9537E /* HomeCHeader.swift in Sources */,
@@ -1164,12 +1223,15 @@
 				179F14531E9CC08700FD80A0 /* AppDelegate.swift in Sources */,
 				17FC99BB1EEE6C1D00065AA0 /* LoginVC.swift in Sources */,
 				179A154B1E9DCEE300E60EC2 /* MainTabBar.swift in Sources */,
+				17F1A0391EF0402B00885C4E /* XPhotoDelChoose.swift in Sources */,
 				17A742EF1EE93FFA00C2F405 /* TuanCateModel.swift in Sources */,
 				17B524CC1EAAF01100EC78C1 /* XBanner.swift in Sources */,
 				177B5B821EEE379700DAA9F5 /* XHorizontalMenuView.swift in Sources */,
 				17A742DB1EE93C0B00C2F405 /* NewsCateModel.swift in Sources */,
 				170BCA521EEFC79A0084693D /* UCUnitsVC.swift in Sources */,
+				17F1A0311EF0273D00885C4E /* XPhotoChooseVC.swift in Sources */,
 				170BCA5B1EEFCFC10084693D /* UCCollectVC.swift in Sources */,
+				17F1A0341EF0273D00885C4E /* XPhotoPicker.swift in Sources */,
 				17A742CF1EE9367400C2F405 /* CityModel.swift in Sources */,
 				177E440E1EEA8F9A00B9537E /* XHttpHandle.swift in Sources */,
 				176A38451EA700D400623A18 /* UIButton.swift in Sources */,
@@ -1193,8 +1255,10 @@
 				179F14B81E9CCD5D00FD80A0 /* Reflect+Property.swift in Sources */,
 				179F14B51E9CCD5D00FD80A0 /* Reflect+Convert.swift in Sources */,
 				17A742DD1EE93C4600C2F405 /* NewsModel.swift in Sources */,
+				17F1A0361EF0273D00885C4E /* XPhotoUtil.swift in Sources */,
 				17A742D91EE93B2500C2F405 /* TuanModel.swift in Sources */,
 				179F14D11E9CDD8F00FD80A0 /* XAlertView.swift in Sources */,
+				17F1A0351EF0273D00885C4E /* XPhotoToolbar.swift in Sources */,
 				17A743021EE964AB00C2F405 /* HomeTopicCell.swift in Sources */,
 				1784459E1E9F1FE700723640 /* Api.swift in Sources */,
 				17FC99DB1EEE930D00065AA0 /* RegistVC.swift in Sources */,

@@ -36,7 +36,7 @@ class XNavigationController: UINavigationController
         
         navBar.setBackgroundImage(APPBlueColor.image(), for:.default)
         navBar.titleTextAttributes=[NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName:UIFont.boldSystemFont(ofSize: 20.0)]
-    
+        
         self.navigationBar.isTranslucent = false
         self.navigationBar.shadowImage = UIColor.clear.image()
         
