@@ -35,6 +35,25 @@ import UIKit
             }
         }
         
+        func replace(_ str1:String,with:String)->String
+        {
+            var temp:NSString = NSString(string: self)
+            temp = temp.replacingOccurrences(of: str1, with: with) as NSString
+            
+            return temp as String
+        }
+        
+        var numberValue: NSNumber {
+            
+            let decimal = NSDecimalNumber(string: self)
+            if decimal == NSDecimalNumber.notANumber {  // indicates parse error
+                return NSDecimalNumber.zero
+            }
+            return decimal
+            
+        }
+
+        
         //去掉左右空格
         func trim()->String{
             return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)

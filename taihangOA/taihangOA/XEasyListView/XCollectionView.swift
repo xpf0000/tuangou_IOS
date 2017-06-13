@@ -8,7 +8,16 @@
 
 import UIKit
 
+typealias XCollectionCellBlock = (IndexPath,UICollectionViewCell)->Void
+
 class XCollectionView: UICollectionView,UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    var cellBlock:XCollectionCellBlock?
+    
+    func onGetCell(block:@escaping XCollectionCellBlock)
+    {
+        cellBlock = block
+    }
     
     let httpHandle:XHttpHandle=XHttpHandle()
     var postDict:[String:AnyObject]=[:]
@@ -139,6 +148,8 @@ class XCollectionView: UICollectionView,UICollectionViewDelegate,UICollectionVie
         }
         
         cell.setValue(model, forKey: "model")
+        
+        cellBlock?(indexPath,cell)
         
         return cell
         

@@ -12,21 +12,22 @@ class UserCommentModel: Reflect {
     
     var  page:PageModel = PageModel()
     var item:[ItemBean] = []
+ 
+}
 
-    class ItemBean:Reflect {
-      
-        var type = ""
-        var data_id = ""
-        var content = ""
-        var create_time = ""
-        var reply_time = ""
-        var reply_content = ""
-        var name = ""
-        var point = ""
-        var oimages:[String] = []
-        var icon = ""
-        var sub_name = ""
-        
-    }
+
+class ItemBean:Reflect {
+    
+    var type = ""
+    var data_id = ""
+    var content = ""
+    var create_time = ""
+    var reply_time = ""
+    var reply_content = ""
+    var name = ""
+    var point = ""
+    var oimages:[String] = []
+    var icon = ""
+    var sub_name = ""
     
 }

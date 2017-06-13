@@ -17,7 +17,7 @@ class OrderVC: UIViewController {
     
     lazy var classArr:[XHorizontalMenuModel] = []
     
-    let dic = ["0":"全部","1":"待付款","2":"待使用","3":"待评价","4":"退款"]
+    let dic = ["全部","待付款","待使用","待评价","退款"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,8 @@ class OrderVC: UIViewController {
     {
         self.classArr.removeAll(keepingCapacity: false)
         
-        for (id,name) in dic
+        var id = 0
+        for name in dic
         {
             
             let m = XHorizontalMenuModel()
@@ -48,11 +49,11 @@ class OrderVC: UIViewController {
             
             let table = XTableView()
             table.contentInset.bottom = 50.0
-            table.cellHeight = 75+16
+            table.cellHeight = 135
             
             var url = Api.BaseUrl+"?ctl=uc_order&act=app_index&r_type=1&isapp=true"
             url += "&uid="+DataCache.Share.User.id
-            url += "&status="+id
+            url += "&status=\(id)"
             url += "&page=[page]"
             
             table.setHandle(url, pageStr: "[page]", keys: ["data","item"], model: OrderItemModel.self, CellIdentifier: "OrderCell")
@@ -62,6 +63,8 @@ class OrderVC: UIViewController {
             m.view = table
             
             self.classArr.append(m)
+            
+            id += 1
         }
         
         self.menu.menuArr = self.classArr

@@ -19,6 +19,8 @@ class XFooterRefreshView: UIView {
     var end=false
     var height:CGFloat = 60
     
+    var oldEdgeInsets:UIEdgeInsets = UIEdgeInsets.zero
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -46,12 +48,30 @@ class XFooterRefreshView: UIView {
             newSuperview!.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
             newSuperview!.sendSubview(toBack: self)
             self.frame.origin.y = newSuperview!.frame.size.height;
+            
         }
         else
         {
             self.superview?.removeObserver(self, forKeyPath: "contentSize")
             self.superview?.removeObserver(self, forKeyPath: "contentOffset")
         }
+    }
+    
+    
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        
+        if superview != nil
+        {
+        
+            if let c = scrollView?.contentInset
+            {
+                oldEdgeInsets = c
+            }
+            
+        }
+        
+        
     }
     
     override func removeFromSuperview() {
@@ -188,7 +208,7 @@ class XFooterRefreshView: UIView {
         self.state = .normal
         self.activity.alpha=0.0
         self.activity.stopAnimating()
-        self.scrollView!.contentInset.bottom = 0
+        self.scrollView!.contentInset.bottom = oldEdgeInsets.bottom
         self.setStateText()
     }
     
@@ -208,7 +228,7 @@ class XFooterRefreshView: UIView {
                 
                 UIView.animate(withDuration: 0.4, animations: { () -> Void in
                     self.activity.alpha=0.0
-                    self.scrollView!.contentInset.bottom = 0
+                    self.scrollView!.contentInset.bottom = self.oldEdgeInsets.bottom
                     
                     }, completion: { (finish) -> Void in
                         
@@ -252,7 +272,7 @@ class XFooterRefreshView: UIView {
             UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 
                 
-                self.scrollView!.contentInset.bottom=self.height
+                self.scrollView!.contentInset.bottom=self.height+self.oldEdgeInsets.bottom
                 
                 var y:CGFloat = self.scrollView!.contentSize.height-self.scrollView!.frame.height+self.height
                 
@@ -274,13 +294,12 @@ class XFooterRefreshView: UIView {
             })
             
         case .willRefreshing:
-            ""
-            
+            break
         case .end:
             
             self.activity.stopAnimating()
             self.activity.isHidden = true
-            self.scrollView!.contentInset.bottom=0
+            self.scrollView!.contentInset.bottom=oldEdgeInsets.bottom
             XRefreshFooterNoMoreBlock?(self)
             
             scrollView!.refreshEnable = true

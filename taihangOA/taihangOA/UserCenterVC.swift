@@ -110,23 +110,49 @@ class UserCenterVC: UITableViewController {
         switch indexPath.row
         {
         case 2:
-
+            
+                let vc = "UserInfoVC".VC(name: "Main")
+                self.show(vc, sender: nil)
+                
            break
         case 3:
+            
+            let vc = "UCUnitsVC".VC(name: "Main")
+            self.show(vc, sender: nil)
             
            break
         case 4:
             
+            let vc = "UCFenhongVC".VC(name: "Main")
+            self.show(vc, sender: nil)
+            
          break
         case 5:
+            
+            let vc = "UCCollectVC".VC(name: "Main")
+            self.show(vc, sender: nil)
+            
+           break
+            
+        case 6:
+            
+            let vc = "UCCommentVC".VC(name: "Main")
+            self.show(vc, sender: nil)
             
            break
             
         case 8:
             
-           break
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            if let u = "http://tg01.sssvip.net/wap/index.php?ctl=user_center&act=app_qrcode&code=\(DataCache.Share.User.user_name)".url()
+            {
+                vc.url = u
+            }
             
-        case 6:
+            vc.title = "我的邀请码"
+            
+            self.show(vc, sender: nil)
             
             break
             

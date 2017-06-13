@@ -24,6 +24,13 @@ class OrderCell: UITableViewCell {
     
     @IBAction func btn_click(_ sender: UIButton) {
         
+        if sender.titleLabel?.text == "评价"
+        {
+            let vc = "CommentSubmitVC".VC(name: "Main")
+            self.viewController?.show(vc, sender: nil)
+            
+        }
+        
         
     }
     

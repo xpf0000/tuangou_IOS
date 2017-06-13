@@ -182,7 +182,11 @@ extension ReflectType{
         
         for (typeStr, type) in aggregateTypes {
             
-            if typeName.contain(subStr: typeStr) {res = type}
+            if typeName.contain(subStr: typeStr) {
+                
+                res = type
+            
+            }
         }
         
         return res

@@ -130,8 +130,7 @@ extension Reflect{
                             arrAggregate = parseAggregateArray(json![key], basicType: ReflectType.BasicType.Double, ins: Double(0))
                             
                         }else if res is String.Type {
-                            
-                            arrAggregate = parseAggregateArray(json![key], basicType: ReflectType.BasicType.String, ins: "")
+                            arrAggregate = parseAggregateArray(json![key], basicType: ReflectType.BasicType.String, ins: String.self)
                             
                         }else if res is NSNumber.Type {
                             
@@ -250,26 +249,34 @@ extension Reflect{
     class func parseAggregateArray<T>(_ jsonArr: JSON,basicType: ReflectType.BasicType, ins: T) -> [T]{
         
         var intArrM: [T] = []
-        
+    
         if jsonArr.count == 0 {return intArrM}
         
         for (_,subJson):(String, JSON) in jsonArr {
             
             var element: T = ins
             
-            if T.self is Int.Type {
+            if ins.self is Int.Type {
                 element = subJson.intValue as! T
             }
-            else if T.self is Float.Type {element = subJson.floatValue as! T}
-            else if T.self is Double.Type {element = subJson.doubleValue as! T}
-            else if T.self is NSNumber.Type {element = subJson.numberValue as! T}
-            else if T.self is String.Type {element = subJson.stringValue as! T}
-            else{element = subJson as! T}
-            
+            else if ins.self is Float.Type {
+                element = subJson.floatValue as! T
+            }
+            else if ins.self is Double.Type {
+                element = subJson.doubleValue as! T
+            }
+            else if ins.self is NSNumber.Type {
+                element = subJson.numberValue as! T
+            }
+            else if ins.self is String.Type {
+                element = subJson.stringValue as! T
+            }
+            else{
+                element = subJson as! T
+            }
             
             intArrM.append(element)
-            
-            
+ 
         }
         
         return intArrM

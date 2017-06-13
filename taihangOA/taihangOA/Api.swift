@@ -282,6 +282,7 @@ class Api: NSObject {
                 
             case .failure(let error):
                 print(error)
+                XMessage.show(error.localizedDescription)
             }
         }
         
@@ -1017,7 +1018,7 @@ class Api: NSObject {
     
     class func app_upload_avatar(data:[String:Any],block:@escaping ApiBlock<Bool>)
     {
-        
+        XWaitingView.show()
         let url = BaseUrl+"?ctl=uc_account&act=app_upload_avatar&r_type=1&isapp=true"
         
         Alamofire.upload(multipartFormData: { (body) in
@@ -1033,7 +1034,7 @@ class Api: NSObject {
                 
                 if let d = value as? Data
                 {
-                    body.append(d, withName: "file", fileName: key, mimeType: "image/jpeg")
+                    body.append(d, withName: "file", fileName: "xtest.jpg", mimeType: "image/jpeg")
                 }
                 
                 i += 1
@@ -1041,7 +1042,7 @@ class Api: NSObject {
             }
             
         }, to: url) { (res) in
-            
+            XWaitingView.hide()
             switch res {
             case .success(let upload, _, _):
                 upload.responseJSON { response in
@@ -1051,14 +1052,26 @@ class Api: NSObject {
                     case .success(let value):
                         
                         let json = JSON(value)
-                        if let status = json["status"].int
+                        let status = json["status"].int ?? 0
+                        
+                        if status != 1
                         {
-                            block(status == 1)
+                            let msg = json["info"].string ?? "提交失败"
+                            XMessage.show(msg)
+                            block(false)
+                        }
+                        else
+                        {
+                            XMessage.show("头像上传成功！")
+                            block(true)
                         }
                         
                     case .failure(let error):
                         
                         debugPrint(error)
+                        
+                        block(false)
+                        XMessage.show(error.localizedDescription)
                         
                     }
                     
@@ -1068,6 +1081,9 @@ class Api: NSObject {
                 }
             case .failure(let encodingError):
                 print(encodingError)
+                
+                block(false)
+                XMessage.show(encodingError.localizedDescription)
             }
             
         }
