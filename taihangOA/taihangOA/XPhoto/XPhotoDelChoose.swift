@@ -154,14 +154,16 @@ class XPhotoDelChoose: UIViewController,UICollectionViewDelegate,UICollectionVie
             for i in indexPath.row ..< assets.count - 1
             {
                 let index = IndexPath.init(row: i + 1, section: 0)
-
+                let key = IndexPath.init(row: i, section: 0)
                 if let v =  imgArr[index]
                 {
-                    let key = IndexPath.init(row: i, section: 0)
                     imgArr[key] = v
                 }
+                else
+                {
+                    imgArr.removeValue(forKey: key)
+                }
                 
-               
             }
             
             let index = IndexPath.init(row: assets.count  - 1, section: 0)
@@ -174,11 +176,16 @@ class XPhotoDelChoose: UIViewController,UICollectionViewDelegate,UICollectionVie
         
         if(assets.count > 0)
         {
-            
             let r = indexPath.row  - 1 < 0 ? 0 : indexPath.row  - 1
             indexPath = IndexPath.init(row: r, section: 0)
-            collection.reloadData()
             
+            if  imgArr[indexPath] == nil
+            {
+                getRawImage(indexPath)
+            }
+            
+            collection.reloadData()
+            collection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
         }
         else
         {

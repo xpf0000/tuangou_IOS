@@ -10,7 +10,6 @@ import Foundation
 
 let TmpDirURL = Bundle.main.resourceURL!.appendingPathComponent("html")
 let APPBlueColor = "11c1f3".color()
-let datepicker = DatePicker.init(.dateAndTime)
 let ImagePrefix = "http://oonby7g6e.bkt.clouddn.com/"
 
 let SW = UIScreen.main.bounds.size.width
@@ -30,3 +29,29 @@ let BaseHtml = "<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n" +
     "table td{border-left:1px dashed #D2D2D2;border-top:1px dashed #D2D2D2}\r\n" +
     "img {width:100%;height: auto}\r\n" +
     "</style>\r\n</head>\r\n<body>\r\n"+"[XHTMLX]"+"\r\n</body>\r\n</html>"
+
+
+
+typealias XNoBlock = ()->Void
+
+func MainDo(_ block:@escaping XNoBlock)
+{
+    
+    DispatchQueue.main.async(execute: { () -> Void in
+        block()
+    })
+}
+
+func DelayDo(_ time:TimeInterval,block:@escaping XNoBlock)
+{
+    let delayInSeconds:Double=time
+    let popTime:DispatchTime=DispatchTime.now() + Double(Int64(delayInSeconds * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+    
+    DispatchQueue.main.asyncAfter(deadline: popTime, execute: { () -> Void in
+        
+        block()
+        
+    })
+    
+}
+

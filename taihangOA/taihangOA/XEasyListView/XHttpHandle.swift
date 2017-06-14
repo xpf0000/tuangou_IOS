@@ -17,7 +17,7 @@ typealias XHttpHandleBlock = ([AnyObject])->Void
 class XHttpHandle: NSObject {
     
     var autoReload=true
-    var pageSize=20
+    var pageSize=10
     var page=1
     var end=false
     var url:String=""
@@ -101,6 +101,7 @@ class XHttpHandle: NSObject {
             if(self == nil){return}
             
             switch response.result {
+                
             case .success(let value):
                 
                 let o = JSON(value)
@@ -189,7 +190,16 @@ class XHttpHandle: NSObject {
               
                 
             case .failure(let error):
+                
+                self!.scrollView?.showFootRefresh()
+                self!.scrollView?.endHeaderRefresh()
+                self!.scrollView?.endFooterRefresh()
+                
+                XMessage.show(error.localizedDescription)
+                
                 print(error)
+                
+                
             }
         }
 

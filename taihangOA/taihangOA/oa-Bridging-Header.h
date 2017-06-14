@@ -9,9 +9,13 @@
 #import <BaiduMapAPI_Utils/BMKUtilsComponent.h>//引入计算工具所有的头文件
 
 
-#import <CloudPushSDK/CloudPushSDK.h>
-#import <CloudPushSDK/CCPSysMessage.h>
-#import <CommonCrypto/CommonDigest.h>
-#import <AlicloudMobileAnalitics/ALBBMAN.h>
+//#import <CloudPushSDK/CloudPushSDK.h>
+//#import <CloudPushSDK/CCPSysMessage.h>
+//#import <CommonCrypto/CommonDigest.h>
+//#import <AlicloudMobileAnalitics/ALBBMAN.h>
 
 
+//#import "Order.h"
+#import <AlipaySDK/AlipaySDK.h>
+//#import <Availability.h>
+//#import "DataSigner.h"

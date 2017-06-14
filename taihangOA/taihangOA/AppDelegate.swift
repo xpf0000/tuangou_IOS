@@ -22,14 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
 
     func onMessageReceived(_ notification:Notification)
     {
-        if let message = notification.object as? CCPSysMessage
-        {
-            let title = String.init(data: message.title, encoding: String.Encoding.utf8)
-            
-            let body = String.init(data: message.body, encoding: String.Encoding.utf8)
-            
-            print("Receive message title: \(title) | content: \(body)")
-            
+//        if let message = notification.object as? CCPSysMessage
+//        {
+//            let title = String.init(data: message.title, encoding: String.Encoding.utf8)
+//            
+//            let body = String.init(data: message.body, encoding: String.Encoding.utf8)
+//            
+//            print("Receive message title: \(title) | content: \(body)")
+        
 //            if let str = title,let content = body
 //            {
 //                if str == "账号在其它设备已登录"
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
 //            }
             
             
-        }
+        //}
         
         
     }
@@ -68,27 +68,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
     func initCloudPush()
     {
         
-        CloudPushSDK.asyncInit("23744972", appSecret: "6295ae0f5198f3795b85d23d531e7ad4") { (res) in
-            
-            if let r = res
-            {
-                if(r.success)
-                {
-                    print("CloudPushSDK.asyncInit success !!!!!!!!!!!!")
-                }
-                else
-                {
-                    print(r.error ?? "阿里云注册失败")
-                }
-            }
-            else
-            {
-                print("阿里云注册失败")
-            }
-            
-        }
-        
-        CloudPushSDK.turnOnDebug()
+//        CloudPushSDK.asyncInit("23744972", appSecret: "6295ae0f5198f3795b85d23d531e7ad4") { (res) in
+//            
+//            if let r = res
+//            {
+//                if(r.success)
+//                {
+//                    print("CloudPushSDK.asyncInit success !!!!!!!!!!!!")
+//                }
+//                else
+//                {
+//                    print(r.error ?? "阿里云注册失败")
+//                }
+//            }
+//            else
+//            {
+//                print("阿里云注册失败")
+//            }
+//            
+//        }
+//        
+//        CloudPushSDK.turnOnDebug()
     }
 
     
@@ -131,7 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
 
         }
         
-        CloudPushSDK.sendNotificationAck(launchOptions)
+        //CloudPushSDK.sendNotificationAck(launchOptions)
         
 
         netcheck.whenReachable = { reachability in
@@ -158,37 +158,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        CloudPushSDK.registerDevice(deviceToken) { (res) in
-            
-            if let r = res
-            {
-                if(r.success)
-                {
-                    if(DataCache.Share.User.id == "")
-                    {
-                        CloudPushSDK.removeAlias(nil) { (res) in
-                            
-                            print(res.debugDescription)
-                            print("清空阿里推送!!!!!!!")
-                            
-                        }
-
-                    }
-                    
-                    
-                    print("阿里云注册成功 Token: \(deviceToken.description)")
-                }
-                else
-                {
-                    print(r.error ?? "阿里云注册失败")
-                }
-            }
-            else
-            {
-                print("阿里云注册失败")
-            }
-            
-        }
+//        CloudPushSDK.registerDevice(deviceToken) { (res) in
+//            
+//            if let r = res
+//            {
+//                if(r.success)
+//                {
+//                    if(DataCache.Share.User.id == "")
+//                    {
+//                        CloudPushSDK.removeAlias(nil) { (res) in
+//                            
+//                            print(res.debugDescription)
+//                            print("清空阿里推送!!!!!!!")
+//                            
+//                        }
+//
+//                    }
+//                    
+//                    
+//                    print("阿里云注册成功 Token: \(deviceToken.description)")
+//                }
+//                else
+//                {
+//                    print(r.error ?? "阿里云注册失败")
+//                }
+//            }
+//            else
+//            {
+//                print("阿里云注册失败")
+//            }
+//            
+//        }
 
         
     }
@@ -204,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
         
         print("收到推送: \(userInfo)")
         
-        CloudPushSDK.sendNotificationAck(userInfo)
+        //CloudPushSDK.sendNotificationAck(userInfo)
         
     }
 
@@ -235,6 +235,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if url.host == "safepay"
+        {
+            AlipaySDK.defaultService().processAuthResult(url, standbyCallback: { (dic) in
+                
+                
+                print(dic ?? [])
+                
+                
+            })
+        }
+        
+        return true
+    }
+    
+    func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+        
+        
+        if url.host == "safepay"
+        {
+            AlipaySDK.defaultService().processAuthResult(url, standbyCallback: { (dic) in
+                
+                print(dic ?? [])
+                
+            })
+        }
+        
+        return true
+    }
+    
     
 
 }

@@ -26,9 +26,18 @@ class OrderCell: UITableViewCell {
         
         if sender.titleLabel?.text == "评价"
         {
-            let vc = "CommentSubmitVC".VC(name: "Main")
+            let vc = "CommentSubmitVC".VC(name: "Main") as! CommentSubmitVC
+            vc.data_id = model.deal_id
             self.viewController?.show(vc, sender: nil)
             
+        }
+        else if sender.titleLabel?.text == "查看券码"
+        {
+            let vc = CouponListVC()
+            vc.oid = model.id
+            vc.name = model.sub_name
+            vc.hidesBottomBarWhenPushed = true
+            self.viewController?.show(vc, sender: nil)
         }
         
         

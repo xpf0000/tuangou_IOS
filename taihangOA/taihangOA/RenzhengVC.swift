@@ -100,11 +100,16 @@ class RenzhengVC: UITableViewController,UIActionSheetDelegate,UIImagePickerContr
         
         Api.user_do_renzheng(data: map) {[weak self] (res) in
             
-            XAlertView.show("提交成功,请等待审核", block: { [weak self] in
-
-                self?.dismiss(animated: true, completion: nil)
-                
-            })
+            if res
+            {
+                XAlertView.show("提交成功,请等待审核", block: { [weak self] in
+                    
+                    self?.dismiss(animated: true, completion: nil)
+                    
+                })
+            }
+            
+            
         }
         
         

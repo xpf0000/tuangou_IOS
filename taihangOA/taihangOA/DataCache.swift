@@ -26,12 +26,12 @@ class DataCache: NSObject {
         }
         else
         {
-            CloudPushSDK.removeAlias(nil) { (res) in
-            
-                print(res.debugDescription)
-                print("清空阿里推送!!!!!!!")
-                
-            }
+//            CloudPushSDK.removeAlias(nil) { (res) in
+//            
+//                print(res.debugDescription)
+//                print("清空阿里推送!!!!!!!")
+//                
+//            }
         }
         
         if let model = ItemsBean.read(name: "City")

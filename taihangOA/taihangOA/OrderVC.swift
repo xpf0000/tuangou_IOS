@@ -48,6 +48,9 @@ class OrderVC: UIViewController {
             m.title = name
             
             let table = XTableView()
+            
+            table.refreshWord = "OrderNeedRefresh"
+            
             table.contentInset.bottom = 50.0
             table.cellHeight = 135
             

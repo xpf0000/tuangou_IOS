@@ -47,4 +47,32 @@ class NearbyCell: UITableViewCell {
     }
 
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if(selected)
+        {
+            deSelect()
+            
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            
+            let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+model.id+"&city_id="+DataCache.Share.city.id
+            
+            if let u = url.url()
+            {
+                vc.url = u
+            }
+
+            vc.hideNavBar = true
+            vc.tuanModel = model
+            vc.title = "详情"
+            
+            self.viewController?.show(vc, sender: nil)
+            
+        }
+    }
+
+    
+    
 }

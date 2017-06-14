@@ -18,6 +18,12 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     var url:URL?
     var html:String=""
     var baseUrl:URL?
+    
+    var hideNavBar = false
+    
+    let topView = UIView()
+    
+    var tuanModel = TuanModel()
 
     func msgChanged(_ json:String) {
         
@@ -103,6 +109,9 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         self.view.backgroundColor = UIColor.white
         let config = WKWebViewConfiguration()
         
+        topView.frame = CGRect.init(x: 0, y: 0, width: SW, height: 20)
+        topView.backgroundColor = APPBlueColor
+        
         scriptHandle.add(self, name: "JSHandle")
         
         let per = WKPreferences()
@@ -178,6 +187,8 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         XWaitingView.hide()
         
+        
+        
     }
     
     
@@ -221,6 +232,67 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         
     }
     
+    func toPicInfo()
+    {
+        let vc = HtmlVC()
+        vc.hidesBottomBarWhenPushed = true
+        
+        let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal_detail&act=app_index&data_id="+tuanModel.id
+        
+        if let u = url.url()
+        {
+            vc.url = u
+        }
+        
+        vc.tuanModel = tuanModel
+        vc.title = "图文详情"
+        
+        self.show(vc, sender: nil)
+    }
+    
+    
+    func doCollect()
+    {
+        if !checkIsLogin()
+        {
+            return
+        }
+        
+        Api.do_collect(uid: DataCache.Share.User.id, id: tuanModel.id) {[weak self] (r) in
+            
+            if r == "收藏成功"
+            {
+                XMessage.show("收藏成功")
+                self?.webView?.evaluateJavaScript("javascript:collectChange(1)", completionHandler: { (res, err) in
+                    
+                })
+            }
+            else
+            {
+                XMessage.show("取消收藏成功")
+                self?.webView?.evaluateJavaScript("javascript:collectChange(0)", completionHandler: { (res, err) in
+                    
+                })
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    func doBuy()
+    {
+        let vc = "OrderSubmitVC".VC(name: "Main") as! OrderSubmitVC
+        vc.model = tuanModel
+        self.show(vc, sender: nil)
+        
+    }
+    
+    
+    
+    
+    
     func dodeinit()
     {
         NotificationCenter.default.removeObserver(self)
@@ -248,6 +320,12 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
             XMessage.Share.show("未检测到网络连接,请检查网络")
         }
         
+        if hideNavBar
+        {
+            self.navigationController?.navigationBar.isHidden = true
+            self.view.addSubview(topView)
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -257,6 +335,9 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
+        topView.removeFromSuperview()
         
     }
     

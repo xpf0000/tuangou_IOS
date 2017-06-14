@@ -568,7 +568,7 @@ class Api: NSObject {
 
     
     
-    class func do_collect(uid:String,id:String, block:@escaping ApiBlock<Bool>)
+    class func do_collect(uid:String,id:String, block:@escaping ApiBlock<String>)
     {
         var url = BaseUrl+"?ctl=deal&act=app_do_collect&r_type=1&isapp=true"
         url += "&uid="+uid
@@ -580,13 +580,22 @@ class Api: NSObject {
             case .success(let value):
                 
                 let json = JSON(value)
-                if let status = json["status"].int
+                let status = json["status"].int ?? 0
+                let msg = json["info"].string ?? "收藏失败"
+                
+                if status != 1
                 {
-                    block(status == 1)
+                    
+                    XMessage.show(msg)
+                }
+                else
+                {
+                    block(msg)
                 }
                 
             case .failure(let error):
                 print(error)
+                XMessage.show(error.localizedDescription)
             }
         }
         
@@ -610,6 +619,7 @@ class Api: NSObject {
                 block(model)
                 
             case .failure(let error):
+                XMessage.show(error.localizedDescription)
                 print(error)
             }
         }
@@ -918,23 +928,32 @@ class Api: NSObject {
                     case .success(let value):
                         
                         let json = JSON(value)
-                        if let status = json["status"].int
+                        let status = json["status"].int ?? 0
+                        
+                        if status != 1
                         {
-                            block(status == 1)
+                            let msg = json["info"].string ?? "提交失败"
+                            XMessage.show(msg)
+                            block(false)
+                        }
+                        else
+                        {
+                            block(true)
                         }
                         
                     case .failure(let error):
                         
-                        debugPrint(error)
+                        block(false)
+                        XMessage.show(error.localizedDescription)
                         
                     }
                     
-                    debugPrint(response)
-                    
-                    
                 }
             case .failure(let encodingError):
-                print(encodingError)
+
+                block(false)
+                XMessage.show(encodingError.localizedDescription)
+                
             }
             
         }

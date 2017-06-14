@@ -16,6 +16,8 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
     
     @IBOutlet weak var pics: XCollectionView!
     
+    var data_id = ""
+    
     var imgs:[Int:UIImageView] = [:]
     
     var imgarr : [XPhotoAssetModel] = []
@@ -26,6 +28,21 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
         super.viewDidLoad()
         self.addBackButton()
         
+        let button=UIButton(type: UIButtonType.custom)
+        button.frame=CGRect(x: 0, y: 0, width: 50, height: 21);
+        button.setTitle("发布", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.isExclusiveTouch = true
+        let rightItem=UIBarButtonItem(customView: button)
+        self.navigationItem.rightBarButtonItem=rightItem;
+        
+        button.click {[weak self] (btn) in
+            
+            self?.do_submit()
+            
+        }
+
+        
         star.num = 5
         content.placeHolder("菜品口味如何，服务周到吗，环境如何，（写够15字，才是好同志~）")
         
@@ -34,7 +51,6 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
         tableView.tableHeaderView = v
         
         pics.ViewLayout.sectionInset.bottom = 16.0
-        pics.ViewLayout.scrollDirection = .horizontal
         pics.ViewLayout.itemSize = CGSize(width: 80.0, height: 80.0)
         pics.ViewLayout.minimumLineSpacing = 8.0
         pics.ViewLayout.minimumInteritemSpacing = 8.0
@@ -150,6 +166,91 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
         }
         
         self.pics.reloadData()
+        resetheight()
+        
+    }
+    
+    func resetheight()
+    {
+            let num = ceil( Double(pics.httpHandle.listArr.count) / 4.0 )
+            let h = (num * 88) + 16
+        
+            harr[4] = CGFloat(h)
+
+            tableView.reloadData()
+        
+    }
+    
+    
+    func do_submit()
+    {
+        self.view.endEdit()
+        if star.num == 0
+        {
+            XMessage.show("请先给商家打分")
+            return
+        }
+        
+        XWaitingView.show()
+        
+        var map : [String:Any] = [:]
+        map["uid"]=DataCache.Share.User.id
+        map["data_id"] = data_id
+        map["point"] = "\(star.num)"
+        map["content"] = content.text!.trim()
+        
+       
+        
+        var i = 0
+        let end = imgarr.count
+        var k = 0
+        for item in imgarr
+        {
+            
+            item.getRawImage(block: { [weak self](img) in
+                
+                if let data = img?.data(0.1)
+                {
+                    map["xtest\(k).jpg"] = data
+                    print("queue: \(k)")
+                    
+                    k += 1
+                    if k == end
+                    {
+                        self?.submit(map: map)
+                    }
+                }
+    
+            })
+            
+            i += 1
+   
+        }
+        
+    }
+    
+    func submit(map : [String:Any])
+    {
+        
+        print(map.count)
+        
+        Api.user_add_dp(data: map) {[weak self] (res) in
+            
+            XWaitingView.hide()
+            
+            if res
+            {
+                "OrderNeedRefresh".postNotice()
+                
+                XAlertView.show("评价提交成功", block: { [weak self] in
+                    
+                    self?.dismiss(animated: true, completion: nil)
+                    
+                })
+            }
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

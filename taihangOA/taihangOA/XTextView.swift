@@ -10,7 +10,7 @@ import UIKit
 
 class XTextView: UITextView,UITextViewDelegate {
 
-    var placeHolderView:UITextField?
+    var placeHolderView:UILabel?
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -21,6 +21,24 @@ class XTextView: UITextView,UITextViewDelegate {
         super.init(coder: aDecoder)
         
         self.addEndButton()
+        
+        initself()
+        
+    }
+    
+    func initself()
+    {
+        placeHolderView = UILabel()
+        placeHolderView?.font = UIFont.systemFont(ofSize: 14.0)
+        placeHolderView?.isEnabled = false
+        placeHolderView?.numberOfLines = 0
+        self.addSubview(placeHolderView!)
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        placeHolderView?.preferredMaxLayoutWidth = self.frame.width - 10
+    
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -40,13 +58,10 @@ class XTextView: UITextView,UITextViewDelegate {
     func placeHolder(_ str:String)
     {
         self.delegate = self
-        placeHolderView = UITextField()
-        placeHolderView?.font = UIFont.systemFont(ofSize: 14.0)
-        placeHolderView?.placeholder = str
-        placeHolderView?.isEnabled = false
-        self.addSubview(placeHolderView!)
         
-        placeHolderView?.frame = CGRect(x: 5, y: 8, width: 30, height: 20)
+        placeHolderView?.text = str
+        
+        placeHolderView?.frame = CGRect(x: 5, y: 8, width: self.frame.size.width-10, height: 1)
         placeHolderView?.sizeToFit()
         placeHolderView?.frame = CGRect(x: 5, y: 8, width: (placeHolderView?.frame.size.width)!, height: (placeHolderView?.frame.size.height)!)
         

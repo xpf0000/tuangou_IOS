@@ -47,8 +47,9 @@ class CommentCell: UITableViewCell,UICollectionViewDelegate {
             {
                 picH.constant = 90.0
                 pics.httpHandle.listArr = model.oimages as [AnyObject]
-                pics.reloadData()
             }
+            
+            pics.reloadData()
             
         }
     }

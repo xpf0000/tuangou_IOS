@@ -25,9 +25,7 @@ class HandleJSMsg: NSObject {
   
     if(type == 0)  //url 跳转
     {
-    
-        datepicker.removeFromSuperview()
-        
+
         let url = obj["url"].stringValue
         let arr = url.split(".html")
         
@@ -48,7 +46,6 @@ class HandleJSMsg: NSObject {
     }
     else if(type == 1)  //返回
     {
-        datepicker.removeFromSuperview()
         let back = obj["back"].stringValue
         if(back != "")
         {
@@ -81,36 +78,47 @@ class HandleJSMsg: NSObject {
         }
     
     }
-    else if(type == 3)  //时间日期选择
+    else if(type == 3)  //收藏
     {
-
-        datepicker.removeFromSuperview()
-        UIApplication.shared.keyWindow?.addSubview(datepicker)
-        datepicker.show()
-        
-    }
-    else if(type == 4)  //地图选择
-    {
-        
-    }
-    else if(type == 5)  //车辆申请添加成功
-    {
-        if(msg ==  "车辆申请添加成功")
+        if let v = vc as? HtmlVC
         {
-            Hero.shared.setDefaultAnimationForNextTransition(.pull(direction: .right))
-            Hero.shared.setContainerColorForNextTransition(.lightGray)
-            
-            vc.hero_dismissViewController()
+            v.doCollect()
         }
-    
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "AddCarTaskSuccess")))
+    }
+    else if(type == 4)  //图文详情
+    {
+        if let v = vc as? HtmlVC
+        {
+            v.toPicInfo()
+        }
+
+    }
+    else if(type == 5)  //其他团购
+    {
+        let id = obj["id"].intValue
+        let nvc = HtmlVC()
+        nvc.hidesBottomBarWhenPushed = true
+        
+        let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id=\(id)&city_id="+DataCache.Share.city.id
+        
+        if let u = url.url()
+        {
+            nvc.url = u
+        }
+        
+        nvc.hideNavBar = true
+        nvc.tuanModel.id = "\(id)"
+        nvc.title = "详情"
+        
+        vc.show(nvc, sender: nil)
         
     }
-    else if(type == 6)  //物品选择完成
+    else if(type == 6)  //点击购买
     {
-        
-       
-        
+        if let v = vc as? HtmlVC
+        {
+            v.doBuy()
+        }
     }
     else if(type == 7)  //物品申请添加成功
     {
@@ -153,9 +161,25 @@ class HandleJSMsg: NSObject {
         }
     }
     
-    else if(type == 12)  //待办事项总数
+    else if(type == 12)  //跳转评论页
     {
-               
+        let id = obj["id"].intValue
+        
+        let nvc = HtmlVC()
+        nvc.hidesBottomBarWhenPushed = true
+        
+        let url = "http://tg01.sssvip.net/wap/index.php?ctl=dp_list&act=app_index&type=deal&data_id=\(id)"
+        
+        if let u = url.url()
+        {
+            nvc.url = u
+        }
+        
+        nvc.title = "点评列表"
+        
+        vc.show(nvc, sender: nil)
+        
+ 
     }
     
     else if(type == 13)  //用户手机号更新成功

@@ -33,6 +33,7 @@ class XPhotoAssetModel: NSObject {
             }
         }
     }
+    
     var image:UIImage?
     
     @available(iOS 8.0, *)
@@ -67,6 +68,45 @@ class XPhotoAssetModel: NSObject {
         }
 
     }
+    
+    
+    
+    func getRawImage(block:@escaping XPhotoImageBlock)
+    {
+    
+        XPhotoHandle.Share.AssetQueue.addOperation { 
+            
+            if #available(iOS 8.0, *)
+            {
+                if let phasset = self.alasset as? PHAsset
+                {
+                    let opt = PHImageRequestOptions()
+                    opt.resizeMode = .fast
+                    PHImageManager.default().requestImage(for: phasset, targetSize: CGSize(width: SW*SC, height: SH*SC), contentMode: .aspectFill, options: opt, resultHandler: { [weak self](result, info) in
+                        if self == nil {return}
+                        if result != nil
+                        {
+                            block(result)
+                        }
+                        
+                    })
+                }
+            }
+            else
+            {
+                if let asset = self.alasset as? ALAsset
+                {
+                    let  image = UIImage(cgImage: asset.defaultRepresentation().fullScreenImage().takeUnretainedValue())
+                    block(image)
+                }
+                
+            }
+            
+        }
+
+        
+    }
+
     
 }
 
