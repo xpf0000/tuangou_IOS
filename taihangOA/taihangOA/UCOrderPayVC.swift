@@ -1,90 +1,39 @@
 //
-//  OrderPayVC.swift
+//  UCOrderPayVC.swift
 //  taihangOA
 //
-//  Created by 徐鹏飞 on 2017/6/14.
+//  Created by 徐鹏飞 on 2017/6/15.
 //  Copyright © 2017年 taihangOA. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
 
-class OrderPayVC: UITableViewController,UIAlertViewDelegate {
+
+class UCOrderPayVC: UITableViewController,UIAlertViewDelegate {
     
     @IBOutlet weak var name: UILabel!
     
     @IBOutlet weak var price: UILabel!
-    
-    @IBOutlet weak var wxcheck: UIButton!
-    
-    @IBOutlet weak var alicheck: UIButton!
-    
-    @IBOutlet weak var yutxt: UILabel!
-    
-    @IBOutlet weak var yucheck: UIButton!
-    
+
     @IBOutlet weak var submit_btn: UIButton!
     
-    @IBAction func check_click(_ sender: UIButton) {
-        
-        if sender == wxcheck
-        {
-            wxcheck.isSelected = true
-            alicheck.isSelected = false
-        }
-        else if sender == alicheck
-        {
-            wxcheck.isSelected = false
-            alicheck.isSelected = true
-        }
-        else
-        {
-            yucheck.isSelected = !yucheck.isSelected
-            
-            if yucheck.isSelected
-            {
-                var p = tuanModel.total_price - umoney
-                p = p < 0 ? 0 : p
-                
-                submit_btn.setTitle("确认支付(\(p)元)", for: .normal)
-                
-            }
-            else
-            {
-                submit_btn.setTitle("确认支付(\(tuanModel.total_price)元)", for: .normal)
-            }
-            
-        }
-        
-    }
+    @IBOutlet weak var tprice: UILabel!
     
-    var tuanModel = TuanModel()
+    @IBOutlet weak var yprice: UILabel!
     
-    var umoney:Double = 0.0
-     {
-        didSet
-        {
-            if umoney == 0.0
-            {
-                harr[5] = 0
-                harr[6] = 0
-            }
-            else
-            {
-                harr[5] = 50
-                harr[6] = 65
-                
-                yutxt.text = "当前账户余额：\(umoney)元，使用余额支付"
-                
-            }
-            
-            tableView.reloadData()
-            
-        }
-    }
+    @IBOutlet weak var dprice: UILabel!
     
-    var harr:[CGFloat] = [12,100,60,65,65,0,0,80]
-
+    
+    var oid = ""
+    var name_str = ""
+    var paytype = 0
+    var tprice_num = 0.0
+    var cprice_num = 0.0
+    var nprice_num = 0.0
+    
+    var harr:[CGFloat] = [12,100,30,65,65,50,50,50,80]
+    
     var payModel:PayModel?
     
     @IBAction func do_submit(_ sender: UIButton) {
@@ -98,25 +47,16 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
             doPay()
         }
         
-        let city_id = DataCache.Share.city.id
         let uid = DataCache.Share.User.id
-        let uname = DataCache.Share.User.user_name
-        let did = tuanModel.id
-        let num = "\(tuanModel.num)"
-        let tprice = "\(tuanModel.total_price)"
         
-        let all_account_money = yucheck.isSelected ? "1" : "0"
-        let payment = wxcheck.isSelected ? "20" : "21"
-        
-        Api.do_order_pay(city_id: city_id, payment: payment, all_account_money: all_account_money, did: did, uid: uid, uname: uname, num: num, tprice: tprice) {[weak self] (paymodel) in
-
-            self?.yucheck.isUserInteractionEnabled = false
-            self?.payModel = paymodel
+        Api.uc_order_pay(oid: oid, uid: uid) {[weak self] (paymodel) in
             
+            self?.payModel = paymodel
             self?.doPay()
             
-            
         }
+      
+    
         
         
         
@@ -145,7 +85,7 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
                 doWXPay()
             }
         }
-    
+        
     }
     
     func doAliPay()
@@ -179,7 +119,7 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
                         
                         resultStatus = json["memo"]["ResultStatus"].intValue
                     }
-
+                    
                 }
                 
                 
@@ -230,7 +170,10 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
             XAlertView.show("支付成功！", block: { [weak self] in
                 
                 let vc = "PaySuccessVC".VC(name: "Main") as! PaySuccessVC
-                vc.tuanModel = self?.tuanModel
+                vc.tuanModel = TuanModel()
+                vc.tuanModel?.sub_name = self!.name_str
+                
+                self?.payModel?.order_id = self!.oid.numberValue.intValue
                 vc.payModel = self?.payModel
                 
                 vc.hidesBottomBarWhenPushed = true
@@ -260,7 +203,7 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
         {
             XAlertView.show("支付结果确认中,请稍候在订单中心查看", block: { [weak self] in
                 
-                    self?.pop()
+                self?.pop()
                 
             })
         }
@@ -280,26 +223,28 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
         
     }
     
-    
-    func getData()
-    {
-        let uid = DataCache.Share.User.id
-        let uname = DataCache.Share.User.user_name
-        
-        Api.user_money(uid: uid, uname: uname) {[weak self] (str) in
-            
-            self?.umoney = str.numberValue.doubleValue.roundDouble()
-            
-        }
-        
-    }
-    
     func show()
     {
         
-        name.text = tuanModel.sub_name
-        price.text = "￥\(tuanModel.total_price)"
-       submit_btn.setTitle("确认支付(\(tuanModel.total_price)元)", for: .normal)
+        name.text = name_str
+        price.text = "￥\(tprice_num)"
+        
+        tprice.text = "￥\(tprice_num)"
+        yprice.text = "￥\(cprice_num)"
+        dprice.text = "￥\(nprice_num)"
+        
+        if paytype == 20
+        {
+            harr[4] = 0.0
+        }
+        else
+        {
+            harr[3] = 0.0
+        }
+        
+        submit_btn.setTitle("确认支付(\(nprice_num)元)", for: .normal)
+        
+        tableView.reloadData()
         
     }
     
@@ -313,9 +258,7 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
         tableView.tableHeaderView = v
         
         show()
-        getData()
-        
-        
+       
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -325,20 +268,8 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == 3
-        {
-            cell.separatorInset=UIEdgeInsetsMake(0, 0, 0, 0)
-            cell.layoutMargins=UIEdgeInsetsMake(0, 0, 0, 0)
-        }
-        else
-        {
-            cell.separatorInset=UIEdgeInsetsMake(0, SW, 0, 0)
-            cell.layoutMargins=UIEdgeInsetsMake(0, SW, 0, 0)
-        }
-        
-        
-        
+        cell.separatorInset=UIEdgeInsetsMake(0, SW, 0, 0)
+        cell.layoutMargins=UIEdgeInsetsMake(0, SW, 0, 0)
     }
     
     override func viewDidLayoutSubviews() {
@@ -360,3 +291,4 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
     
     
 }
+

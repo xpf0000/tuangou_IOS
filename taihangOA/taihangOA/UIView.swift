@@ -27,13 +27,13 @@ class XCornerRadiusModel: NSObject {
 struct XBorderSidesType : OptionSet {
     
     let rawValue:Int
-    
-    static var None: XBorderSidesType = XBorderSidesType(rawValue: 0)
-    static var Left: XBorderSidesType = XBorderSidesType(rawValue: 1)
-    static var Top: XBorderSidesType = XBorderSidesType(rawValue: 2)
-    static var Right: XBorderSidesType = XBorderSidesType(rawValue: 4)
-    static var Bottom: XBorderSidesType = XBorderSidesType(rawValue: 9)
-    static var All: XBorderSidesType = XBorderSidesType(rawValue: 19)
+
+    static var None: XBorderSidesType = XBorderSidesType(rawValue: 1 << 0)
+    static var Left: XBorderSidesType = XBorderSidesType(rawValue: 1 << 1)
+    static var Top: XBorderSidesType = XBorderSidesType(rawValue: 1 << 2)
+    static var Right: XBorderSidesType = XBorderSidesType(rawValue: 1 << 3)
+    static var Bottom: XBorderSidesType = XBorderSidesType(rawValue: 1 << 4)
+    static var All: XBorderSidesType = XBorderSidesType(rawValue: 1 << 5)
     
 }
 
@@ -66,8 +66,6 @@ extension UIView
         }
         
     }
-
-    
     
     func drawCornerRadius(_ rect:CGRect)
     {
@@ -86,12 +84,20 @@ extension UIView
             
             let insets = UIEdgeInsetsMake(topInsets, leftInsets, bottomInsets, rightInsets)
             
+            print("rect: \(rect)")
+            
+            print("insets: \(insets)")
+            
             let properRect = UIEdgeInsetsInsetRect(rect, insets)
+            
+            print("properRect: \(properRect)")
             
             let c = UIGraphicsGetCurrentContext()
             
             if c == nil {
+                
                 return
+                
             }
             
             c!.setShouldAntialias(true)
@@ -127,7 +133,10 @@ extension UIView
             }
             
             
+            
         }
+        
+        
         
         
     }
@@ -202,7 +211,7 @@ extension UIView
         let maxy = rect.maxY
         
         
-        if m.BorderSidesType.contains(.Left)
+        if m.BorderSidesType.contains(.Left) || m.BorderSidesType.contains(.All)
         {
             
             if (m.CornerRadiusType.contains(.bottomLeft))
@@ -234,7 +243,7 @@ extension UIView
         }
         
         
-        if m.BorderSidesType.contains(.Top)
+        if m.BorderSidesType.contains(.Top) || m.BorderSidesType.contains(.All)
         {
             
             if (m.CornerRadiusType.contains(.topLeft))
@@ -265,7 +274,7 @@ extension UIView
         }
         
         
-        if m.BorderSidesType.contains(.Right)
+        if m.BorderSidesType.contains(.Right) || m.BorderSidesType.contains(.All)
         {
             
             if (m.CornerRadiusType.contains(.topRight))
@@ -295,7 +304,7 @@ extension UIView
             
         }
         
-        if m.BorderSidesType.contains(.Bottom)
+        if m.BorderSidesType.contains(.Bottom) || m.BorderSidesType.contains(.All)
         {
             
             if (m.CornerRadiusType.contains(.bottomRight))

@@ -81,7 +81,8 @@ class APPSetupVC: UITableViewController,UIAlertViewDelegate {
         }
         else if indexPath.row == 4
        {
-        
+            let vc = "AboutVC".VC(name: "Main")
+            self.show(vc, sender: nil)
         }
         
         

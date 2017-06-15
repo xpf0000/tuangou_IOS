@@ -50,10 +50,26 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         if(self.url != nil)
         {
             let request = URLRequest(url: url!)
-            webView?.load(request)
+            
+//            request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", forHTTPHeaderField: "accept")
+//            request.setValue("gzip, deflate, sdch, br", forHTTPHeaderField: "accept-encoding")
+//            
+//            request.setValue("zh-CN,zh;q=0.8", forHTTPHeaderField: "accept-language")
+//            request.setValue("thw=cn; uc3=nk2=qAasmv1woFmbnA%3D%3D&id2=UNk%2BdFn9fBn4&vt3=F8dARV58qUAjLiE01cE%3D&lg2=VT5L2FSpMGV7TQ%3D%3D; lgc=%5Cu6C34%5Cu74F6%5Cu5EA7%5Cu5929%5Cu624D; tracknick=%5Cu6C34%5Cu74F6%5Cu5EA7%5Cu5929%5Cu624D; t=87376a53efcd86ced9b98e80373694c1; _cc_=WqG3DMC9EA%3D%3D; tg=0; miid=1384629793655383608; cna=/V66ETPb5TwCAQHEstu/RmQj; isg=At_f4gQj-qVObP65EKY6S6JIbjWp7DKJ3OcCg3EstA6VAP6CeRBcNxoYtqeE", forHTTPHeaderField: "cookie")
+//            
+//            request.setValue("1", forHTTPHeaderField: "upgrade-insecure-requests")
+//            
+//            request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36", forHTTPHeaderField: "UserAgent")
+            
+            
+            XWaitingView.show()
+            
+            webView?.load(request as URLRequest)
         }
         else if(self.html != "")
         {
+            XWaitingView.show()
+            
             webView?.loadHTMLString(self.html, baseURL: baseUrl)
         }
 
@@ -71,23 +87,25 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     
     func reload()
     {
-        if let currentURL = self.webView?.url {
-            let request = URLRequest(url: currentURL)
-            self.webView?.load(request)
-        }
-        else
-        {
-            if(self.url != nil)
-            {
-                let request = URLRequest(url: url!)
-                webView?.load(request)
-            }
-            else if(self.html != "")
-            {
-                webView?.loadHTMLString(self.html, baseURL: baseUrl)
-            }
-
-        }
+        webView?.reload()
+        
+//        if let currentURL = self.webView?.url {
+//            let request = URLRequest(url: currentURL)
+//            self.webView?.load(request)
+//        }
+//        else
+//        {
+//            if(self.url != nil)
+//            {
+//                let request = URLRequest(url: url!)
+//                webView?.load(request)
+//            }
+//            else if(self.html != "")
+//            {
+//                webView?.loadHTMLString(self.html, baseURL: baseUrl)
+//            }
+//
+//        }
     }
     
     override func pop() {
@@ -117,8 +135,10 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         let per = WKPreferences()
         per.javaScriptCanOpenWindowsAutomatically = true
         per.javaScriptEnabled = true
+        
         config.preferences = per
         config.userContentController = scriptHandle
+        
         
         webView = WKWebView(frame: CGRect.zero, configuration: config)
         
@@ -130,6 +150,21 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         
         webView?.isOpaque = false
         webView?.backgroundColor = UIColor.white
+        
+//        webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { (res, err) in
+//            
+//            let oldAgent = res as! String
+//
+//            print(oldAgent)
+//            
+//            let dic = ["UserAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"]
+//            
+//            UserDefaults.standard.register(defaults: dic)
+//            
+//            
+//        })
+        
+        
         
         self.view.addSubview(webView!)
         
@@ -143,6 +178,7 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         self.show()
         
     }
+    
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
@@ -187,7 +223,27 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         XWaitingView.hide()
         
-        
+//        DelayDo(3) {
+//            
+//            let doc = "document.getElementsByTagName('html')[0].innerHTML"
+//            
+//            webView.evaluateJavaScript(doc) { (info, err) in
+//                
+//                if(err != nil)
+//                {
+//                    print(err ?? "")
+//                }
+//                else
+//                {
+//                    print(info ?? "")
+//                }
+//                
+//                print("!!!!!!!!!!!!-------------------------!!!!!!!!!!!!")
+//                
+//            }
+//            
+//        }
+//
         
     }
     
@@ -285,13 +341,24 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     {
         let vc = "OrderSubmitVC".VC(name: "Main") as! OrderSubmitVC
         vc.model = tuanModel
-        self.show(vc, sender: nil)
+        
+        let nv = XNavigationController.init(rootViewController: vc)
+        
+        self.show(nv, sender: nil)
         
     }
     
     
     
+    func addPopObserver(str:String)
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(pop), name: NSNotification.Name(rawValue: str), object: nil)
+    }
     
+    func addReloadObserver(str:String)
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name(rawValue: str), object: nil)
+    }
     
     func dodeinit()
     {

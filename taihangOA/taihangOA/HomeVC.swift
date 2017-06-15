@@ -232,6 +232,229 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0
+        {
+            let bean = homeModel.indexs[indexPath.row]
+            
+            if bean.ctl == "url"
+            {
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                vc.url = bean.data.url.url()
+                vc.title = bean.name
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "stores"
+            {
+                let vc = "StoresListVC".VC(name: "Main")  as! StoresListVC
+                vc.cate_id = bean.data.cate_id
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "tuan"
+            {
+                let vc = "NearbyVC".VC(name: "Main")  as! NearbyVC
+                vc.hidesBottomBarWhenPushed = true
+                vc.cate_id = bean.data.cate_id
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "notices"
+            {
+                let vc = NoticesListVC()
+                vc.hidesBottomBarWhenPushed = true
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "notice"
+            {
+                
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                if let u = "http://tg01.sssvip.net/wap/index.php?ctl=notice&act=app_index&data_id=\(bean.data.data_id)".url()
+                {
+                    vc.url = u
+                }
+                
+                vc.title = "详情"
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "deal"
+            {
+                
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                
+                let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+bean.data.data_id+"&city_id="+DataCache.Share.city.id
+                
+                if let u = url.url()
+                {
+                    vc.url = u
+                }
+                
+                vc.hideNavBar = true
+                vc.tuanModel = TuanModel()
+                vc.tuanModel.id = bean.data.data_id
+
+                self.show(vc, sender: nil)
+
+                
+            }
+            else if bean.ctl == "store"
+            {
+                
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                
+                let url = "http://tg01.sssvip.net/wap/index.php?ctl=store&act=app_index&data_id="+bean.data.data_id
+                
+                if let u = url.url()
+                {
+                    vc.url = u
+                }
+                
+                vc.hideNavBar = true
+                self.show(vc, sender: nil)
+                
+            }
+            
+            
+        }
+        else if indexPath.section == 1
+        {
+            
+            let bean = homeModel.zt_html[indexPath.row]
+            
+            if bean.ctl == "url"
+            {
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                vc.url = bean.data.url.url()
+                vc.title = bean.name
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "stores"
+            {
+                let vc = "StoresListVC".VC(name: "Main")  as! StoresListVC
+                vc.cate_id = bean.data.cate_id
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "tuan"
+            {
+                let vc = "NearbyVC".VC(name: "Main")  as! NearbyVC
+                vc.hidesBottomBarWhenPushed = true
+                vc.cate_id = bean.data.cate_id
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "notices"
+            {
+                let vc = NoticesListVC()
+                vc.hidesBottomBarWhenPushed = true
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "notice"
+            {
+                
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                if let u = "http://tg01.sssvip.net/wap/index.php?ctl=notice&act=app_index&data_id=\(bean.data.data_id)".url()
+                {
+                    vc.url = u
+                }
+                
+                vc.title = "详情"
+                
+                self.show(vc, sender: nil)
+                
+            }
+            else if bean.ctl == "deal"
+            {
+                
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                
+                let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+bean.data.data_id+"&city_id="+DataCache.Share.city.id
+                
+                if let u = url.url()
+                {
+                    vc.url = u
+                }
+                
+                vc.hideNavBar = true
+                vc.tuanModel = TuanModel()
+                vc.tuanModel.id = bean.data.data_id
+                
+                self.show(vc, sender: nil)
+                
+                
+            }
+            else if bean.ctl == "store"
+            {
+                
+                let vc = HtmlVC()
+                vc.hidesBottomBarWhenPushed = true
+                
+                let url = "http://tg01.sssvip.net/wap/index.php?ctl=store&act=app_index&data_id="+bean.data.data_id
+                
+                if let u = url.url()
+                {
+                    vc.url = u
+                }
+                
+                vc.hideNavBar = true
+                self.show(vc, sender: nil)
+                
+            }
+            
+        }
+        else
+        {
+            let model = homeModel.deal_list[indexPath.row]
+            
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            
+            let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+model.id+"&city_id="+DataCache.Share.city.id
+            
+            if let u = url.url()
+            {
+                vc.url = u
+            }
+            
+            vc.hideNavBar = true
+            vc.tuanModel = TuanModel()
+            vc.tuanModel.id = model.id
+            vc.tuanModel.sub_name = model.sub_name
+            
+            vc.title = "详情"
+            
+            self.show(vc, sender: nil)
+        
+            
+        }
+        
+        
+        
+        
+    }
+    
     func dodeinit()
     {
         

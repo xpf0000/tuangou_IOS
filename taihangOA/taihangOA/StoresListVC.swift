@@ -1,16 +1,17 @@
 //
-//  NearbyVC.swift
+//  StoresListVC.swift
 //  taihangOA
 //
-//  Created by 徐鹏飞 on 2017/6/9.
+//  Created by 徐鹏飞 on 2017/6/15.
 //  Copyright © 2017年 taihangOA. All rights reserved.
 //
 
 import UIKit
 import SwiftyJSON
 
-class NearbyVC: UIViewController,ReactionMenuDelegate {
 
+class StoresListVC: UIViewController,ReactionMenuDelegate {
+    
     @IBOutlet weak var topMenu: ReactionMenuView!
     
     @IBOutlet weak var tableview: XTableView!
@@ -25,12 +26,8 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "附近"
-        
-        if cate_id != ""
-        {
-            self.addBackButton()
-        }
+        self.title = "商家"
+        self.addBackButton()
         
         //设置菜单的父视图
         topMenu.superView = self.view
@@ -46,7 +43,7 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
         
         tableview.contentInset.bottom = 50.0
         
-        var url = Api.BaseUrl+"?ctl=tuan&act=app_index&r_type=1&isapp=true"
+        var url = Api.BaseUrl+"?ctl=stores&act=app_index&r_type=1&isapp=true"
         
         url += "&page=[page]"
         url += "&city_id="+DataCache.Share.city.id
@@ -57,19 +54,19 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
         url += "&xpoint=\(XPosition.Share.postion.longitude)"
         url += "&ypoint=\(XPosition.Share.postion.latitude)"
         
-        tableview.setHandle(url, pageStr: "[page]", keys: ["data","item"], model: TuanModel.self, CellIdentifier: "NearbyCell")
+        tableview.setHandle(url, pageStr: "[page]", keys: ["data","item"], model: StoresModel.self, CellIdentifier: "StoresCell")
         tableview.cellHeight = 100.0
         tableview.show()
         
         _ = addSearchButton { [weak self](btn) in
             
-            let vc:ShopSearchVC = ShopSearchVC()
+            let vc:StoresSearchVC = StoresSearchVC()
             let nv=XNavigationController(rootViewController: vc)
             
             self?.present(nv, animated: true) { () -> Void in
                 
             }
-
+            
         }
         
     }
@@ -164,6 +161,9 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
                 rm.fid = k
                 rm.obj = i
                 arr.append(rm)
+                
+                
+                
             }
             
             k += 1
@@ -197,7 +197,7 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
         
         
     }
-
+    
     
     func ReactionMenuChoose(_ arr: Array<ReactionMenuItemModel>, index: Int) {
         
@@ -225,8 +225,8 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
         }
         
         tableview.httpHandle.reSet()
-        var url = Api.BaseUrl+"?ctl=tuan&act=app_index&r_type=1&isapp=true"
-    
+        var url = Api.BaseUrl+"?ctl=stores&act=app_index&r_type=1&isapp=true"
+        
         url += "&page=[page]"
         url += "&city_id="+DataCache.Share.city.id
         url += "&cate_id=\(nowCate.cate_id)"
@@ -241,7 +241,7 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
         tableview.httpHandle.handle()
     }
     
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -255,7 +255,7 @@ class NearbyVC: UIViewController,ReactionMenuDelegate {
         
     }
     
-
-   
-
+    
+    
+    
 }

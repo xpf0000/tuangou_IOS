@@ -154,7 +154,6 @@ class XBanner: UICollectionView ,UICollectionViewDelegate,UICollectionViewDataSo
         
     }
     
-    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         

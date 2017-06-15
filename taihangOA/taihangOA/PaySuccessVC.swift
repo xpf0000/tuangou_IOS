@@ -14,12 +14,18 @@ class PaySuccessVC: UIViewController {
     
     @IBOutlet weak var num: UILabel!
     
-    @IBOutlet weak var nameView: UIView!
+    @IBOutlet weak var nameView: XRoundView!
     
     @IBOutlet weak var table: XTableView!
     
     var tuanModel:TuanModel?
     var payModel:PayModel?
+    
+    override func pop() {
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +35,11 @@ class PaySuccessVC: UIViewController {
         let cm1 = XCornerRadiusModel()
         cm1.FillPath = true
         cm1.FillColor = APPBlueColor
-        cm1.StrokePath = true
-        cm1.StrokeColor = APPBlueColor
+        
+        cm1.CornerRadius=6.0
         
         cm1.CornerRadiusType = [.topRight,.topLeft]
+        
         nameView.XCornerRadius = cm1
         
         table.contentInset.bottom = 20
@@ -68,11 +75,10 @@ class PaySuccessVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-    
-        nameView.drawCornerRadius(nameView.frame)
-        
         
     }
+    
+
     
     
     override func didReceiveMemoryWarning() {

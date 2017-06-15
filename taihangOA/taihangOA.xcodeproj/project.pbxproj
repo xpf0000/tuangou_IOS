@@ -30,6 +30,20 @@
 		170BCA761EF002320084693D /* AddPhotoNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 170BCA751EF002320084693D /* AddPhotoNormal.png */; };
 		170BCA781EF004000084693D /* XTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170BCA771EF004000084693D /* XTextView.swift */; };
 		17200F221EA0CC3A003B90B7 /* ResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17200F211EA0CC3A003B90B7 /* ResModel.swift */; };
+		174213281EF22CFA002F37F5 /* XRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174213271EF22CFA002F37F5 /* XRoundView.swift */; };
+		1742132A1EF23679002F37F5 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174213291EF23679002F37F5 /* TestVC.swift */; };
+		1742132C1EF262C8002F37F5 /* UCOrderPayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742132B1EF262C8002F37F5 /* UCOrderPayVC.swift */; };
+		1742132E1EF26B4E002F37F5 /* StoresListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742132D1EF26B4E002F37F5 /* StoresListVC.swift */; };
+		174213321EF26C2C002F37F5 /* StoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174213301EF26C2C002F37F5 /* StoresCell.swift */; };
+		174213331EF26C2C002F37F5 /* StoresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174213311EF26C2C002F37F5 /* StoresCell.xib */; };
+		174213351EF273EE002F37F5 /* StoresSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174213341EF273EE002F37F5 /* StoresSearchVC.swift */; };
+		174213391EF276D8002F37F5 /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174213371EF276D8002F37F5 /* NoticeCell.swift */; };
+		1742133A1EF276D8002F37F5 /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174213381EF276D8002F37F5 /* NoticeCell.xib */; };
+		1742133C1EF27757002F37F5 /* notice_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1742133B1EF27757002F37F5 /* notice_icon.png */; };
+		1742133E1EF27880002F37F5 /* NoticesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742133D1EF27880002F37F5 /* NoticesListVC.swift */; };
+		174213401EF29AD8002F37F5 /* app_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1742133F1EF29AD8002F37F5 /* app_logo.png */; };
+		174213421EF29B20002F37F5 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174213411EF29B20002F37F5 /* AboutVC.swift */; };
+		174213441EF29BC9002F37F5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174213431EF29BC9002F37F5 /* Date.swift */; };
 		176A38451EA700D400623A18 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176A38441EA700D400623A18 /* UIButton.swift */; };
 		177B5B811EEE379700DAA9F5 /* XHorizontalMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B5B7E1EEE379700DAA9F5 /* XHorizontalMainView.swift */; };
 		177B5B821EEE379700DAA9F5 /* XHorizontalMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177B5B7F1EEE379700DAA9F5 /* XHorizontalMenuView.swift */; };
@@ -310,6 +324,20 @@
 		170BCA751EF002320084693D /* AddPhotoNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddPhotoNormal.png; sourceTree = "<group>"; };
 		170BCA771EF004000084693D /* XTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTextView.swift; sourceTree = "<group>"; };
 		17200F211EA0CC3A003B90B7 /* ResModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResModel.swift; sourceTree = "<group>"; };
+		174213271EF22CFA002F37F5 /* XRoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRoundView.swift; sourceTree = "<group>"; };
+		174213291EF23679002F37F5 /* TestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		1742132B1EF262C8002F37F5 /* UCOrderPayVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UCOrderPayVC.swift; sourceTree = "<group>"; };
+		1742132D1EF26B4E002F37F5 /* StoresListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresListVC.swift; sourceTree = "<group>"; };
+		174213301EF26C2C002F37F5 /* StoresCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresCell.swift; sourceTree = "<group>"; };
+		174213311EF26C2C002F37F5 /* StoresCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoresCell.xib; sourceTree = "<group>"; };
+		174213341EF273EE002F37F5 /* StoresSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoresSearchVC.swift; sourceTree = "<group>"; };
+		174213371EF276D8002F37F5 /* NoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		174213381EF276D8002F37F5 /* NoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
+		1742133B1EF27757002F37F5 /* notice_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notice_icon.png; sourceTree = "<group>"; };
+		1742133D1EF27880002F37F5 /* NoticesListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticesListVC.swift; sourceTree = "<group>"; };
+		1742133F1EF29AD8002F37F5 /* app_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_logo.png; sourceTree = "<group>"; };
+		174213411EF29B20002F37F5 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		174213431EF29BC9002F37F5 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		176A38441EA700D400623A18 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		176A70871EA080520016D8E3 /* AlicloudMobileAnalitics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudMobileAnalitics.framework; sourceTree = "<group>"; };
 		176A70881EA080520016D8E3 /* AlicloudUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudUtils.framework; sourceTree = "<group>"; };
@@ -701,6 +729,24 @@
 			name = comment;
 			sourceTree = "<group>";
 		};
+		1742132F1EF26C0C002F37F5 /* stores */ = {
+			isa = PBXGroup;
+			children = (
+				174213301EF26C2C002F37F5 /* StoresCell.swift */,
+				174213311EF26C2C002F37F5 /* StoresCell.xib */,
+			);
+			name = stores;
+			sourceTree = "<group>";
+		};
+		174213361EF276BE002F37F5 /* notice */ = {
+			isa = PBXGroup;
+			children = (
+				174213371EF276D8002F37F5 /* NoticeCell.swift */,
+				174213381EF276D8002F37F5 /* NoticeCell.xib */,
+			);
+			name = notice;
+			sourceTree = "<group>";
+		};
 		177B5B7D1EEE379700DAA9F5 /* XHorizontalView */ = {
 			isa = PBXGroup;
 			children = (
@@ -862,6 +908,12 @@
 				17CA14A31EF118B2003FE068 /* OrderSubmitVC.swift */,
 				17CA14B11EF12822003FE068 /* OrderPayVC.swift */,
 				17CA15371EF14680003FE068 /* PaySuccessVC.swift */,
+				174213291EF23679002F37F5 /* TestVC.swift */,
+				1742132B1EF262C8002F37F5 /* UCOrderPayVC.swift */,
+				1742132D1EF26B4E002F37F5 /* StoresListVC.swift */,
+				174213341EF273EE002F37F5 /* StoresSearchVC.swift */,
+				1742133D1EF27880002F37F5 /* NoticesListVC.swift */,
+				174213411EF29B20002F37F5 /* AboutVC.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -869,6 +921,8 @@
 		179A15591E9E0E6100E60EC2 /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				1742133F1EF29AD8002F37F5 /* app_logo.png */,
+				1742133B1EF27757002F37F5 /* notice_icon.png */,
 				17CA14AD1EF12723003FE068 /* checkbox_round0.png */,
 				17CA14AE1EF12723003FE068 /* checkbox_round1.png */,
 				17CA14A91EF1266F003FE068 /* ali_pay_icon.png */,
@@ -996,6 +1050,7 @@
 				179A15461E9DBEB700E60EC2 /* DataCache.swift */,
 				179A15481E9DC2DC00E60EC2 /* JSHandle.swift */,
 				179F14E21E9CEC7A00FD80A0 /* HandleJSMsg.swift */,
+				174213431EF29BC9002F37F5 /* Date.swift */,
 				1784459D1E9F1FE700723640 /* Api.swift */,
 				179F14D61E9CDF4500FD80A0 /* UIView.swift */,
 				176A38441EA700D400623A18 /* UIButton.swift */,
@@ -1010,6 +1065,7 @@
 				178445D61E9F863400723640 /* XMessage.swift */,
 				170BCA651EEFD2320084693D /* XStarView.swift */,
 				17B524CB1EAAF01100EC78C1 /* XBanner.swift */,
+				174213271EF22CFA002F37F5 /* XRoundView.swift */,
 				177E43FE1EEA4B7D00B9537E /* XPosition.swift */,
 				170BCA6D1EEFEBBA0084693D /* XImageBrowse.swift */,
 				170BCA6F1EEFEBC60084693D /* MRZoomScrollView.swift */,
@@ -1099,6 +1155,8 @@
 		17A742BE1EE9204900C2F405 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				174213361EF276BE002F37F5 /* notice */,
+				1742132F1EF26C0C002F37F5 /* stores */,
 				17CA15391EF14741003FE068 /* paysuccess */,
 				17CA149A1EF11697003FE068 /* BuyNumView */,
 				17CA14911EF0EB64003FE068 /* coupon */,
@@ -1410,9 +1468,11 @@
 				17FC99B71EEE448600065AA0 /* OrderCell.xib in Resources */,
 				17FC99C81EEE7B5200065AA0 /* mine_icon0.png in Resources */,
 				177E43F71EEA423D00B9537E /* CityListPostionCell.xib in Resources */,
+				174213401EF29AD8002F37F5 /* app_logo.png in Resources */,
 				170BCA591EEFCE830084693D /* CollectCell.xib in Resources */,
 				17A742B41EE8FB1100C2F405 /* tab_3_1@2x.png in Resources */,
 				17A742B61EE8FB1100C2F405 /* tab_4@2x.png in Resources */,
+				1742133A1EF276D8002F37F5 /* NoticeCell.xib in Resources */,
 				17CA14AF1EF12723003FE068 /* checkbox_round0.png in Resources */,
 				178C6BD91EEED0C8006E8A56 /* QRCodeScanLine@2x.png in Resources */,
 				17A742B71EE8FB1100C2F405 /* tab_0_1@2x.png in Resources */,
@@ -1426,7 +1486,9 @@
 				177E43E51EEA314700B9537E /* HomeCHeader.xib in Resources */,
 				17A742B51EE8FB1100C2F405 /* tab_4_1@2x.png in Resources */,
 				17A742FF1EE958E000C2F405 /* HomeClassCell.xib in Resources */,
+				174213331EF26C2C002F37F5 /* StoresCell.xib in Resources */,
 				17CA15241EF1321E003FE068 /* AlipaySDK.bundle in Resources */,
+				1742133C1EF27757002F37F5 /* notice_icon.png in Resources */,
 				177B5B8C1EEE3A4100DAA9F5 /* news_cell_icon.png in Resources */,
 				17A742A21EE8FB0500C2F405 /* tab_1_1@3x.png in Resources */,
 				17A742A01EE8FB0500C2F405 /* tab_0_1@3x.png in Resources */,
@@ -1492,6 +1554,7 @@
 				17F1A0321EF0273D00885C4E /* XPhotoHandle.swift in Sources */,
 				178C6BDB1EEEDE9B006E8A56 /* APPSetupVC.swift in Sources */,
 				179F14B71E9CCD5D00FD80A0 /* Reflect+Other.swift in Sources */,
+				174213351EF273EE002F37F5 /* StoresSearchVC.swift in Sources */,
 				17F1A02E1EF0273D00885C4E /* XCamera.swift in Sources */,
 				177E44081EEA8E1800B9537E /* NearbyVC.swift in Sources */,
 				177E44031EEA6FC100B9537E /* ReactionMenuView.swift in Sources */,
@@ -1520,6 +1583,7 @@
 				17CA15281EF1321E003FE068 /* Order.m in Sources */,
 				17F1A02F1EF0273D00885C4E /* XPhotoBrowse.swift in Sources */,
 				170BCA4C1EEFBA320084693D /* UserInfoVC.swift in Sources */,
+				1742132A1EF23679002F37F5 /* TestVC.swift in Sources */,
 				17A742FB1EE9422D00C2F405 /* UserUnitsModel.swift in Sources */,
 				177E43EB1EEA3D0500B9537E /* CityListVC.swift in Sources */,
 				17F1A0371EF0273D00885C4E /* XZoomImageView.swift in Sources */,
@@ -1538,6 +1602,7 @@
 				17F1A0301EF0273D00885C4E /* XPhotoChooseCell.swift in Sources */,
 				17FC99B21EEE411300065AA0 /* UITableViewCell.swift in Sources */,
 				17A742F51EE9411100C2F405 /* UserCollectModel.swift in Sources */,
+				174213321EF26C2C002F37F5 /* StoresCell.swift in Sources */,
 				177E43E41EEA314700B9537E /* HomeCHeader.swift in Sources */,
 				179A15501E9DFA5200E60EC2 /* MineVC.swift in Sources */,
 				17CA15301EF1321E003FE068 /* RSADataVerifier.m in Sources */,
@@ -1576,13 +1641,16 @@
 				179A15471E9DBEB700E60EC2 /* DataCache.swift in Sources */,
 				17FC99DD1EEEA20000065AA0 /* RenzhengVC.swift in Sources */,
 				177B5B811EEE379700DAA9F5 /* XHorizontalMainView.swift in Sources */,
+				174213391EF276D8002F37F5 /* NoticeCell.swift in Sources */,
 				17CA14901EF0CFE3003FE068 /* UIImage.swift in Sources */,
 				177E440D1EEA8F9A00B9537E /* XCollectionView.swift in Sources */,
 				17A742F91EE9420300C2F405 /* UserFenhongModel.swift in Sources */,
 				179A15561E9E032300E60EC2 /* XNavigationController.swift in Sources */,
 				170BCA661EEFD2330084693D /* XStarView.swift in Sources */,
 				17CA152B1EF1321E003FE068 /* DataVerifier.m in Sources */,
+				174213281EF22CFA002F37F5 /* XRoundView.swift in Sources */,
 				179F14CF1E9CDD7800FD80A0 /* XWaitingView.swift in Sources */,
+				1742133E1EF27880002F37F5 /* NoticesListVC.swift in Sources */,
 				178445D11E9F6DFB00723640 /* MapVC.swift in Sources */,
 				179A15491E9DC2DC00E60EC2 /* JSHandle.swift in Sources */,
 				179F14B81E9CCD5D00FD80A0 /* Reflect+Property.swift in Sources */,
@@ -1595,6 +1663,7 @@
 				17A743021EE964AB00C2F405 /* HomeTopicCell.swift in Sources */,
 				1784459E1E9F1FE700723640 /* Api.swift in Sources */,
 				17FC99DB1EEE930D00065AA0 /* RegistVC.swift in Sources */,
+				174213441EF29BC9002F37F5 /* Date.swift in Sources */,
 				17CA15291EF1321E003FE068 /* base64.m in Sources */,
 				17A742E51EE93DA200C2F405 /* PayModel.swift in Sources */,
 				170BCA741EF0009C0084693D /* CommentSubmitVC.swift in Sources */,
@@ -1607,11 +1676,14 @@
 				179F14D71E9CDF4500FD80A0 /* UIView.swift in Sources */,
 				17A742D31EE937F600C2F405 /* HomeModel.swift in Sources */,
 				17CA152D1EF1321E003FE068 /* NSDataEx.m in Sources */,
+				1742132E1EF26B4E002F37F5 /* StoresListVC.swift in Sources */,
 				17A742ED1EE93FB000C2F405 /* StoresModel.swift in Sources */,
 				178445D51E9F858F00723640 /* CMapModel.swift in Sources */,
 				17CA14A61EF12084003FE068 /* Double.swift in Sources */,
+				1742132C1EF262C8002F37F5 /* UCOrderPayVC.swift in Sources */,
 				179F14B31E9CCD5D00FD80A0 /* Reflect+ArcFile.swift in Sources */,
 				177E43E81EEA327400B9537E /* HomeDealCell.swift in Sources */,
+				174213421EF29B20002F37F5 /* AboutVC.swift in Sources */,
 				179F14B91E9CCD5D00FD80A0 /* Reflect+Type.swift in Sources */,
 				17CA152A1EF1321E003FE068 /* DataSigner.m in Sources */,
 				177E44161EEAB6AA00B9537E /* ShopSearchVC.swift in Sources */,

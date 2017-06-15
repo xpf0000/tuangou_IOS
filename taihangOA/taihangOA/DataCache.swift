@@ -17,6 +17,8 @@ class DataCache: NSObject {
     var city = ItemsBean()
     lazy var ShopSearchKey:SearchKeyModel = SearchKeyModel()
     
+    lazy var StoresSearchKey:SearchKeyModel = SearchKeyModel()
+    
     fileprivate override init() {
         super.init()
         
@@ -51,6 +53,15 @@ class DataCache: NSObject {
         else
         {
             ShopSearchKey.name = "ShopSearchKeyModel"
+        }
+        
+        if let model = SearchKeyModel.read(name: "StoresSearchKey")
+        {
+            StoresSearchKey = model as! SearchKeyModel
+        }
+        else
+        {
+            StoresSearchKey.name = "StoresSearchKey"
         }
         
                 

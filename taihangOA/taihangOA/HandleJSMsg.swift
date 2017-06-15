@@ -132,33 +132,101 @@ class HandleJSMsg: NSObject {
         NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "AddResTaskSuccess")))
         
     }
-    else if(type == 8)  //待办事项操作成功
-    {
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "NewDaiban")))
-    }
-    else if(type == 9)  //待办人选择完成
+    else if(type == 8)  //继续支付
     {
         
-       
-        
-    }
-    else if(type == 10)  //督查督办添加成功
-    {
-        if(msg ==  "督查督办添加成功")
+        if let v = vc as? HtmlVC
         {
-            Hero.shared.setDefaultAnimationForNextTransition(.pull(direction: .right))
-            Hero.shared.setContainerColorForNextTransition(.lightGray)
-            vc.hero_dismissViewController()
+            v.addPopObserver(str: "OrderNeedRefresh")
         }
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "AddOverseerTaskSuccess")))
+        
+        let vc1 = "UCOrderPayVC".VC(name: "Main") as! UCOrderPayVC
+        
+        vc1.oid = obj["oid"].stringValue
+        vc1.name_str = obj["name"].stringValue
+        vc1.paytype = obj["paytype"].intValue
+        vc1.tprice_num = obj["tprice"].doubleValue
+        vc1.cprice_num = obj["cprice"].doubleValue
+        vc1.nprice_num = obj["nprice"].doubleValue
+        
+        let nv = XNavigationController.init(rootViewController: vc1)
+        
+        vc.show(nv, sender: nil)
+        
+        
+        
+    }
+    else if(type == 9)  //去退款
+    {
+        
+        if let v = vc as? HtmlVC
+        {
+            v.addReloadObserver(str: "DoRefundSuccess")
+        }
+        
+        let id = obj["oid"].intValue
+        
+        let nvc = HtmlVC()
+        nvc.hidesBottomBarWhenPushed = true
+        
+        let url = "http://tg01.sssvip.net/wap/index.php?ctl=uc_order&" +
+            "act=app_refund&id=\(id)&uid="+DataCache.Share.User.id
+        
+        if let u = url.url()
+        {
+            nvc.url = u
+        }
+        
+        nvc.title = "申请退款"
+        
+        vc.show(nvc, sender: nil)
+
+        
+    }
+    else if(type == 10)  //退款提交
+    {
+        let uid = DataCache.Share.User.id
+        let content = obj["content"].stringValue
+        let ids = obj["ids"].stringValue
+        
+        Api.uc_do_refund(uid: uid, content: content, item_id: ids, block: { (res) in
+            
+            if res
+            {
+                "DoRefundSuccess".postNotice()
+                "OrderNeedRefresh".postNotice()
+                
+                XAlertView.show("提交成功，请等待审核", block: {
+                    
+                    vc.pop()
+                    
+                })
+
+            }
+            
+        })
+        
+        
     }
     
-    else if(type == 11)  //用户头像上传
+    else if(type == 11)  //其他商家
     {
-        if let v = vc as? MineVC
+        let id = obj["id"].intValue
+        
+        let nvc = HtmlVC()
+        nvc.hidesBottomBarWhenPushed = true
+        
+        let url = "http://tg01.sssvip.net/wap/index.php?ctl=store&act=app_index&data_id=\(id)"
+        
+        if let u = url.url()
         {
-            v.onUploadHeadPic()
+            nvc.url = u
         }
+        
+        nvc.hideNavBar = true
+
+        vc.show(nvc, sender: nil)
+ 
     }
     
     else if(type == 12)  //跳转评论页
@@ -181,22 +249,13 @@ class HandleJSMsg: NSObject {
         
  
     }
-    
-    else if(type == 13)  //用户手机号更新成功
+    else if type == -1
     {
-        
-        let user = UserModel.parse(json: obj["info"], replace: nil)
-        DataCache.Share.User = user
-        DataCache.Share.User.save()
-        
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "UserUpdateMobile")))
+        XMessage.show(msg)
     }
     
-    else if(type == 14)  //版本升级
-    {
-        //EventBus.getDefault().post(new MyEventBus("CheckVersion"));
-    }
     
-    }
+    
+}
     
 }

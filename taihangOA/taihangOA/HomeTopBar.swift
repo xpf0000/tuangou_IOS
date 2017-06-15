@@ -22,6 +22,11 @@ class HomeTopBar: UIView {
     
     @IBAction func to_search(_ sender: Any) {
         
+        let vc:ShopSearchVC = ShopSearchVC()
+        let nv=XNavigationController(rootViewController: vc)
+        
+        self.viewController?.show(nv, sender: nil)
+    
     }
     
     @IBOutlet weak var city: UIButton!

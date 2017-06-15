@@ -39,6 +39,21 @@ class OrderCell: UITableViewCell {
             vc.hidesBottomBarWhenPushed = true
             self.viewController?.show(vc, sender: nil)
         }
+        else if sender.titleLabel?.text == "付款"
+        {
+            let vc = "UCOrderPayVC".VC(name: "Main") as! UCOrderPayVC
+            
+            vc.oid = model.id
+            vc.name_str = model.sub_name
+            vc.paytype = model.payment_id
+            vc.tprice_num = model.total_price
+            vc.cprice_num = model.account_money
+            vc.nprice_num = model.need_pay_price
+            
+            let nv = XNavigationController.init(rootViewController: vc)
+            
+            self.viewController?.show(nv, sender: nil)
+        }
         
         
     }
@@ -134,6 +149,25 @@ class OrderCell: UITableViewCell {
         if selected
         {
             deSelect()
+            
+            let id = model.id
+            let uid = DataCache.Share.User.id
+            
+            let xpoint = XPosition.Share.postion.longitude
+            let ypoint = XPosition.Share.postion.latitude
+            
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            if let u = "http://tg01.sssvip.net/wap/index.php?ctl=uc_order&act=app_order_info&id=\(id)&uid=\(uid)&xpoint=\(xpoint)&ypoint=\(ypoint)".url()
+            {
+                vc.url = u
+            }
+            
+            vc.title = "订单详情"
+            
+            self.viewController?.show(vc, sender: nil)
+            
+            
             
         }
     }

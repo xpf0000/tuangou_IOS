@@ -682,24 +682,41 @@ class Api: NSObject {
     
     class func uc_do_refund(uid:String,content:String,item_id:String, block:@escaping ApiBlock<Bool>)
     {
+        XWaitingView.show()
         var url = BaseUrl+"?ctl=uc_order&act=app_do_refund_coupon&r_type=1&isapp=true"
         url += "&uid="+uid
         url += "&content="+content
         url += "&item_id="+item_id
+    
+        url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         print(url)
+        
         Alamofire.request(url, method: .get).validate().responseJSON { response in
+            
+            XWaitingView.hide()
+            
             switch response.result {
             case .success(let value):
                 
                 let json = JSON(value)
-                if let status = json["status"].int
+                let status = json["status"].int ?? 0
+                
+                if status != 1
                 {
-                    block(status == 1)
+                    let msg = json["info"].string ?? "提交失败"
+                    XMessage.show(msg)
+                    block(false)
+                }
+                else
+                {
+                    block(true)
                 }
                 
             case .failure(let error):
                 print(error)
+                block(false)
+                XMessage.show(error.localizedDescription)
             }
         }
         

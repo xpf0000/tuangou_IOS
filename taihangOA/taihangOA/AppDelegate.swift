@@ -195,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         
-        print("阿里云注册失败 error: \(error)")
+        //print("阿里云注册失败 error: \(error)")
         
     }
 
