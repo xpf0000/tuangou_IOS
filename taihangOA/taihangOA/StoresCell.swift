@@ -52,7 +52,7 @@ class StoresCell: UITableViewCell {
             let vc = HtmlVC()
             vc.hidesBottomBarWhenPushed = true
             
-            let url = "http://tg01.sssvip.net/wap/index.php?ctl=store&act=app_index&data_id="+model.id
+            let url = "http://www.tcbjpt.com/wap/index.php?ctl=store&act=app_index&data_id="+model.id
             
             if let u = url.url()
             {

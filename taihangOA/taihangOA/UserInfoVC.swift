@@ -56,7 +56,7 @@ class UserInfoVC: UITableViewController,UIActionSheetDelegate,UIImagePickerContr
         var icon = DataCache.Share.User.avatar
         if !icon.has("http://") && !icon.has("https://")
         {
-            icon = "http://tg01.sssvip.net/" + icon
+            icon = "http://www.tcbjpt.com/" + icon
         }
         
         header.kf.setImage(with: icon.url())

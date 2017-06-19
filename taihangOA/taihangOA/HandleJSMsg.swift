@@ -67,16 +67,16 @@ class HandleJSMsg: NSObject {
         }
         
     }
-    else if(type == 2)  //登录成功
+    else if(type == 2)  //分享
     {
+        let icon = obj["icon"].stringValue
+        let name = obj["name"].stringValue
         
-        if(msg ==  "退出登录")
+        if(vc is HtmlVC)
         {
-            //DataCache.Share.User.unRegistNotice()
-            DataCache.Share.User.reset();
-            NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "logout")))
+            (vc as! HtmlVC).doShare(icon: icon, name: name)
         }
-    
+        
     }
     else if(type == 3)  //收藏
     {
@@ -99,7 +99,7 @@ class HandleJSMsg: NSObject {
         let nvc = HtmlVC()
         nvc.hidesBottomBarWhenPushed = true
         
-        let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id=\(id)&city_id="+DataCache.Share.city.id
+        let url = "http://www.tcbjpt.com/wap/index.php?ctl=deal&act=app_index&data_id=\(id)&city_id="+DataCache.Share.city.id
         
         if let u = url.url()
         {
@@ -120,17 +120,17 @@ class HandleJSMsg: NSObject {
             v.doBuy()
         }
     }
-    else if(type == 7)  //物品申请添加成功
+    else if(type == 7)  //评价
     {
-        if(msg ==  "物品申请添加成功")
-        {
-            Hero.shared.setDefaultAnimationForNextTransition(.pull(direction: .right))
-            Hero.shared.setContainerColorForNextTransition(.lightGray)
-            vc.hero_dismissViewController()
-        }
         
-        NotificationCenter.default.post(Notification.init(name: Notification.Name(rawValue: "AddResTaskSuccess")))
+       let did = obj["did"].stringValue
         
+        let nvc = "CommentSubmitVC".VC(name: "Main") as! CommentSubmitVC
+        
+        nvc.data_id = did
+        
+        vc.show(nvc, sender: nil)
+    
     }
     else if(type == 8)  //继续支付
     {
@@ -169,7 +169,7 @@ class HandleJSMsg: NSObject {
         let nvc = HtmlVC()
         nvc.hidesBottomBarWhenPushed = true
         
-        let url = "http://tg01.sssvip.net/wap/index.php?ctl=uc_order&" +
+        let url = "http://www.tcbjpt.com/wap/index.php?ctl=uc_order&" +
             "act=app_refund&id=\(id)&uid="+DataCache.Share.User.id
         
         if let u = url.url()
@@ -216,7 +216,7 @@ class HandleJSMsg: NSObject {
         let nvc = HtmlVC()
         nvc.hidesBottomBarWhenPushed = true
         
-        let url = "http://tg01.sssvip.net/wap/index.php?ctl=store&act=app_index&data_id=\(id)"
+        let url = "http://www.tcbjpt.com/wap/index.php?ctl=store&act=app_index&data_id=\(id)"
         
         if let u = url.url()
         {
@@ -236,7 +236,7 @@ class HandleJSMsg: NSObject {
         let nvc = HtmlVC()
         nvc.hidesBottomBarWhenPushed = true
         
-        let url = "http://tg01.sssvip.net/wap/index.php?ctl=dp_list&act=app_index&type=deal&data_id=\(id)"
+        let url = "http://www.tcbjpt.com/wap/index.php?ctl=dp_list&act=app_index&type=deal&data_id=\(id)"
         
         if let u = url.url()
         {

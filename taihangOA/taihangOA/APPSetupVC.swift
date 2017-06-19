@@ -79,7 +79,20 @@ class APPSetupVC: UITableViewController,UIAlertViewDelegate {
             caches.text = "0.0MB"
         
         }
-        else if indexPath.row == 4
+        else if indexPath.row == 3
+       {
+            if !checkIsLogin()
+            {
+                return
+            }
+        
+            let vc = HtmlVC()
+            vc.url = "http://www.tcbjpt.com/wap/index.php?ctl=user&act=app_getpassword&mobile=\(DataCache.Share.User.user_name)".url()
+            vc.title = "找回密码"
+            self.show(vc, sender: nil)
+        
+       }
+        else if indexPath.row == 5
        {
             let vc = "AboutVC".VC(name: "Main")
             self.show(vc, sender: nil)

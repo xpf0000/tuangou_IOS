@@ -25,6 +25,19 @@ class DataCache: NSObject {
         if let model = UserModel.read(name: "User")
         {
             User = model as! UserModel
+            
+            Api.user_getUinfo(uid: User.id, uname: User.user_name) { [weak self](m) in
+                
+                let sess_id = self?.User.sess_id ?? ""
+                
+                self?.User = m
+                self?.User.sess_id = sess_id
+                self?.User.save()
+                
+               "UserAccountChange".postNotice()
+                
+            }
+            
         }
         else
         {

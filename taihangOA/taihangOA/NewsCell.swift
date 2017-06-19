@@ -43,7 +43,7 @@ class NewsCell: UITableViewCell {
             
             let vc = HtmlVC()
             vc.hidesBottomBarWhenPushed = true
-            if let u = "http://tg01.sssvip.net/wap/index.php?ctl=news&act=app_newinfo&id=\(model.id)".url()
+            if let u = "http://www.tcbjpt.com/wap/index.php?ctl=news&act=app_newinfo&id=\(model.id)".url()
             {
                 vc.url = u
             }

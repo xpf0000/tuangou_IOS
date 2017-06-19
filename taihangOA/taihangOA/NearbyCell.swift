@@ -57,7 +57,7 @@ class NearbyCell: UITableViewCell {
             let vc = HtmlVC()
             vc.hidesBottomBarWhenPushed = true
             
-            let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+model.id+"&city_id="+DataCache.Share.city.id
+            let url = "http://www.tcbjpt.com/wap/index.php?ctl=deal&act=app_index&data_id="+model.id+"&city_id="+DataCache.Share.city.id
             
             if let u = url.url()
             {

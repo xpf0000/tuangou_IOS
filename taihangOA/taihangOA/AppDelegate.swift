@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
             }
 
         }
-        
+        initShareSDK()
         //CloudPushSDK.sendNotificationAck(launchOptions)
         
 
@@ -154,6 +154,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
         
         return true
     }
+    
+    
+    
+    
+    func initShareSDK()
+    {
+        
+        
+        ShareSDK.registerApp("ccae6a09a59e", activePlatforms:[
+            SSDKPlatformType.typeSinaWeibo.rawValue,
+            SSDKPlatformType.typeWechat.rawValue,
+            SSDKPlatformType.typeQQ.rawValue],
+                             onImport: { (platform : SSDKPlatformType) in
+                                switch platform
+                                {
+                                case SSDKPlatformType.typeWechat:
+                                    ShareSDKConnector.connectWeChat(WXApi.classForCoder())
+                                case SSDKPlatformType.typeQQ:
+                                    ShareSDKConnector.connectQQ(QQApiInterface.classForCoder(), tencentOAuthClass: TencentOAuth.classForCoder())
+                                default:
+                                    break
+                                }
+                                
+        }) { (platform : SSDKPlatformType, appInfo : NSMutableDictionary?) in
+            
+            switch platform
+            {
+           
+            case SSDKPlatformType.typeWechat:
+                //设置微信应用信息
+                appInfo?.ssdkSetupWeChat(byAppId: "wx2fbb20c41b2d3e3d", appSecret: "49652481728f15b4aac7f14282c04ee9")
+                
+            case SSDKPlatformType.typeQQ:
+                //设置QQ应用信息
+                appInfo?.ssdkSetupQQ(byAppId: "1106233806", appKey: "NdPnYslFfLQ9YJzt", authType: SSDKAuthTypeBoth)
+                
+            default:
+                break
+            }
+            
+        }
+        
+        
+    }
+
     
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

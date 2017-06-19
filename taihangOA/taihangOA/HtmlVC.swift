@@ -49,7 +49,26 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         
         if(self.url != nil)
         {
-            let request = URLRequest(url: url!)
+            var request = URLRequest(url: url!)
+            
+//            if let cookies = HTTPCookieStorage.shared.cookies
+//            {
+//                    for cookie in cookies
+//                    {
+//                        if cookie.name == "PHPSESSID"
+//                        {
+//                            request.addValue("PHPSESSID=\(cookie.value)", forHTTPHeaderField: "Cookie")
+//                            
+//                            print("PHPSESSID: \(cookie.value)")
+//                            
+//                            break
+//                        }
+//                    }
+//            }
+            
+            request.addValue("PHPSESSID=\(DataCache.Share.User.sess_id)", forHTTPHeaderField: "Cookie")
+            
+            
             
 //            request.setValue("text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8", forHTTPHeaderField: "accept")
 //            request.setValue("gzip, deflate, sdch, br", forHTTPHeaderField: "accept-encoding")
@@ -140,6 +159,16 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         config.userContentController = scriptHandle
         
         
+        // 加cookie给h5识别，表明在ios端打开该地址
+//        let userContentController = WKUserContentController.init()
+//        
+//        let cookieScript = WKUserScript.init(source: "document.cookie = 'PHPSESSID=\(app_sess_id)'", injectionTime: .atDocumentStart, forMainFrameOnly: false)
+//        
+//        userContentController.addUserScript(cookieScript)
+//        
+//        config.userContentController = userContentController
+        
+        
         webView = WKWebView(frame: CGRect.zero, configuration: config)
         
         webView?.uiDelegate=self
@@ -192,6 +221,19 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        
+        let response = navigationResponse.response as! HTTPURLResponse
+        let cookies = HTTPCookie.cookies(withResponseHeaderFields: response.allHeaderFields as! [String : String], for: response.url!)
+        
+        for cookie in cookies
+        {
+            HTTPCookieStorage.shared.setCookie(cookie)
+        }
+        
+        decisionHandler(.allow)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -293,7 +335,7 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
         let vc = HtmlVC()
         vc.hidesBottomBarWhenPushed = true
         
-        let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal_detail&act=app_index&data_id="+tuanModel.id
+        let url = "http://www.tcbjpt.com/wap/index.php?ctl=deal_detail&act=app_index&data_id="+tuanModel.id
         
         if let u = url.url()
         {
@@ -349,7 +391,43 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     }
     
     
+    func doShare(icon:String,name:String)
+    {
+        
+        let dic = NSMutableDictionary()
+        
+        dic.ssdkSetupShareParams(byText: name, images: icon, url: url, title: name, type: SSDKContentType.auto)
+        
+        ShareSDK.showShareActionSheet(nil, items: nil, shareParams: dic) { (state, type, info, entity, err, b) in
+            
+            if (state == SSDKResponseState.success)
+            {
+                
+                let alert = UIAlertView(title: "提示", message:"分享成功", delegate:self, cancelButtonTitle: "ok")
+                alert.show()
+            }
+            else
+            {
+                
+                
+                if (state == SSDKResponseState.fail)
+                {
+                    
+                    let alert = UIAlertView(title: "提示", message:err?.localizedDescription ?? "", delegate:self, cancelButtonTitle: "ok")
+                    alert.show()
+                    
+                }
+                
+            }
+            
+            
+        }
+        
+
+        
+    }
     
+  
     func addPopObserver(str:String)
     {
         NotificationCenter.default.addObserver(self, selector: #selector(pop), name: NSNotification.Name(rawValue: str), object: nil)
@@ -359,6 +437,10 @@ class HtmlVC: UIViewController,WKNavigationDelegate,WKUIDelegate,WKScriptMessage
     {
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name(rawValue: str), object: nil)
     }
+    
+    
+    
+    
     
     func dodeinit()
     {

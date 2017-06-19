@@ -14,7 +14,7 @@ typealias ApiBlock<T> = (T)->Void
 
 class Api: NSObject {
     
-    static let BaseUrl  = "http://tg01.sssvip.net/mapi/"
+    static let BaseUrl  = "http://www.tcbjpt.com/mapi/"
     static let Pagesize = 10
     
     
@@ -197,20 +197,32 @@ class Api: NSObject {
         
         print(url)
         Alamofire.request(url, method: .get).validate().responseJSON { response in
-            
+            XWaitingView.hide()
             switch response.result {
             case .success(let value):
                 
                 let json = JSON(value)
-                let model = UserModel.parse(json: json["data"], replace: nil)
                 
-                block(model)
+                let status = json["status"].int ?? 0
+                
+                if status != 1
+                {
+                    let msg = json["info"].string ?? "登录失败"
+                    XMessage.show(msg)
+                }
+                else
+                {
+                    app_sess_id = json["sess_id"].stringValue
+                    let model = UserModel.parse(json: json["data"], replace: nil)
+                    model.sess_id = app_sess_id
+                    block(model)
+                }
                 
             case .failure(let error):
                 print(error)
+                XMessage.show(error.localizedDescription)
             }
             
-            XWaitingView.hide()
             
         }
         
@@ -229,9 +241,14 @@ class Api: NSObject {
             case .success(let value):
                 
                 let json = JSON(value)
-                let model = UserModel.parse(json: json["data"], replace: nil)
+              
+                let status = json["status"].int ?? 0
                 
-                block(model)
+                if status == 1
+                {
+                    let model = UserModel.parse(json: json["data"], replace: nil)
+                    block(model)
+                }
                 
             case .failure(let error):
                 print(error)

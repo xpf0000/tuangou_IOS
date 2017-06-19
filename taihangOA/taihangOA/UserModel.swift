@@ -20,6 +20,7 @@ class UserModel: Reflect {
     var real_name = ""
     var rezhenging = false
     var id_number = ""
+    var sess_id = ""
     
     func reset()
     {
@@ -33,6 +34,7 @@ class UserModel: Reflect {
         real_name = ""
         rezhenging = false
         id_number = ""
+        sess_id=""
         save()
     }
     

@@ -117,8 +117,19 @@ class UserCenterVC: UITableViewController {
            break
         case 3:
             
-            let vc = "UCUnitsVC".VC(name: "Main")
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            if let u = "http://www.tcbjpt.com/wap/index.php?ctl=user&act=xf_danyuan&isapp=true".url()
+            {
+                vc.url = u
+            }
+            
+            vc.title = "消费单元"
+            
             self.show(vc, sender: nil)
+            
+//            let vc = "UCUnitsVC".VC(name: "Main")
+//            self.show(vc, sender: nil)
             
            break
         case 4:
@@ -145,7 +156,7 @@ class UserCenterVC: UITableViewController {
             
             let vc = HtmlVC()
             vc.hidesBottomBarWhenPushed = true
-            if let u = "http://tg01.sssvip.net/wap/index.php?ctl=user_center&act=app_qrcode&code=\(DataCache.Share.User.user_name)".url()
+            if let u = "http://www.tcbjpt.com/wap/index.php?ctl=user_center&act=app_qrcode&code=\(DataCache.Share.User.user_name)".url()
             {
                 vc.url = u
             }
@@ -158,6 +169,15 @@ class UserCenterVC: UITableViewController {
             
         case 9:
             
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            if let u = "http://www.tcbjpt.com/wap/index.php?ctl=yaoqing&act=app_index".url()
+            {
+                vc.url = u
+            }
+            
+            self.show(vc, sender: nil)
+ 
            break
             
         case 11: 
@@ -185,7 +205,10 @@ class UserCenterVC: UITableViewController {
         
         Api.user_getUinfo(uid: DataCache.Share.User.id, uname: DataCache.Share.User.user_name) { [weak self](m) in
             
+            let sess_id = DataCache.Share.User.sess_id
+            
             DataCache.Share.User = m
+            DataCache.Share.User.sess_id = sess_id
             DataCache.Share.User.save()
             
             self?.showInfo()

@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "taihangOA/AppDelegate.swift"
-            timestampString = "519131357.299389"
+            timestampString = "519564298.675169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "application(_:open:options:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "taihangOA/AppDelegate.swift"
-            timestampString = "519131358.851467"
+            timestampString = "519564298.675169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "application(_:handleOpen:)"
             landmarkType = "7">
          </BreakpointContent>

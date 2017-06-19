@@ -278,7 +278,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
                 
                 let vc = HtmlVC()
                 vc.hidesBottomBarWhenPushed = true
-                if let u = "http://tg01.sssvip.net/wap/index.php?ctl=notice&act=app_index&data_id=\(bean.data.data_id)".url()
+                if let u = "http://www.tcbjpt.com/wap/index.php?ctl=notice&act=app_index&data_id=\(bean.data.data_id)".url()
                 {
                     vc.url = u
                 }
@@ -294,7 +294,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
                 let vc = HtmlVC()
                 vc.hidesBottomBarWhenPushed = true
                 
-                let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+bean.data.data_id+"&city_id="+DataCache.Share.city.id
+                let url = "http://www.tcbjpt.com/wap/index.php?ctl=deal&act=app_index&data_id="+bean.data.data_id+"&city_id="+DataCache.Share.city.id
                 
                 if let u = url.url()
                 {
@@ -315,7 +315,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
                 let vc = HtmlVC()
                 vc.hidesBottomBarWhenPushed = true
                 
-                let url = "http://tg01.sssvip.net/wap/index.php?ctl=store&act=app_index&data_id="+bean.data.data_id
+                let url = "http://www.tcbjpt.com/wap/index.php?ctl=store&act=app_index&data_id="+bean.data.data_id
                 
                 if let u = url.url()
                 {
@@ -374,7 +374,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
                 
                 let vc = HtmlVC()
                 vc.hidesBottomBarWhenPushed = true
-                if let u = "http://tg01.sssvip.net/wap/index.php?ctl=notice&act=app_index&data_id=\(bean.data.data_id)".url()
+                if let u = "http://www.tcbjpt.com/wap/index.php?ctl=notice&act=app_index&data_id=\(bean.data.data_id)".url()
                 {
                     vc.url = u
                 }
@@ -390,7 +390,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
                 let vc = HtmlVC()
                 vc.hidesBottomBarWhenPushed = true
                 
-                let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+bean.data.data_id+"&city_id="+DataCache.Share.city.id
+                let url = "http://www.tcbjpt.com/wap/index.php?ctl=deal&act=app_index&data_id="+bean.data.data_id+"&city_id="+DataCache.Share.city.id
                 
                 if let u = url.url()
                 {
@@ -411,7 +411,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
                 let vc = HtmlVC()
                 vc.hidesBottomBarWhenPushed = true
                 
-                let url = "http://tg01.sssvip.net/wap/index.php?ctl=store&act=app_index&data_id="+bean.data.data_id
+                let url = "http://www.tcbjpt.com/wap/index.php?ctl=store&act=app_index&data_id="+bean.data.data_id
                 
                 if let u = url.url()
                 {
@@ -431,7 +431,7 @@ class HomeVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSou
             let vc = HtmlVC()
             vc.hidesBottomBarWhenPushed = true
             
-            let url = "http://tg01.sssvip.net/wap/index.php?ctl=deal&act=app_index&data_id="+model.id+"&city_id="+DataCache.Share.city.id
+            let url = "http://www.tcbjpt.com/wap/index.php?ctl=deal&act=app_index&data_id="+model.id+"&city_id="+DataCache.Share.city.id
             
             if let u = url.url()
             {

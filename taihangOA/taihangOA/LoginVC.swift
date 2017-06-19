@@ -14,6 +14,15 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var pass: UITextField!
     
+    @IBAction func to_findpass(_ sender: Any) {
+   
+        let vc = HtmlVC()
+        vc.url = "http://www.tcbjpt.com/wap/index.php?ctl=user&act=app_getpassword&mobile=".url()
+        vc.title = "找回密码"
+        self.show(vc, sender: nil)
+    
+    }
+    
     
     @IBAction func do_login(_ sender: UIButton) {
         

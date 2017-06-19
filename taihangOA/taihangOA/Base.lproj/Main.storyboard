@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wN4-wI-POb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wN4-wI-POb">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -306,9 +306,21 @@
                                     <action selector="do_login:" destination="N11-sw-Hf7" eventType="touchUpInside" id="Vcd-P2-h9m"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ytq-Tb-o7l">
+                                <rect key="frame" x="244" y="242" width="66" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="忘记密码">
+                                    <color key="titleColor" red="0.066666666669999999" green="0.75686274509999996" blue="0.95294117649999999" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="to_findpass:" destination="N11-sw-Hf7" eventType="touchUpInside" id="Ddn-Nj-EDG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Ytq-Tb-o7l" firstAttribute="trailing" secondItem="wE6-kw-uzv" secondAttribute="trailing" id="2fA-ns-4DE"/>
+                            <constraint firstItem="Ytq-Tb-o7l" firstAttribute="top" secondItem="wE6-kw-uzv" secondAttribute="bottom" constant="20" id="Ckm-8s-IMw"/>
                             <constraint firstAttribute="trailing" secondItem="wE6-kw-uzv" secondAttribute="trailing" constant="10" id="XNB-nk-Vhi"/>
                             <constraint firstAttribute="trailing" secondItem="fBY-no-Nca" secondAttribute="trailing" id="f6d-wu-KPs"/>
                             <constraint firstItem="wE6-kw-uzv" firstAttribute="leading" secondItem="dgl-8u-4YK" secondAttribute="leading" constant="10" id="kn0-Hj-CJC"/>
@@ -1600,8 +1612,30 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="p78-jr-aNn">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p78-jr-aNn" id="dbv-kr-YFo">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz6-FX-SDd">
+                                                    <rect key="frame" x="20" y="19" width="69.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Xz6-FX-SDd" firstAttribute="centerY" secondItem="dbv-kr-YFo" secondAttribute="centerY" id="Jen-gN-IvG"/>
+                                                <constraint firstItem="Xz6-FX-SDd" firstAttribute="leading" secondItem="dbv-kr-YFo" secondAttribute="leading" constant="20" id="O5A-yy-4Ve"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" rowHeight="12" id="9lE-CC-SRS">
-                                        <rect key="frame" x="0.0" y="132" width="320" height="12"/>
+                                        <rect key="frame" x="0.0" y="192" width="320" height="12"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9lE-CC-SRS" id="iCk-K1-R0G">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="11"/>
@@ -1611,7 +1645,7 @@
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="pRy-9S-36x">
-                                        <rect key="frame" x="0.0" y="144" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="204" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pRy-9S-36x" id="wiF-SJ-Ugc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -1633,7 +1667,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" rowHeight="75" id="S5W-mc-3Pk">
-                                        <rect key="frame" x="0.0" y="204" width="320" height="75"/>
+                                        <rect key="frame" x="0.0" y="264" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S5W-mc-3Pk" id="jQH-Zt-BQP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>

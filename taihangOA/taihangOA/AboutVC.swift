@@ -64,7 +64,7 @@ class AboutVC: UITableViewController {
         if indexPath.row == 1
         {
             let vc = HtmlVC()
-            vc.url = "http://tg01.sssvip.net/index.php?ctl=agent".url()
+            vc.url = "http://www.tcbjpt.com/index.php?ctl=agent".url()
             vc.title="代理商招募"
             
             self.show(vc, sender: nil)

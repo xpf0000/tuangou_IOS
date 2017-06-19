@@ -8,6 +8,8 @@
 
 import Foundation
 
+var app_sess_id = ""
+
 let TmpDirURL = Bundle.main.resourceURL!.appendingPathComponent("html")
 let APPBlueColor = "11c1f3".color()
 let ImagePrefix = "http://oonby7g6e.bkt.clouddn.com/"

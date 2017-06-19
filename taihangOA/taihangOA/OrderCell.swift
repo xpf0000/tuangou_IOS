@@ -158,7 +158,7 @@ class OrderCell: UITableViewCell {
             
             let vc = HtmlVC()
             vc.hidesBottomBarWhenPushed = true
-            if let u = "http://tg01.sssvip.net/wap/index.php?ctl=uc_order&act=app_order_info&id=\(id)&uid=\(uid)&xpoint=\(xpoint)&ypoint=\(ypoint)".url()
+            if let u = "http://www.tcbjpt.com/wap/index.php?ctl=uc_order&act=app_order_info&id=\(id)&uid=\(uid)&xpoint=\(xpoint)&ypoint=\(ypoint)".url()
             {
                 vc.url = u
             }
