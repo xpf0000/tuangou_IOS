@@ -52,7 +52,9 @@ class UserCenterVC: UITableViewController {
     
         override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "会员中心"
+
+        self.navigationItem.title = "会员中心"
+        self.tabBarItem.title = "我的"
         let view = UIView()
         tableView.tableHeaderView = view
         tableView.tableFooterView = view

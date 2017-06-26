@@ -199,7 +199,11 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
         map["point"] = "\(star.num)"
         map["content"] = content.text!.trim()
         
-       
+       if(imgarr.count == 0)
+       {
+            submit(map: map)
+            return
+        }
         
         var i = 0
         let end = imgarr.count
@@ -244,7 +248,7 @@ class CommentSubmitVC: UITableViewController ,UICollectionViewDelegate{
                 
                 XAlertView.show("评价提交成功", block: { [weak self] in
                     
-                    self?.dismiss(animated: true, completion: nil)
+                    self?.pop()
                     
                 })
             }

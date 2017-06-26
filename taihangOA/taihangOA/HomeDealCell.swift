@@ -29,7 +29,34 @@ class HomeDealCell: UICollectionViewCell {
             img.kf.setImage(with: url)
             
             name.text = model.sub_name
-            distance.text = "\(model.distance)"
+            
+            let a = XPosition.Share.postion.latitude > 0.0 && XPosition.Share.postion.longitude > 0.0
+            let b = model.xpoint > 0.0 && model.ypoint > 0.0
+            if(a && b)
+            {
+                let point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(XPosition.Share.postion.latitude,XPosition.Share.postion.longitude));
+                
+                let point2 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake(model.ypoint,model.xpoint));
+                
+                var dis = BMKMetersBetweenMapPoints(point1,point2);
+                
+                if dis > 1000
+                {
+                    dis = dis / 1000.0
+                    let s = String.init(format: "%.1fkm", dis)
+                    distance.text = s
+                }
+                else
+                {
+                    distance.text = "\(dis)m"
+                }
+                
+            }
+            else
+            {
+                distance.text = "\(model.distance)"
+            }
+            
             time.text = model.end_time_format
             tprice.text = "￥\(model.current_price)"
             price.text = "￥\(model.origin_price)"

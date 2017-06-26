@@ -123,9 +123,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
                 
                 mapStarted = true
                 
-//                XPosition.Share.getCoordinate(block: { [weak self](res) in
-//                     XPosition.Share.stop()
-//                })
+                XPosition.Share.getCoordinate(block: { [weak self](res) in
+                })
                 
             }
 

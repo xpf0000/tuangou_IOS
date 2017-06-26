@@ -22,19 +22,17 @@ class APPSetupVC: UITableViewController,UIAlertViewDelegate {
     
     @IBAction func btn_click(_ sender: Any) {
         
-        if DataCache.Share.User.id == ""
+        if !checkIsLogin()
         {
-            
+            return
         }
-        else
-        {
-            logoutAlert.delegate = self
-            logoutAlert.title = "注销登录"
-            logoutAlert.message = "确定要登出账户吗?"
-            logoutAlert.addButton(withTitle: "取消")
-            logoutAlert.addButton(withTitle: "确定")
-            logoutAlert.show()
-        }
+        
+        logoutAlert.delegate = self
+        logoutAlert.title = "注销登录"
+        logoutAlert.message = "确定要登出账户吗?"
+        logoutAlert.addButton(withTitle: "取消")
+        logoutAlert.addButton(withTitle: "确定")
+        logoutAlert.show()
         
     }
     
