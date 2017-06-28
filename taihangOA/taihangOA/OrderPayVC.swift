@@ -217,16 +217,75 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
     
     func doWXPay()
     {
+        if !WXApi.isWXAppInstalled()
+        {
+            XWaitingView.hide()
+            XMessage.show("检测到未安装微信，无法支付")
+            return
+        }
+        
+        if !WXApi.isWXAppSupport()
+        {
+            XWaitingView.hide()
+            XMessage.show("微信版本过低，请先升级微信至最新版")
+            return
+        }
+        
+        if let m = payModel?.payment_code.config.ios
+        {
+            
+            let req:PayReq = PayReq()
+            req.openID = m.appid
+            req.partnerId = m.partnerid
+            req.prepayId = m.prepayid
+            req.package = m.package
+            req.nonceStr = m.noncestr
+            req.timeStamp  = m.timestamp
+            req.sign = m.sign
+            WXApi.send(req)
+
+            NotificationCenter.default.addObserver(self, selector: #selector(wxPayResult(_:)), name: NSNotification.Name(rawValue: "weixin_pay_result"), object: nil)
+            
+        }
+        
+        
         
     }
+    
+    
+    
+    func wxPayResult( _ notif:NSNotification)
+    {
+        //支付成功!支付取消!支付失败!请重新支付!
+        let m = notif.object
+        
+        if let message = m as? String
+        {
+            switch message{
+            case "支付成功!":
+               handlePayResult(0)
+            case "支付取消!":
+                handlePayResult(2)
+            case "支付失败!请重新支付!":
+                handlePayResult(1)
+            default:
+                break
+            }
+        }
+        
+        
+    }
+
+    
+    
+    
     
     func handlePayResult(_ status:Int)
     {
         XWaitingView.hide()
-        
+        "OrderNeedRefresh".postNotice()
         if(status == 0)
         {
-            "OrderNeedRefresh".postNotice()
             XAlertView.show("支付成功！", block: { [weak self] in
                 
                 let vc = "PaySuccessVC".VC(name: "Main") as! PaySuccessVC
@@ -350,6 +409,10 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
         
     }
     
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

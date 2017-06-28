@@ -16,7 +16,7 @@ var mapStarted = false
 var NetConnected = false
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,WXApiDelegate {
 
     var window: UIWindow?
 
@@ -90,7 +90,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
 //        
 //        CloudPushSDK.turnOnDebug()
     }
-
+    
+    func onResp(_ resp: BaseResp!) {
+        
+        if resp is PayResp
+        {
+            switch resp.errCode {
+            case WXSuccess.rawValue:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "weixin_pay_result"), object: "支付成功!")
+            case WXErrCodeUserCancel.rawValue:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "weixin_pay_result"), object: "支付取消!")
+            default:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "weixin_pay_result"), object: "支付失败!请重新支付!")
+            }
+        }
+        
+    }
+    
+ 
     
     func RegistPushNotice()
     {
@@ -132,6 +149,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
         initShareSDK()
         //CloudPushSDK.sendNotificationAck(launchOptions)
         
+        WXApi.registerApp("wxec4f19cde6fa4597", withDescription: "com.x.tcbjpt")
+        
 
         netcheck.whenReachable = { reachability in
             DispatchQueue.main.async {
@@ -162,7 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
         
         
         ShareSDK.registerApp("ccae6a09a59e", activePlatforms:[
-            SSDKPlatformType.typeSinaWeibo.rawValue,
             SSDKPlatformType.typeWechat.rawValue,
             SSDKPlatformType.typeQQ.rawValue],
                              onImport: { (platform : SSDKPlatformType) in
@@ -183,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
            
             case SSDKPlatformType.typeWechat:
                 //设置微信应用信息
-                appInfo?.ssdkSetupWeChat(byAppId: "wx2fbb20c41b2d3e3d", appSecret: "49652481728f15b4aac7f14282c04ee9")
+                appInfo?.ssdkSetupWeChat(byAppId: "wx75043ca8e647d5d3", appSecret: "10e58beee4fc530a891f1e90a38c57bb")
                 
             case SSDKPlatformType.typeQQ:
                 //设置QQ应用信息
@@ -286,12 +304,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
         if url.host == "safepay"
         {
             AlipaySDK.defaultService().processAuthResult(url, standbyCallback: { (dic) in
-                
-                
                 print(dic ?? [])
-                
-                
             })
+        }
+        
+        if "\(url)".has("wxec4f19cde6fa4597://pay")
+        {
+            return WXApi.handleOpen(url, delegate: self)
         }
         
         return true
@@ -303,10 +322,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,BMKLoc
         if url.host == "safepay"
         {
             AlipaySDK.defaultService().processAuthResult(url, standbyCallback: { (dic) in
-                
                 print(dic ?? [])
-                
             })
+        }
+        
+        if "\(url)".has("wxec4f19cde6fa4597://pay")
+        {
+            return WXApi.handleOpen(url, delegate: self)
         }
         
         return true

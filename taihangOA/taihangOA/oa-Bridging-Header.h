@@ -18,7 +18,7 @@
 
 //微信SDK头文件
 #import "WXApi.h"
-
+#import "WXApiObject.h"
 //#import <CloudPushSDK/CloudPushSDK.h>
 //#import <CloudPushSDK/CCPSysMessage.h>
 //#import <CommonCrypto/CommonDigest.h>

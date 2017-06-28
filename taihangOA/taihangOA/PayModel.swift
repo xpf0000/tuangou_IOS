@@ -65,7 +65,8 @@ class IosBean : Reflect {
     var  noncestr = ""
     var  partnerid = ""
     var prepayid = ""
-    var timestamp = 0
+    var timestamp:UInt32 = 0
     var  sign = ""
+    var package = ""
     
 }

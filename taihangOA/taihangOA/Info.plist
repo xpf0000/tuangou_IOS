@@ -37,7 +37,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx2fbb20c41b2d3e3d</string>
+				<string>wx75043ca8e647d5d3</string>
 			</array>
 		</dict>
 		<dict>
@@ -48,6 +48,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>QQ41EFC9CE</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>wxpay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wxec4f19cde6fa4597</string>
 			</array>
 		</dict>
 	</array>
