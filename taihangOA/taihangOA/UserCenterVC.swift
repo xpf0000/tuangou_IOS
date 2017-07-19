@@ -68,7 +68,7 @@ class UserCenterVC: UITableViewController {
         
     }
     
-    let sarr:[Int] = [2,3,4,5,8]
+    let sarr:[Int] = [2,3,4,5,8,11]
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
@@ -95,7 +95,7 @@ class UserCenterVC: UITableViewController {
         tableView.layoutMargins=UIEdgeInsets.zero
     }
 
-    let tarr:[Int] = [2,3,4,5,6,8,9]
+    let tarr:[Int] = [2,3,4,5,6,8,9,11,12]
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -182,7 +182,39 @@ class UserCenterVC: UITableViewController {
  
            break
             
-        case 11: 
+        case 11:
+            
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            if let u = "http://www.tcbjpt.com/wap/index.php?ctl=user&act=app_user_bank".url()
+            {
+                vc.url = u
+            }
+            
+            vc.title = "绑定银行卡"
+            
+            self.show(vc, sender: nil)
+            
+            break
+
+            
+        case 12:
+            
+            let vc = HtmlVC()
+            vc.hidesBottomBarWhenPushed = true
+            if let u = "http://www.tcbjpt.com/wap/index.php?ctl=user&act=app_tx_user".url()
+            {
+                vc.url = u
+            }
+            
+            vc.title = "我的提现"
+            
+            self.show(vc, sender: nil)
+            
+            break
+
+            
+        case 14:
             
             let vc = "APPSetupVC".VC(name: "Main")
             vc.hidesBottomBarWhenPushed = true

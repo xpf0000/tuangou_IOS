@@ -362,10 +362,17 @@ class OrderPayVC: UITableViewController,UIAlertViewDelegate {
         
     }
     
+    func onAppActivity()
+    {
+        XWaitingView.hide()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addBackButton()
         self.title = "提交订单"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onAppActivity), name: NSNotification.Name(rawValue: "ApplicationDidBecomeActive"), object: nil)
         
         let v = UIView()
         tableView.tableFooterView = v

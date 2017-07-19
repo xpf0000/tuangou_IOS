@@ -300,6 +300,8 @@
 		17FC99D91EEE91B200065AA0 /* checkbox_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 17FC99D71EEE91B200065AA0 /* checkbox_3.png */; };
 		17FC99DB1EEE930D00065AA0 /* RegistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC99DA1EEE930D00065AA0 /* RegistVC.swift */; };
 		17FC99DD1EEEA20000065AA0 /* RenzhengVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC99DC1EEEA20000065AA0 /* RenzhengVC.swift */; };
+		17FEBFCD1F1EFC6600564555 /* mine_icon8.png in Resources */ = {isa = PBXBuildFile; fileRef = 17FEBFCB1F1EFC6600564555 /* mine_icon8.png */; };
+		17FEBFCE1F1EFC6600564555 /* mine_icon9.png in Resources */ = {isa = PBXBuildFile; fileRef = 17FEBFCC1F1EFC6600564555 /* mine_icon9.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -721,6 +723,8 @@
 		17FC99D71EEE91B200065AA0 /* checkbox_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_3.png; sourceTree = "<group>"; };
 		17FC99DA1EEE930D00065AA0 /* RegistVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistVC.swift; sourceTree = "<group>"; };
 		17FC99DC1EEEA20000065AA0 /* RenzhengVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenzhengVC.swift; sourceTree = "<group>"; };
+		17FEBFCB1F1EFC6600564555 /* mine_icon8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine_icon8.png; sourceTree = "<group>"; };
+		17FEBFCC1F1EFC6600564555 /* mine_icon9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine_icon9.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1025,6 +1029,8 @@
 				17FC99C51EEE7B5200065AA0 /* mine_icon5.png */,
 				17FC99C61EEE7B5200065AA0 /* mine_icon6.png */,
 				17FC99C71EEE7B5200065AA0 /* mine_icon7.png */,
+				17FEBFCB1F1EFC6600564555 /* mine_icon8.png */,
+				17FEBFCC1F1EFC6600564555 /* mine_icon9.png */,
 				17FC99BE1EEE7B2400065AA0 /* go.png */,
 				177B5B8B1EEE3A4100DAA9F5 /* news_cell_icon.png */,
 				177E44171EEABC6F00B9537E /* search@3x.png */,
@@ -1687,6 +1693,7 @@
 				1742133C1EF27757002F37F5 /* notice_icon.png in Resources */,
 				177B5B8C1EEE3A4100DAA9F5 /* news_cell_icon.png in Resources */,
 				17A742A21EE8FB0500C2F405 /* tab_1_1@3x.png in Resources */,
+				17FEBFCD1F1EFC6600564555 /* mine_icon8.png in Resources */,
 				17A742A01EE8FB0500C2F405 /* tab_0_1@3x.png in Resources */,
 				17BF2D601EF7DD700037703E /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				17FC99CE1EEE7B5200065AA0 /* mine_icon6.png in Resources */,
@@ -1712,6 +1719,7 @@
 				17A742A91EE8FB0500C2F405 /* tab_4@3x.png in Resources */,
 				17FC99CC1EEE7B5200065AA0 /* mine_icon4.png in Resources */,
 				170BCA4F1EEFC5790084693D /* uc_units_icon0.png in Resources */,
+				17FEBFCE1F1EFC6600564555 /* mine_icon9.png in Resources */,
 				170BCA6A1EEFD6410084693D /* CommentPicCell.xib in Resources */,
 				17A742BB1EE8FB1100C2F405 /* tab_2@2x.png in Resources */,
 				17A742C71EE9221800C2F405 /* scan_white@3x.png in Resources */,

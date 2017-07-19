@@ -290,6 +290,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UIAlertViewDelegate,WXApiD
     func applicationDidBecomeActive(_ application: UIApplication) {
     
         print("applicationDidBecomeActive !!!!!!!!!")
+        
+        "ApplicationDidBecomeActive".postNotice()
             
     
     }
